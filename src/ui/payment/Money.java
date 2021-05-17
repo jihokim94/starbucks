@@ -59,7 +59,7 @@ public class Money extends JFrame {
 	MainFrame fr ;
 	MemberDBMgr mgr;
 	
-	
+	// Branch Test
 	/**
 	 * Launch the application.
 	 */
