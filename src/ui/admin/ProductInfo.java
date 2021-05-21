@@ -93,9 +93,7 @@ public class ProductInfo extends JFrame {
 		
 		setContentPane();
 		
-		JSplitPane splitPane = new JSplitPane();
-		splitPane.setResizeWeight(0.7);
-		contentPane.add(splitPane, BorderLayout.CENTER);
+		JSplitPane splitPane = setJsplitPane();
 		
 		JPanel pnMain = new JPanel();
 		pnMain.setBackground(new Color(0, 101, 70));
@@ -410,6 +408,12 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private JSplitPane setJsplitPane() {
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setResizeWeight(0.7);
+		contentPane.add(splitPane, BorderLayout.CENTER);
+		return splitPane;
 	}
 private void setContentPane() {
 	contentPane = new JPanel();
