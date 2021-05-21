@@ -95,10 +95,7 @@ public class ProductInfo extends JFrame {
 		
 		JSplitPane splitPane = setJsplitPane();
 		
-		JPanel pnMain = new JPanel();
-		pnMain.setBackground(new Color(0, 101, 70));
-		splitPane.setLeftComponent(pnMain);
-		pnMain.setLayout(null);
+		JPanel pnMain = setJPanel(splitPane);
 		
 		JLabel lblNewLabel = new JLabel("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8");
 		lblNewLabel.setFont(new Font("HY°ß°íµñ", Font.BOLD, 18));
@@ -408,6 +405,13 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private JPanel setJPanel(JSplitPane splitPane) {
+		JPanel pnMain = new JPanel();
+		pnMain.setBackground(new Color(0, 101, 70));
+		splitPane.setLeftComponent(pnMain);
+		pnMain.setLayout(null);
+		return pnMain;
 	}
 	private JSplitPane setJsplitPane() {
 		JSplitPane splitPane = new JSplitPane();
