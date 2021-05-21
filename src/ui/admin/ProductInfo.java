@@ -113,17 +113,7 @@ public class ProductInfo extends JFrame {
 		pnMain.add(txtSearch);
 		txtSearch.setColumns(10);
 		
-		JButton btnclear = new JButton("");
-		btnclear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				txtSearch.setText("");
-//				showAllProduct();
-				showSearchProduct("");
-			}
-		});
-		btnclear.setToolTipText("\uD14D\uC2A4\uD2B8 \uC9C0\uC6B0\uAE30");
-		btnclear.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\bin.png"));
-		btnclear.setBounds(387, 25, 47, 23);
+		JButton btnclear = setbtnClear();
 		pnMain.add(btnclear);
 		
 		JPanel pnSub = new JPanel();
@@ -338,6 +328,20 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private JButton setbtnClear() {
+		JButton btnclear = new JButton("");
+		btnclear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtSearch.setText("");
+//				showAllProduct();
+				showSearchProduct("");
+			}
+		});
+		btnclear.setToolTipText("\uD14D\uC2A4\uD2B8 \uC9C0\uC6B0\uAE30");
+		btnclear.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\bin.png"));
+		btnclear.setBounds(387, 25, 47, 23);
+		return btnclear;
 	}
 	private void settxtSearch() {
 		txtSearch = new JTextField();
