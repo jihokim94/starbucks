@@ -95,7 +95,7 @@ public class ProductInfo extends JFrame {
 		
 		JSplitPane splitPane = setJsplitPane();
 		
-		JPanel pnMain = setJPanel(splitPane);
+		JPanel pnMain = setpnMain(splitPane);
 		
 		JLabel lblNewLabel = setlblNewLabel();
 		pnMain.add(lblNewLabel);
@@ -410,7 +410,7 @@ public class ProductInfo extends JFrame {
 		lblNewLabel.setBounds(12, 10, 165, 49);
 		return lblNewLabel;
 	}
-	private JPanel setJPanel(JSplitPane splitPane) {
+	private JPanel setpnMain(JSplitPane splitPane) {
 		JPanel pnMain = new JPanel();
 		pnMain.setBackground(new Color(0, 101, 70));
 		splitPane.setLeftComponent(pnMain);
