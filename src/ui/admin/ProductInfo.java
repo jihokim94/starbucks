@@ -116,8 +116,8 @@ public class ProductInfo extends JFrame {
 		JButton btnclear = setbtnClear();
 		pnMain.add(btnclear);
 		
-		JPanel pnSub = new JPanel();
-		pnSub.setBackground(new Color(255, 255, 255));
+		JPanel pnSub = setpnsub();
+		
 		splitPane.setRightComponent(pnSub);
 		pnSub.setLayout(null);
 		
@@ -328,6 +328,11 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private JPanel setpnsub() {
+		JPanel pnSub = new JPanel();
+		pnSub.setBackground(new Color(255, 255, 255));
+		return pnSub;
 	}
 	private JButton setbtnClear() {
 		JButton btnclear = new JButton("");
