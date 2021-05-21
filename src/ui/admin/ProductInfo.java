@@ -86,9 +86,11 @@ public class ProductInfo extends JFrame {
 	public ProductInfo() {
 		this.PInfo =PInfo;
 		this.mgr= new ProductDBMgr();
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("\uC0C1\uD488\uAD00\uB9AC");
 		setBounds(100, 100, 926, 734);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -116,6 +118,7 @@ public class ProductInfo extends JFrame {
 				showSearchProduct("");
 			}
 		});
+		
 		btnProductList.setFont(new Font("±¼¸²", Font.BOLD, 12));
 		btnProductList.setBounds(446, 22, 133, 28);
 		pnMain.add(btnProductList);
