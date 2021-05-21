@@ -135,10 +135,7 @@ public class ProductInfo extends JFrame {
 		JLabel label_1 = setLabel_1();
 		pnSub.add(label_1);
 		
-		JLabel label_2 = new JLabel("\uC0AC\uC9C4\uD30C\uC77C\uACBD\uB85C");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setFont(new Font("±¼¸²", Font.BOLD, 13));
-		label_2.setBounds(12, 405, 105, 18);
+		JLabel label_2 = setLabel_2();
 		pnSub.add(label_2);
 		
 		txtImagePath = new JTextField();
@@ -311,6 +308,13 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private JLabel setLabel_2() {
+		JLabel label_2 = new JLabel("\uC0AC\uC9C4\uD30C\uC77C\uACBD\uB85C");
+		label_2.setHorizontalAlignment(SwingConstants.CENTER);
+		label_2.setFont(new Font("±¼¸²", Font.BOLD, 13));
+		label_2.setBounds(12, 405, 105, 18);
+		return label_2;
 	}
 	private JLabel setLabel_1() {
 		JLabel label_1 = new JLabel("\uCE74\uD14C\uACE0\uB9AC");
