@@ -91,10 +91,7 @@ public class ProductInfo extends JFrame {
 		setTitle("\uC0C1\uD488\uAD00\uB9AC");
 		setBounds(100, 100, 926, 734);
 		
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane();
 		
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(0.7);
@@ -414,6 +411,12 @@ public class ProductInfo extends JFrame {
 		
 		
 	}
+private void setContentPane() {
+	contentPane = new JPanel();
+	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+	setContentPane(contentPane);
+	contentPane.setLayout(new BorderLayout(0, 0));
+}
 	public void showSearchProduct(String target) {
 		final String [] columnNames = {"관리 번호", "상품명", "카테고리", "사진파일경로", "가격", "HOT/ICE" ,"출시일"};
 		
@@ -427,9 +430,7 @@ public class ProductInfo extends JFrame {
 		
 		DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
 		pdTable.setModel(dtm);
-		
-	
-		
+				
 		/*sort the table */
 		TableRowSorter<TableModel> trs = sortTable();
 
