@@ -109,15 +109,7 @@ public class ProductInfo extends JFrame {
 		setpdTable();
 		scrollPane.setViewportView(pdTable);
 		
-		txtSearch = new JTextField();
-		txtSearch.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent e) {
-				String target = txtSearch.getText();
-				showSearchProduct(target);
-			}
-		});
-		txtSearch.setBounds(189, 24, 186, 25);
+		settxtSearch();
 		pnMain.add(txtSearch);
 		txtSearch.setColumns(10);
 		
@@ -346,6 +338,17 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private void settxtSearch() {
+		txtSearch = new JTextField();
+		txtSearch.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				String target = txtSearch.getText();
+				showSearchProduct(target);
+			}
+		});
+		txtSearch.setBounds(189, 24, 186, 25);
 	}
 	private void setpdTable() {
 		pdTable = new JTable();
