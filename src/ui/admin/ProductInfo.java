@@ -422,6 +422,20 @@ public class ProductInfo extends JFrame {
 		ArrayList<Product> pdList =pdMgr.getAllProducts();
 		Object[][] data = new Object[pdList.size()][columnNames.length];
 		
+		getTableData(pdList, data);
+		
+		
+		DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
+		pdTable.setModel(dtm);
+		
+	
+		
+		/*sort the table */
+		TableRowSorter<TableModel> trs = sortTable();
+
+		trs.setRowFilter(RowFilter.regexFilter(target));
+	}
+	private void getTableData(ArrayList<Product> pdList, Object[][] data) {
 		for (int i = 0; i < pdList.size(); i++) {
 			Product pd = pdList.get(i);
 				data[i][0] = pd.getId();
@@ -430,23 +444,13 @@ public class ProductInfo extends JFrame {
 				data[i][3] = pd.getImagePath();
 				data[i][4] = pd.getPrice();
 				data[i][5] = pd.getHot() == 1 ? "HOT":"ICE";
-				data[i][6] = pd.getRegDay();
-				
-			}
-		
-		
-		DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
-		pdTable.setModel(dtm);
-		
-	
-		
-
+				data[i][6] = pd.getRegDay();		
+		}
+	}
+	private TableRowSorter<TableModel> sortTable() {
 		TableRowSorter<TableModel> trs=new TableRowSorter<TableModel>(pdTable.getModel());
-
 		pdTable.setRowSorter(trs);
-
-		trs.setRowFilter(RowFilter.regexFilter(target));
-		
+		return trs;
 	}
 	public void searchProduct(String target) {
 	      TableRowSorter<TableModel> trs=new TableRowSorter<TableModel>( pdTable.getModel());
@@ -463,17 +467,7 @@ public class ProductInfo extends JFrame {
 		ArrayList<Product> pdList = pdMgr.getAllProducts();
 		Object[][] data = new Object[pdList.size()][columnNames.length];
 		
-		for (int i = 0; i < pdList.size(); i++) {
-		Product pd = pdList.get(i);
-			data[i][0] = pd.getId();
-			data[i][1] = pd.getName();
-			data[i][2] = pd.getCategory();
-			data[i][3] = pd.getImagePath();
-			data[i][4] = pd.getPrice();
-			data[i][5] = pd.getHot() == 1 ? "HOT":"ICE";
-			data[i][6] = pd.getRegDay();
-			
-		}
+		getTableData(pdList, data);
 		
 		DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
 		pdTable.setModel(dtm);
