@@ -103,10 +103,7 @@ public class ProductInfo extends JFrame {
 		JButton btnProductList = setBtnProductList();
 		pnMain.add(btnProductList);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(36, 69, 541, 553);
+		JScrollPane scrollPane = setScrollPane();
 		pnMain.add(scrollPane);
 		
 		pdTable = new JTable();
@@ -393,6 +390,13 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private JScrollPane setScrollPane() {
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(36, 69, 541, 553);
+		return scrollPane;
 	}
 	private JButton setBtnProductList() {
 		JButton btnProductList = new JButton("\uC0C1\uD488 \uC804\uCCB4 \uB9AC\uC2A4\uD2B8");
