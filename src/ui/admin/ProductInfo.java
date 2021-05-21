@@ -106,51 +106,7 @@ public class ProductInfo extends JFrame {
 		JScrollPane scrollPane = setScrollPane();
 		pnMain.add(scrollPane);
 		
-		pdTable = new JTable();
-		pdTable.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-//				 {"관리 번호", "상품명", "카테고리", "사진파일경로", "가격", "HOT/ICE" ,"출시일"};
-				
-				int selRow = pdTable.getSelectedRow();
-			
-				
-				if(pdTable.getValueAt(selRow, 2).toString().equalsIgnoreCase("coffee")) {
-					comboCatgory.setSelectedIndex(0);
-				}else if (pdTable.getValueAt(selRow, 2).toString().equals("Beverage")) {
-					comboCatgory.setSelectedIndex(1);
-				}else if(pdTable.getValueAt(selRow, 2).toString().equals("Salad")){
-					comboCatgory.setSelectedIndex(2);
-				}else {
-					comboCatgory.setSelectedIndex(3);
-				}
-				
-				int id = (int) pdTable.getValueAt(selRow, 0);
-				String name = (String) pdTable.getValueAt(selRow, 1);
-				
-				String imagePath = (String) pdTable.getValueAt(selRow, 3);
-				int price =Integer.parseInt(pdTable.getValueAt(selRow, 4).toString());
-				
-				
-				if( pdTable.getValueAt(selRow, 5).toString() == "HOT") rdHot.setSelected(true);
-				else rdIce.setSelected(true);
-//				Date regDate =(Date) pdTable.getValueAt(selRow, 6);
-				
-				
-				txtID.setText(String.valueOf(id));
-				txtName.setText(name);
-				txtImagePath.setText(imagePath);
-				lbImage.setIcon(new ImageIcon( "C:\\dev2020\\java_ws\\Starbucks\\images\\menu\\"+ imagePath));
-				txtPrice.setText(String.valueOf(price));
-				Date regDate = (Date) pdTable.getValueAt(selRow,6);
-				String DayStr = regDate.toString();
-				txtRegDate.setText(DayStr);
-//				
-				
-				
-//				comboCatgory.getSelectedIndex()pdTable.getValueAt(selRow, 2); // comboBox
-			}
-		});
+		setpdTable();
 		scrollPane.setViewportView(pdTable);
 		
 		txtSearch = new JTextField();
@@ -390,6 +346,53 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private void setpdTable() {
+		pdTable = new JTable();
+		pdTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+//				 {"관리 번호", "상품명", "카테고리", "사진파일경로", "가격", "HOT/ICE" ,"출시일"};
+				
+				int selRow = pdTable.getSelectedRow();
+			
+				
+				if(pdTable.getValueAt(selRow, 2).toString().equalsIgnoreCase("coffee")) {
+					comboCatgory.setSelectedIndex(0);
+				}else if (pdTable.getValueAt(selRow, 2).toString().equals("Beverage")) {
+					comboCatgory.setSelectedIndex(1);
+				}else if(pdTable.getValueAt(selRow, 2).toString().equals("Salad")){
+					comboCatgory.setSelectedIndex(2);
+				}else {
+					comboCatgory.setSelectedIndex(3);
+				}
+				
+				int id = (int) pdTable.getValueAt(selRow, 0);
+				String name = (String) pdTable.getValueAt(selRow, 1);
+				
+				String imagePath = (String) pdTable.getValueAt(selRow, 3);
+				int price =Integer.parseInt(pdTable.getValueAt(selRow, 4).toString());
+				
+				
+				if( pdTable.getValueAt(selRow, 5).toString() == "HOT") rdHot.setSelected(true);
+				else rdIce.setSelected(true);
+//				Date regDate =(Date) pdTable.getValueAt(selRow, 6);
+				
+				
+				txtID.setText(String.valueOf(id));
+				txtName.setText(name);
+				txtImagePath.setText(imagePath);
+				lbImage.setIcon(new ImageIcon( "C:\\dev2020\\java_ws\\Starbucks\\images\\menu\\"+ imagePath));
+				txtPrice.setText(String.valueOf(price));
+				Date regDate = (Date) pdTable.getValueAt(selRow,6);
+				String DayStr = regDate.toString();
+				txtRegDate.setText(DayStr);
+//				
+				
+				
+//				comboCatgory.getSelectedIndex()pdTable.getValueAt(selRow, 2); // comboBox
+			}
+		});
 	}
 	private JScrollPane setScrollPane() {
 		JScrollPane scrollPane = new JScrollPane();
