@@ -117,16 +117,10 @@ public class ProductInfo extends JFrame {
 		pnMain.add(btnclear);
 		
 		JPanel pnSub = setpnsub();
-		
 		splitPane.setRightComponent(pnSub);
 		pnSub.setLayout(null);
 		
-		lbImage = new JLabel("");
-		
-		lbImage.setHorizontalAlignment(SwingConstants.CENTER);
-		lbImage.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png"));
-		lbImage.setBackground(new Color(0, 255, 0));
-		lbImage.setBounds(12, 20, 245, 220);
+		setlbImage();
 		pnSub.add(lbImage);
 		
 		JLabel lbID = new JLabel("\uAD00\uB9AC \uBC88\uD638");
@@ -329,6 +323,14 @@ public class ProductInfo extends JFrame {
 		
 		
 	}
+private void setlbImage() {
+	lbImage = new JLabel("");
+	
+	lbImage.setHorizontalAlignment(SwingConstants.CENTER);
+	lbImage.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png"));
+	lbImage.setBackground(new Color(0, 255, 0));
+	lbImage.setBounds(12, 20, 245, 220);
+}
 	private JPanel setpnsub() {
 		JPanel pnSub = new JPanel();
 		pnSub.setBackground(new Color(255, 255, 255));
