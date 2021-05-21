@@ -126,10 +126,7 @@ public class ProductInfo extends JFrame {
 		JLabel lbID = setlbID();
 		pnSub.add(lbID);
 		
-		JLabel label = new JLabel("\uC0C1\uD488\uBA85");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("±¼¸²", Font.BOLD, 13));
-		label.setBounds(12, 314, 105, 18);
+		JLabel label = setLabel();
 		pnSub.add(label);
 		
 		txtName = new JTextField();
@@ -319,6 +316,13 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private JLabel setLabel() {
+		JLabel label = new JLabel("\uC0C1\uD488\uBA85");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setFont(new Font("±¼¸²", Font.BOLD, 13));
+		label.setBounds(12, 314, 105, 18);
+		return label;
 	}
 	private JLabel setlbID() {
 		JLabel lbID = new JLabel("\uAD00\uB9AC \uBC88\uD638");
