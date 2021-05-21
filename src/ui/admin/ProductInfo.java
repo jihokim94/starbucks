@@ -97,10 +97,7 @@ public class ProductInfo extends JFrame {
 		
 		JPanel pnMain = setJPanel(splitPane);
 		
-		JLabel lblNewLabel = new JLabel("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8");
-		lblNewLabel.setFont(new Font("HY°ß°íµñ", Font.BOLD, 18));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(12, 10, 165, 49);
+		JLabel lblNewLabel = setJlabel();
 		pnMain.add(lblNewLabel);
 		
 		JButton btnProductList = new JButton("\uC0C1\uD488 \uC804\uCCB4 \uB9AC\uC2A4\uD2B8");
@@ -405,6 +402,13 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private JLabel setJlabel() {
+		JLabel lblNewLabel = new JLabel("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8");
+		lblNewLabel.setFont(new Font("HY°ß°íµñ", Font.BOLD, 18));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(12, 10, 165, 49);
+		return lblNewLabel;
 	}
 	private JPanel setJPanel(JSplitPane splitPane) {
 		JPanel pnMain = new JPanel();
