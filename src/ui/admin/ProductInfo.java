@@ -129,9 +129,7 @@ public class ProductInfo extends JFrame {
 		JLabel label = setLabel();
 		pnSub.add(label);
 		
-		txtName = new JTextField();
-		txtName.setColumns(10);
-		txtName.setBounds(129, 311, 128, 21);
+		settxtName();
 		pnSub.add(txtName);
 		
 		JLabel label_1 = new JLabel("\uCE74\uD14C\uACE0\uB9AC");
@@ -316,6 +314,11 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private void settxtName() {
+		txtName = new JTextField();
+		txtName.setColumns(10);
+		txtName.setBounds(129, 311, 128, 21);
 	}
 	private JLabel setLabel() {
 		JLabel label = new JLabel("\uC0C1\uD488\uBA85");
