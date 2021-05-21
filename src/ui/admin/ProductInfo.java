@@ -138,9 +138,7 @@ public class ProductInfo extends JFrame {
 		JLabel label_2 = setLabel_2();
 		pnSub.add(label_2);
 		
-		txtImagePath = new JTextField();
-		txtImagePath.setColumns(10);
-		txtImagePath.setBounds(129, 404, 105, 21);
+		settxtImagePath();
 		pnSub.add(txtImagePath);
 		
 		JLabel label_3 = new JLabel("\uAC00\uACA9");
@@ -308,6 +306,11 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private void settxtImagePath() {
+		txtImagePath = new JTextField();
+		txtImagePath.setColumns(10);
+		txtImagePath.setBounds(129, 404, 105, 21);
 	}
 	private JLabel setLabel_2() {
 		JLabel label_2 = new JLabel("\uC0AC\uC9C4\uD30C\uC77C\uACBD\uB85C");
