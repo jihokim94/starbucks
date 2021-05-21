@@ -123,10 +123,7 @@ public class ProductInfo extends JFrame {
 		setlbImage();
 		pnSub.add(lbImage);
 		
-		JLabel lbID = new JLabel("\uAD00\uB9AC \uBC88\uD638");
-		lbID.setHorizontalAlignment(SwingConstants.CENTER);
-		lbID.setFont(new Font("±¼¸²", Font.BOLD, 13));
-		lbID.setBounds(12, 266, 105, 18);
+		JLabel lbID = setlbID();
 		pnSub.add(lbID);
 		
 		JLabel label = new JLabel("\uC0C1\uD488\uBA85");
@@ -322,6 +319,13 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private JLabel setlbID() {
+		JLabel lbID = new JLabel("\uAD00\uB9AC \uBC88\uD638");
+		lbID.setHorizontalAlignment(SwingConstants.CENTER);
+		lbID.setFont(new Font("±¼¸²", Font.BOLD, 13));
+		lbID.setBounds(12, 266, 105, 18);
+		return lbID;
 	}
 private void setlbImage() {
 	lbImage = new JLabel("");
