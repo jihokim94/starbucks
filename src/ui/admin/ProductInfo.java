@@ -100,16 +100,7 @@ public class ProductInfo extends JFrame {
 		JLabel lblNewLabel = setlblNewLabel();
 		pnMain.add(lblNewLabel);
 		
-		JButton btnProductList = new JButton("\uC0C1\uD488 \uC804\uCCB4 \uB9AC\uC2A4\uD2B8");
-		btnProductList.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				txtSearch.setText("");
-				showSearchProduct("");
-			}
-		});
-		
-		btnProductList.setFont(new Font("±¼¸²", Font.BOLD, 12));
-		btnProductList.setBounds(446, 22, 133, 28);
+		JButton btnProductList = setBtnProductList();
 		pnMain.add(btnProductList);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -402,6 +393,19 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private JButton setBtnProductList() {
+		JButton btnProductList = new JButton("\uC0C1\uD488 \uC804\uCCB4 \uB9AC\uC2A4\uD2B8");
+		btnProductList.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtSearch.setText("");
+				showSearchProduct("");
+			}
+		});
+		
+		btnProductList.setFont(new Font("±¼¸²", Font.BOLD, 12));
+		btnProductList.setBounds(446, 22, 133, 28);
+		return btnProductList;
 	}
 	private JLabel setlblNewLabel() {
 		JLabel lblNewLabel = new JLabel("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8");
