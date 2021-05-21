@@ -97,7 +97,7 @@ public class ProductInfo extends JFrame {
 		
 		JPanel pnMain = setJPanel(splitPane);
 		
-		JLabel lblNewLabel = setJlabel();
+		JLabel lblNewLabel = setlblNewLabel();
 		pnMain.add(lblNewLabel);
 		
 		JButton btnProductList = new JButton("\uC0C1\uD488 \uC804\uCCB4 \uB9AC\uC2A4\uD2B8");
@@ -403,7 +403,7 @@ public class ProductInfo extends JFrame {
 		
 		
 	}
-	private JLabel setJlabel() {
+	private JLabel setlblNewLabel() {
 		JLabel lblNewLabel = new JLabel("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8");
 		lblNewLabel.setFont(new Font("HY°ß°íµñ", Font.BOLD, 18));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
