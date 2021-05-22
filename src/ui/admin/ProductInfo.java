@@ -156,37 +156,7 @@ public class ProductInfo extends JFrame {
 		JButton button = setButton();
 		pnSub.add(button);
 		
-		JButton button_1 = new JButton("\uC0C1\uD488 \uC218\uC815");
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int id = Integer.parseInt(txtID.getText());
-				String name = txtName.getText();
-				String category= (String) comboCatgory.getSelectedItem();
-				String imagePath = txtImagePath.getText();
-				int price = Integer.parseInt(txtPrice.getText());
-				int hot = rdHot.isSelected()?1:2;
-				String date = txtRegDate.getText();
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				Date regDay = null;
-				try {
-					regDay = sdf.parse(date);
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-						
-				
-				Product pd = new Product(id, name, category, imagePath, price, hot, regDay);
-				boolean b =mgr.editOneProduct(pd);
-				if(b) {
-					JOptionPane.showMessageDialog(null,name+"수정 성공!!");	
-					}else {
-						JOptionPane.showMessageDialog(null,name+"수정 실패!!");	
-					}
-				
-			}
-		});
-		button_1.setBounds(23, 629, 108, 23);
+		JButton button_1 = setButton_1();
 		pnSub.add(button_1);
 		
 		JButton button_2 = new JButton("\uC0C1\uD488 \uC0AD\uC81C");
@@ -259,6 +229,40 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private JButton setButton_1() {
+		JButton button_1 = new JButton("\uC0C1\uD488 \uC218\uC815");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int id = Integer.parseInt(txtID.getText());
+				String name = txtName.getText();
+				String category= (String) comboCatgory.getSelectedItem();
+				String imagePath = txtImagePath.getText();
+				int price = Integer.parseInt(txtPrice.getText());
+				int hot = rdHot.isSelected()?1:2;
+				String date = txtRegDate.getText();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				Date regDay = null;
+				try {
+					regDay = sdf.parse(date);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+						
+				
+				Product pd = new Product(id, name, category, imagePath, price, hot, regDay);
+				boolean b =mgr.editOneProduct(pd);
+				if(b) {
+					JOptionPane.showMessageDialog(null,name+"수정 성공!!");	
+					}else {
+						JOptionPane.showMessageDialog(null,name+"수정 실패!!");	
+					}
+				
+			}
+		});
+		button_1.setBounds(23, 629, 108, 23);
+		return button_1;
 	}
 	private JButton setButton() {
 		JButton button = new JButton("\uBAA9\uB85D \uBE44\uC6B0\uAE30");
