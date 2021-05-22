@@ -147,10 +147,7 @@ public class ProductInfo extends JFrame {
 		settxtPrice();
 		pnSub.add(txtPrice);
 		
-		JLabel label_4 = new JLabel("\uC720\uBB34");
-		label_4.setHorizontalAlignment(SwingConstants.CENTER);
-		label_4.setFont(new Font("±¼¸²", Font.BOLD, 13));
-		label_4.setBounds(12, 504, 105, 18);
+		JLabel label_4 = setlabel_4();
 		pnSub.add(label_4);
 		
 		JButton btnNewButton = new JButton("\uC0C1\uD488 \uCD94\uAC00");
@@ -301,6 +298,13 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private JLabel setlabel_4() {
+		JLabel label_4 = new JLabel("\uC720\uBB34");
+		label_4.setHorizontalAlignment(SwingConstants.CENTER);
+		label_4.setFont(new Font("±¼¸²", Font.BOLD, 13));
+		label_4.setBounds(12, 504, 105, 18);
+		return label_4;
 	}
 	private void settxtPrice() {
 		txtPrice = new JTextField();
