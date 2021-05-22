@@ -126,7 +126,7 @@ public class ProductInfo extends JFrame {
 		JLabel lbID = setLabel("\\uAD00\\uB9AC \\uBC88\\uD638",266);
 		pnSub.add(lbID);
 		
-		JLabel label = setLabel();
+		JLabel label = setLabel("\uC0C1\uD488\uBA85",314);
 		pnSub.add(label);
 		
 		settxtName();
@@ -185,6 +185,59 @@ public class ProductInfo extends JFrame {
 		
 		
 	}
+
+	private void setTxtId() {
+		txtID = new JTextField();
+		txtID.setEditable(false);
+		txtID.setColumns(10);
+		txtID.setBounds(129, 265, 128, 21);
+	}
+	private void settxtRegDate() {
+	txtRegDate = new JTextField();
+	txtRegDate.setEditable(false);
+	txtRegDate.setColumns(10);
+	txtRegDate.setBounds(129, 538, 128, 21);
+	}
+	private void settxtPrice() {
+		txtPrice = new JTextField();
+		txtPrice.setColumns(10);
+		txtPrice.setBounds(129, 454, 128, 21);
+	}
+	private void settxtImagePath() {
+		txtImagePath = new JTextField();
+		txtImagePath.setColumns(10);
+		txtImagePath.setBounds(129, 404, 105, 21);
+	}
+	private void settxtName() {
+		txtName = new JTextField();
+		txtName.setColumns(10);
+		txtName.setBounds(129, 311, 128, 21);
+	}
+	private void settxtSearch() {
+		txtSearch = new JTextField();
+		txtSearch.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				String target = txtSearch.getText();
+				showSearchProduct(target);
+			}
+		});
+		txtSearch.setBounds(189, 24, 186, 25);
+	}
+	
+	private void setTxtField(JTextField txtField) {
+		txtField = new JTextField();
+		txtField.setEditable(false);
+		txtField.setColumns(10);
+		txtField.setBounds(129, 265, 128, 21);
+	}
+	
+	private void setComboCategory() {
+		comboCatgory = new JComboBox();
+		comboCatgory.setModel(new DefaultComboBoxModel(new String[] {"Coffee", "Beverage", "Salad", "Dessert"}));
+		comboCatgory.setSelectedIndex(0);
+		comboCatgory.setBounds(129, 357, 128, 21);
+	}
 	private JButton setBtnNewButton_1() {
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -205,19 +258,6 @@ public class ProductInfo extends JFrame {
 		btnNewButton_1.setBounds(235, 403, 22, 23);
 		return btnNewButton_1;
 	}
-	private void setTxtId() {
-		txtID = new JTextField();
-		txtID.setEditable(false);
-		txtID.setColumns(10);
-		txtID.setBounds(129, 265, 128, 21);
-	}
-	private void setComboCategory() {
-		comboCatgory = new JComboBox();
-		comboCatgory.setModel(new DefaultComboBoxModel(new String[] {"Coffee", "Beverage", "Salad", "Dessert"}));
-		comboCatgory.setSelectedIndex(0);
-		comboCatgory.setBounds(129, 357, 128, 21);
-	}
-
 	private void setBtnRd(JRadioButton rd, int x,int y, int w,int h) {
 		if(rd.equals(rdIce)) {
 			rd = new JRadioButton("ICE");
@@ -229,12 +269,6 @@ public class ProductInfo extends JFrame {
 		rd.setBounds(x,y,w,h);
 	}
 	
-	private void settxtRegDate() {
-	txtRegDate = new JTextField();
-	txtRegDate.setEditable(false);
-	txtRegDate.setColumns(10);
-	txtRegDate.setBounds(129, 538, 128, 21);
-	}
 
 	private JButton setButton_2() {
 		JButton button_2 = new JButton("\uC0C1\uD488 \uC0AD\uC81C");
@@ -328,16 +362,6 @@ public class ProductInfo extends JFrame {
 		btnNewButton.setBounds(23, 584, 108, 23);
 		return btnNewButton;
 	}
-	private void settxtPrice() {
-		txtPrice = new JTextField();
-		txtPrice.setColumns(10);
-		txtPrice.setBounds(129, 454, 128, 21);
-	}
-	private void settxtImagePath() {
-		txtImagePath = new JTextField();
-		txtImagePath.setColumns(10);
-		txtImagePath.setBounds(129, 404, 105, 21);
-	}
 
 	private JLabel setLabel(String text, int y) {
 		JLabel label = new JLabel(text);
@@ -347,11 +371,7 @@ public class ProductInfo extends JFrame {
 		return label;
 	}
 	
-	private void settxtName() {
-		txtName = new JTextField();
-		txtName.setColumns(10);
-		txtName.setBounds(129, 311, 128, 21);
-	}
+
 	private JLabel setLabel() {
 		JLabel label = new JLabel("\uC0C1\uD488\uBA85");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -359,13 +379,7 @@ public class ProductInfo extends JFrame {
 		label.setBounds(12, 314, 105, 18);
 		return label;
 	}
-	private JLabel setlbID() {
-		JLabel lbID = new JLabel("\uAD00\uB9AC \uBC88\uD638");
-		lbID.setHorizontalAlignment(SwingConstants.CENTER);
-		lbID.setFont(new Font("굴림", Font.BOLD, 13));
-		lbID.setBounds(12, 266, 105, 18);
-		return lbID;
-	}
+
 	private void setlbImage() {
 		lbImage = new JLabel("");
 		lbImage.setHorizontalAlignment(SwingConstants.CENTER);
@@ -378,6 +392,20 @@ public class ProductInfo extends JFrame {
 		JPanel pnSub = new JPanel();
 		pnSub.setBackground(new Color(255, 255, 255));
 		return pnSub;
+	}
+	
+	private JPanel setpnMain(JSplitPane splitPane) {
+		JPanel pnMain = new JPanel();
+		pnMain.setBackground(new Color(0, 101, 70));
+		splitPane.setLeftComponent(pnMain);
+		pnMain.setLayout(null);
+		return pnMain;
+	}
+	private void setContentPane() {
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
 	}
 	private JButton setbtnClear() {
 		JButton btnclear = new JButton("");
@@ -393,17 +421,7 @@ public class ProductInfo extends JFrame {
 		btnclear.setBounds(387, 25, 47, 23);
 		return btnclear;
 	}
-	private void settxtSearch() {
-		txtSearch = new JTextField();
-		txtSearch.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent e) {
-				String target = txtSearch.getText();
-				showSearchProduct(target);
-			}
-		});
-		txtSearch.setBounds(189, 24, 186, 25);
-	}
+
 	private void setpdTable() {
 		pdTable = new JTable();
 		pdTable.addMouseListener(new MouseAdapter() {
@@ -478,13 +496,7 @@ public class ProductInfo extends JFrame {
 		lblNewLabel.setBounds(12, 10, 165, 49);
 		return lblNewLabel;
 	}
-	private JPanel setpnMain(JSplitPane splitPane) {
-		JPanel pnMain = new JPanel();
-		pnMain.setBackground(new Color(0, 101, 70));
-		splitPane.setLeftComponent(pnMain);
-		pnMain.setLayout(null);
-		return pnMain;
-	}
+
 	private JSplitPane setJsplitPane() {
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(0.7);
@@ -492,12 +504,7 @@ public class ProductInfo extends JFrame {
 		return splitPane;
 	}
 	
-	private void setContentPane() {
-	contentPane = new JPanel();
-	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-	setContentPane(contentPane);
-	contentPane.setLayout(new BorderLayout(0, 0));
-	}
+
 	
 	public void showSearchProduct(String target) {
 		final String [] columnNames = {"관리 번호", "상품명", "카테고리", "사진파일경로", "가격", "HOT/ICE" ,"출시일"};
