@@ -168,9 +168,7 @@ public class ProductInfo extends JFrame {
 		settxtRegDate();
 		pnSub.add(txtRegDate);
 		
-		rdHot = new JRadioButton("HOT");
-		btnHotIceGruop.add(rdHot);
-		rdHot.setBounds(129, 500, 62, 23);
+		setbtnRdHot();
 		pnSub.add(rdHot);
 		
 		rdIce = new JRadioButton("ICE");
@@ -210,6 +208,11 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private void setbtnRdHot() {
+		rdHot = new JRadioButton("HOT");
+		btnHotIceGruop.add(rdHot);
+		rdHot.setBounds(129, 500, 62, 23);
 	}
 private void settxtRegDate() {
 	txtRegDate = new JTextField();
