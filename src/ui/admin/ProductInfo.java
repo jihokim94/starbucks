@@ -171,7 +171,7 @@ public class ProductInfo extends JFrame {
 		setbtnRdHot();
 		pnSub.add(rdHot);
 		
-		setRadioBtnRdIce();
+		setBtnRdIce();
 		pnSub.add(rdIce);
 		
 		setComboCategory();
@@ -217,7 +217,7 @@ public class ProductInfo extends JFrame {
 		comboCatgory.setSelectedIndex(0);
 		comboCatgory.setBounds(129, 357, 128, 21);
 	}
-	private void setRadioBtnRdIce() {
+	private void setBtnRdIce() {
 		rdIce = new JRadioButton("ICE");
 		btnHotIceGruop.add(rdIce);
 		rdIce.setBounds(195, 500, 53, 23);
@@ -227,12 +227,12 @@ public class ProductInfo extends JFrame {
 		btnHotIceGruop.add(rdHot);
 		rdHot.setBounds(129, 500, 62, 23);
 	}
-private void settxtRegDate() {
+	private void settxtRegDate() {
 	txtRegDate = new JTextField();
 	txtRegDate.setEditable(false);
 	txtRegDate.setColumns(10);
 	txtRegDate.setBounds(129, 538, 128, 21);
-}
+	}
 	private JLabel setLabel_5() {
 		JLabel label_5 = new JLabel("\uCD9C\uC2DC\uC77C");
 		label_5.setHorizontalAlignment(SwingConstants.CENTER);
@@ -282,9 +282,9 @@ private void settxtRegDate() {
 				boolean b =mgr.editOneProduct(pd);
 				if(b) {
 					JOptionPane.showMessageDialog(null,name+"수정 성공!!");	
-					}else {
+				}else {
 						JOptionPane.showMessageDialog(null,name+"수정 실패!!");	
-					}
+				}
 				
 			}
 		});
@@ -520,12 +520,14 @@ private void setlbImage() {
 		contentPane.add(splitPane, BorderLayout.CENTER);
 		return splitPane;
 	}
-private void setContentPane() {
+	
+	private void setContentPane() {
 	contentPane = new JPanel();
 	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	setContentPane(contentPane);
 	contentPane.setLayout(new BorderLayout(0, 0));
-}
+	}
+	
 	public void showSearchProduct(String target) {
 		final String [] columnNames = {"관리 번호", "상품명", "카테고리", "사진파일경로", "가격", "HOT/ICE" ,"출시일"};
 		
