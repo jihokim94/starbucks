@@ -168,10 +168,10 @@ public class ProductInfo extends JFrame {
 		settxtRegDate();
 		pnSub.add(txtRegDate);
 		
-		setbtnRdHot();
+		setBtnRd(rdHot,129, 500, 62, 23);
 		pnSub.add(rdHot);
 		
-		setBtnRdIce();
+		setBtnRd(rdIce,195, 500, 53, 23);
 		pnSub.add(rdIce);
 		
 		setComboCategory();
@@ -217,16 +217,18 @@ public class ProductInfo extends JFrame {
 		comboCatgory.setSelectedIndex(0);
 		comboCatgory.setBounds(129, 357, 128, 21);
 	}
-	private void setBtnRdIce() {
-		rdIce = new JRadioButton("ICE");
-		btnHotIceGruop.add(rdIce);
-		rdIce.setBounds(195, 500, 53, 23);
+
+	private void setBtnRd(JRadioButton rd, int x,int y, int w,int h) {
+		if(rd.equals(rdIce)) {
+			rd = new JRadioButton("ICE");
+		}
+		else {
+			rd = new JRadioButton("HOT");
+		}
+		btnHotIceGruop.add(rd);
+		rd.setBounds(x,y,w,h);
 	}
-	private void setbtnRdHot() {
-		rdHot = new JRadioButton("HOT");
-		btnHotIceGruop.add(rdHot);
-		rdHot.setBounds(129, 500, 62, 23);
-	}
+	
 	private void settxtRegDate() {
 	txtRegDate = new JTextField();
 	txtRegDate.setEditable(false);
