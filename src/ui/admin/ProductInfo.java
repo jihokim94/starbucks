@@ -129,7 +129,7 @@ public class ProductInfo extends JFrame {
 		JLabel label = setLabel("\uC0C1\uD488\uBA85",314);
 		pnSub.add(label);
 		
-		settxtName();
+		setTxtField(txtName,  311, 128);
 		pnSub.add(txtName);
 		
 		JLabel label_1 = setLabel("\uCE74\uD14C\uACE0\uB9AC",360);
@@ -138,13 +138,13 @@ public class ProductInfo extends JFrame {
 		JLabel label_2 = setLabel("\uC0AC\uC9C4\uD30C\uC77C\uACBD\uB85C",405);
 		pnSub.add(label_2);
 		
-		settxtImagePath();
+		setTxtField(txtImagePath, 404,105);
 		pnSub.add(txtImagePath);
 		
 		JLabel label_3 = setLabel("\uAC00\uACA9",457);
 		pnSub.add(label_3);
 		
-		settxtPrice();
+		setTxtField(txtPrice, 454,128);
 		pnSub.add(txtPrice);
 		
 		JLabel label_4 = setLabel("\uC720\uBB34",504 );
@@ -225,11 +225,11 @@ public class ProductInfo extends JFrame {
 		txtSearch.setBounds(189, 24, 186, 25);
 	}
 	
-	private void setTxtField(JTextField txtField) {
+	private void setTxtField(JTextField txtField, int y,int w) {
 		txtField = new JTextField();
 		txtField.setEditable(false);
 		txtField.setColumns(10);
-		txtField.setBounds(129, 265, 128, 21);
+		txtField.setBounds(129, y,w ,21);
 	}
 	
 	private void setComboCategory() {
