@@ -162,10 +162,7 @@ public class ProductInfo extends JFrame {
 		JButton button_2 = setButton_2();
 		pnSub.add(button_2);
 		
-		JLabel label_5 = new JLabel("\uCD9C\uC2DC\uC77C");
-		label_5.setHorizontalAlignment(SwingConstants.CENTER);
-		label_5.setFont(new Font("±¼¸²", Font.BOLD, 13));
-		label_5.setBounds(12, 541, 105, 18);
+		JLabel label_5 = setLabe_5();
 		pnSub.add(label_5);
 		
 		txtRegDate = new JTextField();
@@ -216,6 +213,13 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private JLabel setLabe_5() {
+		JLabel label_5 = new JLabel("\uCD9C\uC2DC\uC77C");
+		label_5.setHorizontalAlignment(SwingConstants.CENTER);
+		label_5.setFont(new Font("±¼¸²", Font.BOLD, 13));
+		label_5.setBounds(12, 541, 105, 18);
+		return label_5;
 	}
 	private JButton setButton_2() {
 		JButton button_2 = new JButton("\uC0C1\uD488 \uC0AD\uC81C");
