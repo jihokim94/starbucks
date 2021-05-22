@@ -165,7 +165,7 @@ public class ProductInfo extends JFrame {
 		JLabel label_5 = setLabel("\uCD9C\uC2DC\uC77C",541);
 		pnSub.add(label_5);
 		
-		settxtRegDate();
+		setNonEditableTxtField(txtRegDate, 538);
 		pnSub.add(txtRegDate);
 		
 		setBtnRd(rdHot,129, 500, 62, 23);
@@ -177,7 +177,7 @@ public class ProductInfo extends JFrame {
 		setComboCategory();
 		pnSub.add(comboCatgory);
 		
-		setTxtId();
+		setNonEditableTxtField(txtID, 265);
 		pnSub.add(txtID);
 		
 		JButton btnNewButton_1 = setBtnNewButton_1();
@@ -185,34 +185,19 @@ public class ProductInfo extends JFrame {
 		
 		
 	}
-
-	private void setTxtId() {
-		txtID = new JTextField();
-		txtID.setEditable(false);
-		txtID.setColumns(10);
-		txtID.setBounds(129, 265, 128, 21);
+	private void setTxtField(JTextField txtField, int y,int w) {
+		txtField = new JTextField();
+		txtField.setColumns(10);
+		txtField.setBounds(129, y,w ,21);
 	}
-	private void settxtRegDate() {
-	txtRegDate = new JTextField();
-	txtRegDate.setEditable(false);
-	txtRegDate.setColumns(10);
-	txtRegDate.setBounds(129, 538, 128, 21);
+	
+	private void setNonEditableTxtField(JTextField txtField, int y) {
+		txtField = new JTextField();
+		txtField.setEditable(false);
+		txtField.setColumns(10);
+		txtField.setBounds(129, y,128 ,21);
 	}
-	private void settxtPrice() {
-		txtPrice = new JTextField();
-		txtPrice.setColumns(10);
-		txtPrice.setBounds(129, 454, 128, 21);
-	}
-	private void settxtImagePath() {
-		txtImagePath = new JTextField();
-		txtImagePath.setColumns(10);
-		txtImagePath.setBounds(129, 404, 105, 21);
-	}
-	private void settxtName() {
-		txtName = new JTextField();
-		txtName.setColumns(10);
-		txtName.setBounds(129, 311, 128, 21);
-	}
+	
 	private void settxtSearch() {
 		txtSearch = new JTextField();
 		txtSearch.addKeyListener(new KeyAdapter() {
@@ -225,13 +210,7 @@ public class ProductInfo extends JFrame {
 		txtSearch.setBounds(189, 24, 186, 25);
 	}
 	
-	private void setTxtField(JTextField txtField, int y,int w) {
-		txtField = new JTextField();
-		txtField.setEditable(false);
-		txtField.setColumns(10);
-		txtField.setBounds(129, y,w ,21);
-	}
-	
+
 	private void setComboCategory() {
 		comboCatgory = new JComboBox();
 		comboCatgory.setModel(new DefaultComboBoxModel(new String[] {"Coffee", "Beverage", "Salad", "Dessert"}));
