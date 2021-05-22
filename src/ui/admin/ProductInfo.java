@@ -141,12 +141,10 @@ public class ProductInfo extends JFrame {
 		settxtImagePath();
 		pnSub.add(txtImagePath);
 		
-		JLabel label_3 = setlabe_3();
+		JLabel label_3 = setlabel_3();
 		pnSub.add(label_3);
 		
-		txtPrice = new JTextField();
-		txtPrice.setColumns(10);
-		txtPrice.setBounds(129, 454, 128, 21);
+		settxtPrice();
 		pnSub.add(txtPrice);
 		
 		JLabel label_4 = new JLabel("\uC720\uBB34");
@@ -304,7 +302,12 @@ public class ProductInfo extends JFrame {
 		
 		
 	}
-	private JLabel setlabe_3() {
+	private void settxtPrice() {
+		txtPrice = new JTextField();
+		txtPrice.setColumns(10);
+		txtPrice.setBounds(129, 454, 128, 21);
+	}
+	private JLabel setlabel_3() {
 		JLabel label_3 = new JLabel("\uAC00\uACA9");
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
 		label_3.setFont(new Font("±¼¸²", Font.BOLD, 13));
