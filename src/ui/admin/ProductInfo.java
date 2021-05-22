@@ -162,13 +162,10 @@ public class ProductInfo extends JFrame {
 		JButton button_2 = setButton_2();
 		pnSub.add(button_2);
 		
-		JLabel label_5 = setLabe_5();
+		JLabel label_5 = setLabel_5();
 		pnSub.add(label_5);
 		
-		txtRegDate = new JTextField();
-		txtRegDate.setEditable(false);
-		txtRegDate.setColumns(10);
-		txtRegDate.setBounds(129, 538, 128, 21);
+		settxtRegDate();
 		pnSub.add(txtRegDate);
 		
 		rdHot = new JRadioButton("HOT");
@@ -214,7 +211,13 @@ public class ProductInfo extends JFrame {
 		
 		
 	}
-	private JLabel setLabe_5() {
+private void settxtRegDate() {
+	txtRegDate = new JTextField();
+	txtRegDate.setEditable(false);
+	txtRegDate.setColumns(10);
+	txtRegDate.setBounds(129, 538, 128, 21);
+}
+	private JLabel setLabel_5() {
 		JLabel label_5 = new JLabel("\uCD9C\uC2DC\uC77C");
 		label_5.setHorizontalAlignment(SwingConstants.CENTER);
 		label_5.setFont(new Font("±¼¸²", Font.BOLD, 13));
