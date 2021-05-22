@@ -153,7 +153,7 @@ public class ProductInfo extends JFrame {
 		JButton btnNewButton = setbtnNewButton();
 		pnSub.add(btnNewButton);
 		
-		JButton button = setButton();
+		JButton button = setBtnInitialize();
 		pnSub.add(button);
 		
 		JButton button_1 = setBtnProductModify();
@@ -314,7 +314,7 @@ public class ProductInfo extends JFrame {
 		button_1.setBounds(23, 629, 108, 23);
 		return button_1;
 	}
-	private JButton setButton() {
+	private JButton setBtnInitialize() {
 		JButton button = new JButton("\uBAA9\uB85D \uBE44\uC6B0\uAE30");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
