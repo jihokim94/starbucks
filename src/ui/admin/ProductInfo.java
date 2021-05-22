@@ -153,21 +153,7 @@ public class ProductInfo extends JFrame {
 		JButton btnNewButton = setbtnNewButton();
 		pnSub.add(btnNewButton);
 		
-		JButton button = new JButton("\uBAA9\uB85D \uBE44\uC6B0\uAE30");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				txtID.setText("");
-				txtName.setText("");
-				txtImagePath.setText("");
-				comboCatgory.setSelectedIndex(1);
-				btnHotIceGruop.clearSelection();
-				txtPrice.setText("");
-				txtRegDate.setText("");
-				lbImage.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\로고(150x150).png"));
-				
-			}
-		});
-		button.setBounds(143, 584, 114, 23);
+		JButton button = setButton();
 		pnSub.add(button);
 		
 		JButton button_1 = new JButton("\uC0C1\uD488 \uC218\uC815");
@@ -273,6 +259,24 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private JButton setButton() {
+		JButton button = new JButton("\uBAA9\uB85D \uBE44\uC6B0\uAE30");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtID.setText("");
+				txtName.setText("");
+				txtImagePath.setText("");
+				comboCatgory.setSelectedIndex(1);
+				btnHotIceGruop.clearSelection();
+				txtPrice.setText("");
+				txtRegDate.setText("");
+				lbImage.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\로고(150x150).png"));
+				
+			}
+		});
+		button.setBounds(143, 584, 114, 23);
+		return button;
 	}
 	private JButton setbtnNewButton() {
 		JButton btnNewButton = new JButton("\uC0C1\uD488 \uCD94\uAC00");
