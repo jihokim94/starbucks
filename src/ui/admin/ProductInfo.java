@@ -97,7 +97,7 @@ public class ProductInfo extends JFrame {
 		
 		JPanel pnMain = setpnMain(splitPane);
 		
-		JLabel lblNewLabel = setlblNewLabel();
+		JLabel lblNewLabel = setLabel("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8", 10,165,49,"HY견고딕");
 		pnMain.add(lblNewLabel);
 		
 		JButton btnProductList = setBtnProductList();
@@ -123,31 +123,31 @@ public class ProductInfo extends JFrame {
 		setlbImage();
 		pnSub.add(lbImage);
 		
-		JLabel lbID = setLabel("\\uAD00\\uB9AC \\uBC88\\uD638",266);
+		JLabel lbID = setLabel("\\uAD00\\uB9AC \\uBC88\\uD638",266,105, 18,"굴림");
 		pnSub.add(lbID);
 		
-		JLabel label = setLabel("\uC0C1\uD488\uBA85",314);
+		JLabel label = setLabel("\uC0C1\uD488\uBA85",314,105, 18,"굴림");
 		pnSub.add(label);
 		
 		setTxtField(txtName,  311, 128);
 		pnSub.add(txtName);
 		
-		JLabel label_1 = setLabel("\uCE74\uD14C\uACE0\uB9AC",360);
+		JLabel label_1 = setLabel("\uCE74\uD14C\uACE0\uB9AC",360,105, 18,"굴림");
 		pnSub.add(label_1);
 		
-		JLabel label_2 = setLabel("\uC0AC\uC9C4\uD30C\uC77C\uACBD\uB85C",405);
+		JLabel label_2 = setLabel("\uC0AC\uC9C4\uD30C\uC77C\uACBD\uB85C",405,105, 18,"굴림");
 		pnSub.add(label_2);
 		
 		setTxtField(txtImagePath, 404,105);
 		pnSub.add(txtImagePath);
 		
-		JLabel label_3 = setLabel("\uAC00\uACA9",457);
+		JLabel label_3 = setLabel("\uAC00\uACA9",457,105, 18,"굴림");
 		pnSub.add(label_3);
 		
 		setTxtField(txtPrice, 454,128);
 		pnSub.add(txtPrice);
 		
-		JLabel label_4 = setLabel("\uC720\uBB34",504 );
+		JLabel label_4 = setLabel("\uC720\uBB34",504,105, 18,"굴림" );
 		pnSub.add(label_4);
 		
 		JButton btnNewButton = setBtnProductAdd();
@@ -162,7 +162,7 @@ public class ProductInfo extends JFrame {
 		JButton button_2 = setBtnProductRemove();
 		pnSub.add(button_2);
 		
-		JLabel label_5 = setLabel("\uCD9C\uC2DC\uC77C",541);
+		JLabel label_5 = setLabel("\uCD9C\uC2DC\uC77C",541,105, 18,"굴림");
 		pnSub.add(label_5);
 		
 		setNonEditableTxtField(txtRegDate, 538);
@@ -267,8 +267,10 @@ public class ProductInfo extends JFrame {
 		
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//입력 읽어오기 
 				int id =Integer.parseInt(txtID.getText());
 				String name =txtName.getText();
+				//product manager에게 product 삭제 요청 
 				int r =mgr.deleteOneProdcut(id,name);
 				if (r == 1) {
 					JOptionPane.showMessageDialog(null, name+"상품 삭제 성공");
@@ -285,12 +287,14 @@ public class ProductInfo extends JFrame {
 		
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//입력된 값 읽어오기 
 				int id = Integer.parseInt(txtID.getText());
 				String name = txtName.getText();
 				String category= (String) comboCatgory.getSelectedItem();
 				String imagePath = txtImagePath.getText();
 				int price = Integer.parseInt(txtPrice.getText());
 				int hot = rdHot.isSelected()?1:2;
+				//날짜 입력 읽어오고 포맷 변경 
 				String date = txtRegDate.getText();
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				Date regDay = null;
@@ -300,9 +304,11 @@ public class ProductInfo extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-						
+				//새로운 product 객체 생성 		
 				Product pd = new Product(id, name, category, imagePath, price, hot, regDay);
+				//product manager 객체 method 로 product 변경 요청 
 				boolean b =mgr.editOneProduct(pd);
+				//변경 성공,실패 print로 확인 
 				if(b) {
 					JOptionPane.showMessageDialog(null,name+"수정 성공!!");	
 				}else {
@@ -335,15 +341,15 @@ public class ProductInfo extends JFrame {
 		JButton btnNewButton = new JButton("\uC0C1\uD488 \uCD94\uAC00");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-//				int id = Integer.parseInt(txtID.getText());
+				//입력 읽어오기 
 				String name = txtName.getText();
 				String category= (String) comboCatgory.getSelectedItem();
 				String imagePath = txtImagePath.getText().substring(41);
 				int price = Integer.parseInt(txtPrice.getText());
 				int hot = rdHot.isSelected()?1:2;
-				
+				//product 생성 
 				Product pd = new Product(name, category, imagePath, price, hot);
-				
+				//manager에게 요청 후 성공 실패 확인 
 				if(mgr.addNewOneProduct(pd) == true) {
 					JOptionPane.showMessageDialog(null, name+"추가 성공!!");
 				}else {
@@ -361,7 +367,6 @@ public class ProductInfo extends JFrame {
 		btnclear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtSearch.setText("");
-//				showAllProduct();
 				showSearchProduct("");
 			}
 		});
@@ -383,25 +388,18 @@ public class ProductInfo extends JFrame {
 		btnProductList.setBounds(446, 22, 133, 28);
 		return btnProductList;
 	}
-	private JLabel setLabel(String text, int y) {
+	private JLabel setLabel(String text, int y, int w, int h, String font) {
 		JLabel label = new JLabel(text);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("굴림", Font.BOLD, 13));
-		label.setBounds(12, y, 105, 18);
+		label.setFont(new Font(font, Font.BOLD, 13));
+		label.setBounds(12, y, w,h);
 		return label;
 	}
 
-	private JLabel setLabel() {
-		JLabel label = new JLabel("\uC0C1\uD488\uBA85");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("굴림", Font.BOLD, 13));
-		label.setBounds(12, 314, 105, 18);
-		return label;
-	}
 	private JLabel setlblNewLabel() {
 		JLabel lblNewLabel = new JLabel("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8");
-		lblNewLabel.setFont(new Font("HY견고딕", Font.BOLD, 18));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("HY견고딕", Font.BOLD, 18));
 		lblNewLabel.setBounds(12, 10, 165, 49);
 		return lblNewLabel;
 	}
