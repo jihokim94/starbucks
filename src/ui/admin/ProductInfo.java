@@ -171,9 +171,7 @@ public class ProductInfo extends JFrame {
 		setbtnRdHot();
 		pnSub.add(rdHot);
 		
-		rdIce = new JRadioButton("ICE");
-		btnHotIceGruop.add(rdIce);
-		rdIce.setBounds(195, 500, 53, 23);
+		setRadioBtnRdIce();
 		pnSub.add(rdIce);
 		
 		comboCatgory = new JComboBox();
@@ -208,6 +206,11 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private void setRadioBtnRdIce() {
+		rdIce = new JRadioButton("ICE");
+		btnHotIceGruop.add(rdIce);
+		rdIce.setBounds(195, 500, 53, 23);
 	}
 	private void setbtnRdHot() {
 		rdHot = new JRadioButton("HOT");
