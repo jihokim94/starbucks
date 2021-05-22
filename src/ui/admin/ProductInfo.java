@@ -209,7 +209,6 @@ public class ProductInfo extends JFrame {
 		});
 		txtSearch.setBounds(189, 24, 186, 25);
 	}
-	
 
 	private void setComboCategory() {
 		comboCatgory = new JComboBox();
@@ -251,6 +250,7 @@ public class ProductInfo extends JFrame {
 
 	private JButton setButton_2() {
 		JButton button_2 = new JButton("\uC0C1\uD488 \uC0AD\uC81C");
+		
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int id =Integer.parseInt(txtID.getText());
@@ -268,6 +268,7 @@ public class ProductInfo extends JFrame {
 	}
 	private JButton setButton_1() {
 		JButton button_1 = new JButton("\uC0C1\uD488 \uC218\uC815");
+		
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int id = Integer.parseInt(txtID.getText());
@@ -286,7 +287,6 @@ public class ProductInfo extends JFrame {
 					e1.printStackTrace();
 				}
 						
-				
 				Product pd = new Product(id, name, category, imagePath, price, hot, regDay);
 				boolean b =mgr.editOneProduct(pd);
 				if(b) {
@@ -338,10 +338,25 @@ public class ProductInfo extends JFrame {
 			}
 			
 		});
+		
 		btnNewButton.setBounds(23, 584, 108, 23);
 		return btnNewButton;
 	}
-
+	private JButton setbtnClear() {
+		JButton btnclear = new JButton("");
+		btnclear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtSearch.setText("");
+//				showAllProduct();
+				showSearchProduct("");
+			}
+		});
+		btnclear.setToolTipText("\uD14D\uC2A4\uD2B8 \uC9C0\uC6B0\uAE30");
+		btnclear.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\bin.png"));
+		btnclear.setBounds(387, 25, 47, 23);
+		return btnclear;
+	}
+	
 	private JLabel setLabel(String text, int y) {
 		JLabel label = new JLabel(text);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -349,7 +364,6 @@ public class ProductInfo extends JFrame {
 		label.setBounds(12, y, 105, 18);
 		return label;
 	}
-	
 
 	private JLabel setLabel() {
 		JLabel label = new JLabel("\uC0C1\uD488\uBA85");
@@ -380,26 +394,15 @@ public class ProductInfo extends JFrame {
 		pnMain.setLayout(null);
 		return pnMain;
 	}
+	
 	private void setContentPane() {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 	}
-	private JButton setbtnClear() {
-		JButton btnclear = new JButton("");
-		btnclear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				txtSearch.setText("");
-//				showAllProduct();
-				showSearchProduct("");
-			}
-		});
-		btnclear.setToolTipText("\uD14D\uC2A4\uD2B8 \uC9C0\uC6B0\uAE30");
-		btnclear.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\bin.png"));
-		btnclear.setBounds(387, 25, 47, 23);
-		return btnclear;
-	}
+	
+
 
 	private void setpdTable() {
 		pdTable = new JTable();
@@ -409,13 +412,15 @@ public class ProductInfo extends JFrame {
 //				 {"관리 번호", "상품명", "카테고리", "사진파일경로", "가격", "HOT/ICE" ,"출시일"};
 				
 				int selRow = pdTable.getSelectedRow();
-			
 				
-				if(pdTable.getValueAt(selRow, 2).toString().equalsIgnoreCase("coffee")) {
+				
+				String menu = pdTable.getValueAt(selRow, 2).toString();
+				
+				if(menu.equalsIgnoreCase("coffee")) {
 					comboCatgory.setSelectedIndex(0);
-				}else if (pdTable.getValueAt(selRow, 2).toString().equals("Beverage")) {
+				}else if (menu.equals("Beverage")) {
 					comboCatgory.setSelectedIndex(1);
-				}else if(pdTable.getValueAt(selRow, 2).toString().equals("Salad")){
+				}else if(menu.equals("Salad")){
 					comboCatgory.setSelectedIndex(2);
 				}else {
 					comboCatgory.setSelectedIndex(3);
