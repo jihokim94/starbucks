@@ -159,20 +159,7 @@ public class ProductInfo extends JFrame {
 		JButton button_1 = setButton_1();
 		pnSub.add(button_1);
 		
-		JButton button_2 = new JButton("\uC0C1\uD488 \uC0AD\uC81C");
-		button_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int id =Integer.parseInt(txtID.getText());
-				String name =txtName.getText();
-				int r =mgr.deleteOneProdcut(id,name);
-				if (r == 1) {
-					JOptionPane.showMessageDialog(null, name+"상품 삭제 성공");
-				}else {
-					JOptionPane.showMessageDialog(null, name+"회원 삭제 실패");
-				}
-			}
-		});
-		button_2.setBounds(144, 629, 113, 23);
+		JButton button_2 = setButton_2();
 		pnSub.add(button_2);
 		
 		JLabel label_5 = new JLabel("\uCD9C\uC2DC\uC77C");
@@ -229,6 +216,23 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private JButton setButton_2() {
+		JButton button_2 = new JButton("\uC0C1\uD488 \uC0AD\uC81C");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int id =Integer.parseInt(txtID.getText());
+				String name =txtName.getText();
+				int r =mgr.deleteOneProdcut(id,name);
+				if (r == 1) {
+					JOptionPane.showMessageDialog(null, name+"상품 삭제 성공");
+				}else {
+					JOptionPane.showMessageDialog(null, name+"회원 삭제 실패");
+				}
+			}
+		});
+		button_2.setBounds(144, 629, 113, 23);
+		return button_2;
 	}
 	private JButton setButton_1() {
 		JButton button_1 = new JButton("\uC0C1\uD488 \uC218\uC815");
