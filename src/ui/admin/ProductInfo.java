@@ -150,32 +150,7 @@ public class ProductInfo extends JFrame {
 		JLabel label_4 = setlabel_4();
 		pnSub.add(label_4);
 		
-		JButton btnNewButton = new JButton("\uC0C1\uD488 \uCD94\uAC00");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-//				int id = Integer.parseInt(txtID.getText());
-				String name = txtName.getText();
-				String category= (String) comboCatgory.getSelectedItem();
-				String imagePath = txtImagePath.getText().substring(41);
-				int price = Integer.parseInt(txtPrice.getText());
-				int hot = rdHot.isSelected()?1:2;
-				
-				Product pd = new Product(name, category, imagePath, price, hot);
-				
-				
-				
-				if(mgr.addNewOneProduct(pd) == true) {
-					JOptionPane.showMessageDialog(null, name+"추가 성공!!");
-				}else {
-					JOptionPane.showMessageDialog(null, name+"추가 실패!!");
-				}
-				
-				
-			}
-
-			
-		});
-		btnNewButton.setBounds(23, 584, 108, 23);
+		JButton btnNewButton = setbtnNewButton();
 		pnSub.add(btnNewButton);
 		
 		JButton button = new JButton("\uBAA9\uB85D \uBE44\uC6B0\uAE30");
@@ -298,6 +273,35 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private JButton setbtnNewButton() {
+		JButton btnNewButton = new JButton("\uC0C1\uD488 \uCD94\uAC00");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+//				int id = Integer.parseInt(txtID.getText());
+				String name = txtName.getText();
+				String category= (String) comboCatgory.getSelectedItem();
+				String imagePath = txtImagePath.getText().substring(41);
+				int price = Integer.parseInt(txtPrice.getText());
+				int hot = rdHot.isSelected()?1:2;
+				
+				Product pd = new Product(name, category, imagePath, price, hot);
+				
+				
+				
+				if(mgr.addNewOneProduct(pd) == true) {
+					JOptionPane.showMessageDialog(null, name+"추가 성공!!");
+				}else {
+					JOptionPane.showMessageDialog(null, name+"추가 실패!!");
+				}
+				
+				
+			}
+
+			
+		});
+		btnNewButton.setBounds(23, 584, 108, 23);
+		return btnNewButton;
 	}
 	private JLabel setlabel_4() {
 		JLabel label_4 = new JLabel("\uC720\uBB34");
