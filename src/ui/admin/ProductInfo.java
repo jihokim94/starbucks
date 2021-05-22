@@ -132,22 +132,22 @@ public class ProductInfo extends JFrame {
 		settxtName();
 		pnSub.add(txtName);
 		
-		JLabel label_1 = setLabel_1();
+		JLabel label_1 = setLabel("\uCE74\uD14C\uACE0\uB9AC",360);
 		pnSub.add(label_1);
 		
-		JLabel label_2 = setLabel_2();
+		JLabel label_2 = setLabel("\uC0AC\uC9C4\uD30C\uC77C\uACBD\uB85C",405);
 		pnSub.add(label_2);
 		
 		settxtImagePath();
 		pnSub.add(txtImagePath);
 		
-		JLabel label_3 = setlabel_3();
+		JLabel label_3 = setLabel("\uAC00\uACA9",457);
 		pnSub.add(label_3);
 		
 		settxtPrice();
 		pnSub.add(txtPrice);
 		
-		JLabel label_4 = setlabel_4();
+		JLabel label_4 = setLabel("\uC720\uBB34",504 );
 		pnSub.add(label_4);
 		
 		JButton btnNewButton = setbtnNewButton();
@@ -162,7 +162,7 @@ public class ProductInfo extends JFrame {
 		JButton button_2 = setButton_2();
 		pnSub.add(button_2);
 		
-		JLabel label_5 = setLabel_5();
+		JLabel label_5 = setLabel("\uCD9C\uC2DC\uC77C",541);
 		pnSub.add(label_5);
 		
 		settxtRegDate();
@@ -235,13 +235,7 @@ public class ProductInfo extends JFrame {
 	txtRegDate.setColumns(10);
 	txtRegDate.setBounds(129, 538, 128, 21);
 	}
-	private JLabel setLabel_5() {
-		JLabel label_5 = new JLabel("\uCD9C\uC2DC\uC77C");
-		label_5.setHorizontalAlignment(SwingConstants.CENTER);
-		label_5.setFont(new Font("±¼¸²", Font.BOLD, 13));
-		label_5.setBounds(12, 541, 105, 18);
-		return label_5;
-	}
+
 	private JButton setButton_2() {
 		JButton button_2 = new JButton("\uC0C1\uD488 \uC0AD\uC81C");
 		button_2.addActionListener(new ActionListener() {
@@ -304,8 +298,7 @@ public class ProductInfo extends JFrame {
 				btnHotIceGruop.clearSelection();
 				txtPrice.setText("");
 				txtRegDate.setText("");
-				lbImage.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\·Î°í(150x150).png"));
-				
+				lbImage.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\·Î°í(150x150).png"));	
 			}
 		});
 		button.setBounds(143, 584, 114, 23);
@@ -324,60 +317,36 @@ public class ProductInfo extends JFrame {
 				
 				Product pd = new Product(name, category, imagePath, price, hot);
 				
-				
-				
 				if(mgr.addNewOneProduct(pd) == true) {
 					JOptionPane.showMessageDialog(null, name+"Ãß°¡ ¼º°ø!!");
 				}else {
 					JOptionPane.showMessageDialog(null, name+"Ãß°¡ ½ÇÆÐ!!");
-				}
-				
-				
+				}	
 			}
-
 			
 		});
 		btnNewButton.setBounds(23, 584, 108, 23);
 		return btnNewButton;
-	}
-	private JLabel setlabel_4() {
-		JLabel label_4 = new JLabel("\uC720\uBB34");
-		label_4.setHorizontalAlignment(SwingConstants.CENTER);
-		label_4.setFont(new Font("±¼¸²", Font.BOLD, 13));
-		label_4.setBounds(12, 504, 105, 18);
-		return label_4;
 	}
 	private void settxtPrice() {
 		txtPrice = new JTextField();
 		txtPrice.setColumns(10);
 		txtPrice.setBounds(129, 454, 128, 21);
 	}
-	private JLabel setlabel_3() {
-		JLabel label_3 = new JLabel("\uAC00\uACA9");
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setFont(new Font("±¼¸²", Font.BOLD, 13));
-		label_3.setBounds(12, 457, 105, 18);
-		return label_3;
-	}
 	private void settxtImagePath() {
 		txtImagePath = new JTextField();
 		txtImagePath.setColumns(10);
 		txtImagePath.setBounds(129, 404, 105, 21);
 	}
-	private JLabel setLabel_2() {
-		JLabel label_2 = new JLabel("\uC0AC\uC9C4\uD30C\uC77C\uACBD\uB85C");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setFont(new Font("±¼¸²", Font.BOLD, 13));
-		label_2.setBounds(12, 405, 105, 18);
-		return label_2;
+
+	private JLabel setLabel(String text, int y) {
+		JLabel label = new JLabel(text);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setFont(new Font("±¼¸²", Font.BOLD, 13));
+		label.setBounds(12, y, 105, 18);
+		return label;
 	}
-	private JLabel setLabel_1() {
-		JLabel label_1 = new JLabel("\uCE74\uD14C\uACE0\uB9AC");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setFont(new Font("±¼¸²", Font.BOLD, 13));
-		label_1.setBounds(12, 360, 105, 18);
-		return label_1;
-	}
+	
 	private void settxtName() {
 		txtName = new JTextField();
 		txtName.setColumns(10);
