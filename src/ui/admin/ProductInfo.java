@@ -174,10 +174,7 @@ public class ProductInfo extends JFrame {
 		setRadioBtnRdIce();
 		pnSub.add(rdIce);
 		
-		comboCatgory = new JComboBox();
-		comboCatgory.setModel(new DefaultComboBoxModel(new String[] {"Coffee", "Beverage", "Salad", "Dessert"}));
-		comboCatgory.setSelectedIndex(0);
-		comboCatgory.setBounds(129, 357, 128, 21);
+		setComboCategory();
 		pnSub.add(comboCatgory);
 		
 		txtID = new JTextField();
@@ -206,6 +203,12 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private void setComboCategory() {
+		comboCatgory = new JComboBox();
+		comboCatgory.setModel(new DefaultComboBoxModel(new String[] {"Coffee", "Beverage", "Salad", "Dessert"}));
+		comboCatgory.setSelectedIndex(0);
+		comboCatgory.setBounds(129, 357, 128, 21);
 	}
 	private void setRadioBtnRdIce() {
 		rdIce = new JRadioButton("ICE");
