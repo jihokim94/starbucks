@@ -177,10 +177,7 @@ public class ProductInfo extends JFrame {
 		setComboCategory();
 		pnSub.add(comboCatgory);
 		
-		txtID = new JTextField();
-		txtID.setEditable(false);
-		txtID.setColumns(10);
-		txtID.setBounds(129, 265, 128, 21);
+		setTxtField();
 		pnSub.add(txtID);
 		
 		JButton btnNewButton_1 = new JButton("");
@@ -203,6 +200,12 @@ public class ProductInfo extends JFrame {
 		pnSub.add(btnNewButton_1);
 		
 		
+	}
+	private void setTxtField() {
+		txtID = new JTextField();
+		txtID.setEditable(false);
+		txtID.setColumns(10);
+		txtID.setBounds(129, 265, 128, 21);
 	}
 	private void setComboCategory() {
 		comboCatgory = new JComboBox();
