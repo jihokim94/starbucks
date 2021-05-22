@@ -177,9 +177,15 @@ public class ProductInfo extends JFrame {
 		setComboCategory();
 		pnSub.add(comboCatgory);
 		
-		setTxtField();
+		setTxtId();
 		pnSub.add(txtID);
 		
+		JButton btnNewButton_1 = setBtnNewButton_1();
+		pnSub.add(btnNewButton_1);
+		
+		
+	}
+	private JButton setBtnNewButton_1() {
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -197,11 +203,9 @@ public class ProductInfo extends JFrame {
 		});
 		btnNewButton_1.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\folder.png"));
 		btnNewButton_1.setBounds(235, 403, 22, 23);
-		pnSub.add(btnNewButton_1);
-		
-		
+		return btnNewButton_1;
 	}
-	private void setTxtField() {
+	private void setTxtId() {
 		txtID = new JTextField();
 		txtID.setEditable(false);
 		txtID.setColumns(10);
