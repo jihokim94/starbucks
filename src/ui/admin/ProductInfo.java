@@ -159,7 +159,7 @@ public class ProductInfo extends JFrame {
 		JButton button_1 = setButton_1();
 		pnSub.add(button_1);
 		
-		JButton button_2 = setButton_2();
+		JButton button_2 = setBtnProductRemove();
 		pnSub.add(button_2);
 		
 		JLabel label_5 = setLabel("\uCD9C\uC2DC\uC77C",541);
@@ -185,6 +185,27 @@ public class ProductInfo extends JFrame {
 		
 		
 	}
+	private void setComboCategory() {
+		comboCatgory = new JComboBox();
+		comboCatgory.setModel(new DefaultComboBoxModel(new String[] {"Coffee", "Beverage", "Salad", "Dessert"}));
+		comboCatgory.setSelectedIndex(0);
+		comboCatgory.setBounds(129, 357, 128, 21);
+	}
+	private JScrollPane setScrollPane() {
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(36, 69, 541, 553);
+		return scrollPane;
+	}
+
+	private JSplitPane setJsplitPane() {
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setResizeWeight(0.7);
+		contentPane.add(splitPane, BorderLayout.CENTER);
+		return splitPane;
+	}
+	
 	private void setTxtField(JTextField txtField, int y,int w) {
 		txtField = new JTextField();
 		txtField.setColumns(10);
@@ -209,13 +230,17 @@ public class ProductInfo extends JFrame {
 		});
 		txtSearch.setBounds(189, 24, 186, 25);
 	}
-
-	private void setComboCategory() {
-		comboCatgory = new JComboBox();
-		comboCatgory.setModel(new DefaultComboBoxModel(new String[] {"Coffee", "Beverage", "Salad", "Dessert"}));
-		comboCatgory.setSelectedIndex(0);
-		comboCatgory.setBounds(129, 357, 128, 21);
+	private void setBtnRd(JRadioButton rd, int x,int y, int w,int h) {
+		if(rd.equals(rdIce)) {
+			rd = new JRadioButton("ICE");
+		}
+		else {
+			rd = new JRadioButton("HOT");
+		}
+		btnHotIceGruop.add(rd);
+		rd.setBounds(x,y,w,h);
 	}
+	
 	private JButton setBtnNewButton_1() {
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -236,19 +261,8 @@ public class ProductInfo extends JFrame {
 		btnNewButton_1.setBounds(235, 403, 22, 23);
 		return btnNewButton_1;
 	}
-	private void setBtnRd(JRadioButton rd, int x,int y, int w,int h) {
-		if(rd.equals(rdIce)) {
-			rd = new JRadioButton("ICE");
-		}
-		else {
-			rd = new JRadioButton("HOT");
-		}
-		btnHotIceGruop.add(rd);
-		rd.setBounds(x,y,w,h);
-	}
-	
 
-	private JButton setButton_2() {
+	private JButton setBtnProductRemove() {
 		JButton button_2 = new JButton("\uC0C1\uD488 \uC0AD\uC81C");
 		
 		button_2.addActionListener(new ActionListener() {
@@ -356,7 +370,19 @@ public class ProductInfo extends JFrame {
 		btnclear.setBounds(387, 25, 47, 23);
 		return btnclear;
 	}
-	
+	private JButton setBtnProductList() {
+		JButton btnProductList = new JButton("\uC0C1\uD488 \uC804\uCCB4 \uB9AC\uC2A4\uD2B8");
+		btnProductList.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtSearch.setText("");
+				showSearchProduct("");
+			}
+		});
+		
+		btnProductList.setFont(new Font("±¼¸²", Font.BOLD, 12));
+		btnProductList.setBounds(446, 22, 133, 28);
+		return btnProductList;
+	}
 	private JLabel setLabel(String text, int y) {
 		JLabel label = new JLabel(text);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -372,7 +398,13 @@ public class ProductInfo extends JFrame {
 		label.setBounds(12, 314, 105, 18);
 		return label;
 	}
-
+	private JLabel setlblNewLabel() {
+		JLabel lblNewLabel = new JLabel("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8");
+		lblNewLabel.setFont(new Font("HY°ß°íµñ", Font.BOLD, 18));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(12, 10, 165, 49);
+		return lblNewLabel;
+	}
 	private void setlbImage() {
 		lbImage = new JLabel("");
 		lbImage.setHorizontalAlignment(SwingConstants.CENTER);
@@ -453,41 +485,7 @@ public class ProductInfo extends JFrame {
 			}
 		});
 	}
-	private JScrollPane setScrollPane() {
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(36, 69, 541, 553);
-		return scrollPane;
-	}
-	private JButton setBtnProductList() {
-		JButton btnProductList = new JButton("\uC0C1\uD488 \uC804\uCCB4 \uB9AC\uC2A4\uD2B8");
-		btnProductList.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				txtSearch.setText("");
-				showSearchProduct("");
-			}
-		});
-		
-		btnProductList.setFont(new Font("±¼¸²", Font.BOLD, 12));
-		btnProductList.setBounds(446, 22, 133, 28);
-		return btnProductList;
-	}
-	private JLabel setlblNewLabel() {
-		JLabel lblNewLabel = new JLabel("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8");
-		lblNewLabel.setFont(new Font("HY°ß°íµñ", Font.BOLD, 18));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(12, 10, 165, 49);
-		return lblNewLabel;
-	}
 
-	private JSplitPane setJsplitPane() {
-		JSplitPane splitPane = new JSplitPane();
-		splitPane.setResizeWeight(0.7);
-		contentPane.add(splitPane, BorderLayout.CENTER);
-		return splitPane;
-	}
-	
 
 	
 	public void showSearchProduct(String target) {
