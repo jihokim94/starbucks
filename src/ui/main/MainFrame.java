@@ -68,6 +68,7 @@ public class MainFrame extends JFrame {
 		setResizable(false);
 		setTitle("스타벅스 음료 주문 프로그램");
 		//실행 아이콘을 스타벅스 로고로 설정
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("images\\logo\\로고(50x50).jpg"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 821, 536);

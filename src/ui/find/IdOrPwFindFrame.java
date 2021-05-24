@@ -42,7 +42,7 @@ public class IdOrPwFindFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public IdOrPwFindFrame() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(50x50).jpg"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("images\\logo\\\uB85C\uACE0(50x50).jpg"));
 		setTitle("\uC544\uC774\uB514 / \uBE44\uBC00\uBC88\uD638 \uCC3E\uAE30 \uC2DC\uC2A4\uD15C");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 650, 457);
@@ -54,7 +54,7 @@ public class IdOrPwFindFrame extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png"));
+		lblNewLabel.setIcon(new ImageIcon("images\\logo\\\uB85C\uACE0(150x150).png"));
 		lblNewLabel.setForeground(Color.BLACK);
 		lblNewLabel.setFont(new Font("±¼¸²", Font.PLAIN, 12));
 		lblNewLabel.setBounds(17, 10, 600, 150);
