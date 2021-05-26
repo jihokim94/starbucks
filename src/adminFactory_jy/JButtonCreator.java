@@ -11,7 +11,11 @@ public class JButtonCreator extends Jcreator{
 
 	@Override
 	public JComponent create(String text, String font, int x, int y, int w, int h) {
-		// TODO Auto-generated method stub
+		JButton button = new JButton(text);
+	    button.setFont(new Font(font, Font.BOLD, 13));
+	    button.setForeground(new Color(0, 0, 0));
+	    button.setBackground(new Color(0, 102, 51));
+	    button.setBounds(x,y,w,h);
 		return null;
 	}
 

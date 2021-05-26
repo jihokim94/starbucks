@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
+import adminFactory_jy.JButtonCreator;
 import adminFactory_jy.JLabelCreator;
 import data.db.AdminDBMgr;
 import data.db.MemberDBMgr;
@@ -49,6 +50,7 @@ public class adminLoginDialog extends JDialog {
     */
    public adminLoginDialog() {
 	   JLabelCreator labelcreator = new JLabelCreator();
+	   JButtonCreator btncreator = new JButtonCreator();
 	   
 	  this.loginDlg =loginDlg;
    	  setTitle("\uAD00\uB9AC\uC790 \uB85C\uADF8\uC778");
@@ -73,7 +75,7 @@ public class adminLoginDialog extends JDialog {
       JLabel label = (JLabel) labelcreator.create("\uC544\uC774\uB514","±¼¸²",12, 22, 391, 15);
       panel.add(label);
       
-      JButton button = setJbutton("\uAD00\uB9AC\uC790 \uB85C\uADF8\uC778",12, 194, 391, 40);
+      JButton button = (JButton) btncreator.create("\uAD00\uB9AC\uC790 \uB85C\uADF8\uC778","±¼¸²",12, 194, 391, 40);
       button.addActionListener(new ActionListener() {
       	public void actionPerformed(ActionEvent arg0) {
       		String login =txtLogin.getText();
