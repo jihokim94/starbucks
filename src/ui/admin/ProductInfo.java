@@ -83,6 +83,44 @@ public class ProductInfo extends JFrame {
 //	/**
 //	 * Create the frame.
 //	 */
+
+	private int getHot() {
+		int hot = rdHot.isSelected()?1:2;
+		return hot;
+	}
+
+	private int getPrice() {
+		int price = Integer.parseInt(txtPrice.getText());
+		return price;
+	}
+
+	private String getImagePath() {
+		String imagePath = txtImagePath.getText();
+		return imagePath;
+	}
+
+	private String getCategory() {
+		String category= (String) comboCatgory.getSelectedItem();
+		return category;
+	}
+
+	private int getId() {
+		int id = Integer.parseInt(txtID.getText());
+		return id;
+	}
+
+	private Date getDate() {
+		String date = txtRegDate.getText();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date regDay = null;
+		try {
+			regDay = sdf.parse(date);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return regDay;
+	}
 	public ProductInfo() {
 		this.PInfo =PInfo;
 		this.mgr= new ProductDBMgr();
@@ -230,6 +268,23 @@ public class ProductInfo extends JFrame {
 		});
 		txtSearch.setBounds(189, 24, 186, 25);
 	}
+	private JLabel setLabel(String text, int y, int w, int h, String font) {
+		JLabel label = new JLabel(text);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setFont(new Font(font, Font.BOLD, 13));
+		label.setBounds(12, y, w,h);
+		return label;
+	}
+
+	private void setlbImage() {
+		lbImage = new JLabel("");
+		lbImage.setHorizontalAlignment(SwingConstants.CENTER);
+		lbImage.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png"));
+		lbImage.setBackground(new Color(0, 255, 0));
+		lbImage.setBounds(12, 20, 245, 220);
+	}
+	
+	
 	private void setBtnRd(JRadioButton rd, int x,int y, int w,int h) {
 		if(rd.equals(rdIce)) {
 			rd = new JRadioButton("ICE");
@@ -245,15 +300,13 @@ public class ProductInfo extends JFrame {
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				final String currentDirectoryPath 
-				= "./images";
-			JFileChooser openDlg = new JFileChooser(currentDirectoryPath);
-			int r = openDlg.showOpenDialog(PInfo);
-			if( r == JFileChooser.APPROVE_OPTION ) {
-				File selImgFile 
-					= openDlg.getSelectedFile();
-				txtImagePath.setText(selImgFile.getPath());
-				lbImage.setIcon(new ImageIcon(selImgFile.getPath()));
+				final String currentDirectoryPath 	= "./images";
+				JFileChooser openDlg = new JFileChooser(currentDirectoryPath);
+				int r = openDlg.showOpenDialog(PInfo);
+				if( r == JFileChooser.APPROVE_OPTION ) {
+					File selImgFile = openDlg.getSelectedFile();
+					txtImagePath.setText(selImgFile.getPath());
+					lbImage.setIcon(new ImageIcon(selImgFile.getPath()));
 				}
 			}
 		});
@@ -288,22 +341,14 @@ public class ProductInfo extends JFrame {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//입력된 값 읽어오기 
-				int id = Integer.parseInt(txtID.getText());
+				int id = getId();
 				String name = txtName.getText();
-				String category= (String) comboCatgory.getSelectedItem();
-				String imagePath = txtImagePath.getText();
-				int price = Integer.parseInt(txtPrice.getText());
-				int hot = rdHot.isSelected()?1:2;
+				String category = getCategory();
+				String imagePath = getImagePath();
+				int price = getPrice();
+				int hot = getHot();
 				//날짜 입력 읽어오고 포맷 변경 
-				String date = txtRegDate.getText();
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				Date regDay = null;
-				try {
-					regDay = sdf.parse(date);
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				Date regDay = getDate();
 				//새로운 product 객체 생성 		
 				Product pd = new Product(id, name, category, imagePath, price, hot, regDay);
 				//product manager 객체 method 로 product 변경 요청 
@@ -316,10 +361,12 @@ public class ProductInfo extends JFrame {
 				}
 				
 			}
+
 		});
 		button_1.setBounds(23, 629, 108, 23);
 		return button_1;
 	}
+
 	private JButton setBtnInitialize() {
 		JButton button = new JButton("\uBAA9\uB85D \uBE44\uC6B0\uAE30");
 		button.addActionListener(new ActionListener() {
@@ -388,29 +435,7 @@ public class ProductInfo extends JFrame {
 		btnProductList.setBounds(446, 22, 133, 28);
 		return btnProductList;
 	}
-	private JLabel setLabel(String text, int y, int w, int h, String font) {
-		JLabel label = new JLabel(text);
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font(font, Font.BOLD, 13));
-		label.setBounds(12, y, w,h);
-		return label;
-	}
 
-	private JLabel setlblNewLabel() {
-		JLabel lblNewLabel = new JLabel("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("HY견고딕", Font.BOLD, 18));
-		lblNewLabel.setBounds(12, 10, 165, 49);
-		return lblNewLabel;
-	}
-	private void setlbImage() {
-		lbImage = new JLabel("");
-		lbImage.setHorizontalAlignment(SwingConstants.CENTER);
-		lbImage.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png"));
-		lbImage.setBackground(new Color(0, 255, 0));
-		lbImage.setBounds(12, 20, 245, 220);
-	}
-	
 	private JPanel setpnsub() {
 		JPanel pnSub = new JPanel();
 		pnSub.setBackground(new Color(255, 255, 255));
@@ -440,12 +465,12 @@ public class ProductInfo extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 //				 {"관리 번호", "상품명", "카테고리", "사진파일경로", "가격", "HOT/ICE" ,"출시일"};
-				
+				//선택 입력 읽어오기 
 				int selRow = pdTable.getSelectedRow();
 				
-				
+				//선택 입력 strign 치환 
 				String menu = pdTable.getValueAt(selRow, 2).toString();
-				
+				//메뉴 찾기 
 				if(menu.equalsIgnoreCase("coffee")) {
 					comboCatgory.setSelectedIndex(0);
 				}else if (menu.equals("Beverage")) {
@@ -455,19 +480,16 @@ public class ProductInfo extends JFrame {
 				}else {
 					comboCatgory.setSelectedIndex(3);
 				}
-				
+				//입력 읽기 
 				int id = (int) pdTable.getValueAt(selRow, 0);
 				String name = (String) pdTable.getValueAt(selRow, 1);
-				
 				String imagePath = (String) pdTable.getValueAt(selRow, 3);
 				int price =Integer.parseInt(pdTable.getValueAt(selRow, 4).toString());
-				
-				
 				if( pdTable.getValueAt(selRow, 5).toString() == "HOT") rdHot.setSelected(true);
 				else rdIce.setSelected(true);
 //				Date regDate =(Date) pdTable.getValueAt(selRow, 6);
 				
-				
+				//클릭값 기반 입력 
 				txtID.setText(String.valueOf(id));
 				txtName.setText(name);
 				txtImagePath.setText(imagePath);
@@ -476,9 +498,7 @@ public class ProductInfo extends JFrame {
 				Date regDate = (Date) pdTable.getValueAt(selRow,6);
 				String DayStr = regDate.toString();
 				txtRegDate.setText(DayStr);
-//				
-				
-				
+
 //				comboCatgory.getSelectedIndex()pdTable.getValueAt(selRow, 2); // comboBox
 			}
 		});
@@ -493,10 +513,9 @@ public class ProductInfo extends JFrame {
 		ProductDBMgr pdMgr = new ProductDBMgr();
 		ArrayList<Product> pdList =pdMgr.getAllProducts();
 		Object[][] data = new Object[pdList.size()][columnNames.length];
-		
+		//데이터 읽어오기 
 		getTableData(pdList, data);
-		
-		
+		//테이블 만들기 
 		DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
 		pdTable.setModel(dtm);
 				
