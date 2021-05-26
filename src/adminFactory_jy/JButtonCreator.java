@@ -7,7 +7,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 
-public static class JButtonCreator extends Jcreator{
+public class JButtonCreator extends Jcreator{
 
 	@Override
 	public JComponent create(String text, String font, int x, int y, int w, int h) {
