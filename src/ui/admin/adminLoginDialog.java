@@ -56,9 +56,7 @@ public class adminLoginDialog extends JDialog {
       getContentPane().add(contentPanel, BorderLayout.CENTER);
       contentPanel.setLayout(null);
       
-      JPanel panel = new JPanel();
-      panel.setBackground(new Color(255, 255, 255));
-      panel.setBounds(50, 206, 415, 256);
+      JPanel panel = setJpanel(50, 206, 415, 256);
       contentPanel.add(panel);
       panel.setLayout(null);
       
@@ -72,7 +70,7 @@ public class adminLoginDialog extends JDialog {
       JLabel label = setJlabel("\uC544\uC774\uB514",12, 22, 391, 15,"굴림");
       panel.add(label);
       
-      JButton button = new JButton("\uAD00\uB9AC\uC790 \uB85C\uADF8\uC778");
+      JButton button = setJbutton("\uAD00\uB9AC\uC790 \uB85C\uADF8\uC778",12, 194, 391, 40);
       button.addActionListener(new ActionListener() {
       	public void actionPerformed(ActionEvent arg0) {
       		String login =txtLogin.getText();
@@ -98,19 +96,12 @@ public class adminLoginDialog extends JDialog {
                JOptionPane.showMessageDialog(null, "지원하지 않는 서비스입니다.");
                break;
             }
-      		
-      		
       	}
       });
-      button.setFont(new Font("굴림", Font.BOLD, 13));
-      button.setForeground(new Color(0, 0, 0));
-      button.setBackground(new Color(0, 102, 51));
-      button.setBounds(12, 194, 391, 40);
+     
       panel.add(button);
       
-      psfPW = new JPasswordField();
-      psfPW.setBorder(new LineBorder(new Color(0, 121,51)));
-      psfPW.setBounds(14, 131, 389, 37);
+      setJpasswordField();
       panel.add(psfPW);
       
       JLabel lblNewLabel = new JLabel("");
@@ -119,13 +110,33 @@ public class adminLoginDialog extends JDialog {
       lblNewLabel.setBounds(12, 10, 492, 150);
       contentPanel.add(lblNewLabel);
       
-      JLabel label_1 = new JLabel("스타벅스 관리자 로그인");
-      label_1.setForeground(new Color(255, 255, 255));
-      label_1.setHorizontalAlignment(SwingConstants.CENTER);
-      label_1.setFont(new Font("굴림", Font.BOLD, 18));
-      label_1.setBounds(50, 170, 415, 26);
-      contentPanel.add(label_1);
+      JLabel labelLogin = setJlabel("스타벅스 관리자 로그인",50, 170, 415, 26,"굴림");
+      labelLogin.setForeground(new Color(255, 255, 255));
+      labelLogin.setHorizontalAlignment(SwingConstants.CENTER);
+      contentPanel.add(labelLogin);
    }
+
+private JPanel setJpanel(int x, int y, int w, int h) {
+	JPanel panel = new JPanel();
+    panel.setBackground(new Color(255, 255, 255));
+    panel.setBounds(x,y,w,h);
+	return panel;
+}
+
+private void setJpasswordField() {
+	psfPW = new JPasswordField();
+      psfPW.setBorder(new LineBorder(new Color(0, 121,51)));
+      psfPW.setBounds(14, 131, 389, 37);
+}
+
+private JButton setJbutton(String unicode,int x, int y, int w, int h ) {
+	JButton button = new JButton(unicode);
+      button.setFont(new Font("굴림", Font.BOLD, 13));
+      button.setForeground(new Color(0, 0, 0));
+      button.setBackground(new Color(0, 102, 51));
+      button.setBounds(x,y,w,h);
+	return button;
+}
 
 private void setTxtLogin() {
 	txtLogin = new JTextField();
