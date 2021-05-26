@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import adminFactory_jy.JButtonCreator;
 import adminFactory_jy.JLabelCreator;
 import data.Member;
 import data.Product;
@@ -49,7 +50,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class ProductInfo extends JFrame {
-
+	
+	private JButtonCreator btncreator;
+	private JLabelCreator labelcreator;
 	private JPanel contentPane;
 	private JTextField txtName;
 	private JTextField txtImagePath;
@@ -123,7 +126,8 @@ public class ProductInfo extends JFrame {
 		return regDay;
 	}
 	public ProductInfo() {
-		JLabelCreator labelcreator = new JLabelCreator();
+		labelcreator = new JLabelCreator();
+		btncreator = new JButtonCreator();
 		
 		this.PInfo =PInfo;
 		this.mgr= new ProductDBMgr();
@@ -302,7 +306,7 @@ public class ProductInfo extends JFrame {
 	}
 	
 	private JButton setBtnNewButton_1() {
-		JButton btnNewButton_1 = new JButton("");
+		JButton btnNewButton_1 = (JButton) btncreator.createWithIcon("", "C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\folder.png",235, 403, 22, 23);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				final String currentDirectoryPath 	= "./images";
@@ -315,14 +319,11 @@ public class ProductInfo extends JFrame {
 				}
 			}
 		});
-		btnNewButton_1.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\folder.png"));
-		btnNewButton_1.setBounds(235, 403, 22, 23);
 		return btnNewButton_1;
 	}
 
 	private JButton setBtnProductRemove() {
 		JButton button_2 = new JButton("\uC0C1\uD488 \uC0AD\uC81C");
-		
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//입력 읽어오기 
@@ -342,7 +343,6 @@ public class ProductInfo extends JFrame {
 	}
 	private JButton setBtnProductModify() {
 		JButton button_1 = new JButton("\uC0C1\uD488 \uC218\uC815");
-		
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//read input 
@@ -410,12 +410,11 @@ public class ProductInfo extends JFrame {
 			}
 			
 		});
-		
 		btnNewButton.setBounds(23, 584, 108, 23);
 		return btnNewButton;
 	}
 	private JButton setbtnClear() {
-		JButton btnclear = new JButton("");
+		JButton btnclear = (JButton) btncreator.createWithIcon("", "C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\bin.png",387, 25, 47, 23);
 		btnclear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtSearch.setText("");
@@ -423,8 +422,6 @@ public class ProductInfo extends JFrame {
 			}
 		});
 		btnclear.setToolTipText("\uD14D\uC2A4\uD2B8 \uC9C0\uC6B0\uAE30");
-		btnclear.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\bin.png"));
-		btnclear.setBounds(387, 25, 47, 23);
 		return btnclear;
 	}
 	private JButton setBtnProductList() {
@@ -435,7 +432,6 @@ public class ProductInfo extends JFrame {
 				showSearchProduct("");
 			}
 		});
-		
 		btnProductList.setFont(new Font("굴림", Font.BOLD, 12));
 		btnProductList.setBounds(446, 22, 133, 28);
 		return btnProductList;

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 
@@ -21,7 +22,9 @@ public class JButtonCreator extends Jcreator{
 
 	@Override
 	public JComponent createWithIcon(String text, String iconText, int x, int y, int w, int h) {
-		// TODO Auto-generated method stub
+		JButton button = new JButton(text);
+		button.setIcon(new ImageIcon(iconText));
+		button.setBounds(x,y,w,h);
 		return null;
 	}
 
