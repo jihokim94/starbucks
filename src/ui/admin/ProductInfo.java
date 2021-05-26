@@ -197,8 +197,8 @@ public class ProductInfo extends JFrame {
 		JLabel label_4 = (JLabel) labelcreator.createWithHorizontal("\uC720\uBB34","±¼¸²",12,504,105, 18 ,13);
 		pnSub.add(label_4);
 		
-		JButton btnNewButton = setBtnProductAdd();
-		pnSub.add(btnNewButton);
+		JButton btnProductAdd = setBtnProductAdd();
+		pnSub.add(btnProductAdd);
 		
 		JButton button = setBtnInitialize();
 		pnSub.add(button);
