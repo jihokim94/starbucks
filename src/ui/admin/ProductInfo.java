@@ -340,26 +340,30 @@ public class ProductInfo extends JFrame {
 		
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//입력된 값 읽어오기 
+				//read input 
 				int id = getId();
 				String name = txtName.getText();
 				String category = getCategory();
 				String imagePath = getImagePath();
 				int price = getPrice();
 				int hot = getHot();
-				//날짜 입력 읽어오고 포맷 변경 
+				//read date 
 				Date regDay = getDate();
-				//새로운 product 객체 생성 		
+				//construct product object 
 				Product pd = new Product(id, name, category, imagePath, price, hot, regDay);
 				//product manager 객체 method 로 product 변경 요청 
 				boolean b =mgr.editOneProduct(pd);
 				//변경 성공,실패 print로 확인 
-				if(b) {
-					JOptionPane.showMessageDialog(null,name+"수정 성공!!");	
-				}else {
-						JOptionPane.showMessageDialog(null,name+"수정 실패!!");	
-				}
+				checkOperation(name, b,"수정");
 				
+			}
+
+			private void checkOperation(String name, boolean b, String operation) {
+				if(b) {
+					JOptionPane.showMessageDialog(null,name+ operation+"성공!!");	
+				}else {
+						JOptionPane.showMessageDialog(null,name+ operation+"실패!!");	
+				}
 			}
 
 		});
