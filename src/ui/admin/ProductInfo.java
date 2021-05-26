@@ -227,7 +227,7 @@ public class ProductInfo extends JFrame {
 		setNonEditableTxtField(txtID, 265);
 		pnSub.add(txtID);
 		
-		JButton btnNewButton_1 = setBtnNewButton_1();
+		JButton btnNewButton_1 = setbtnopenFolder();
 		pnSub.add(btnNewButton_1);
 		
 		
@@ -289,7 +289,7 @@ public class ProductInfo extends JFrame {
 		rd.setBounds(x,y,w,h);
 	}
 	
-	private JButton setBtnNewButton_1() {
+	private JButton setbtnopenFolder() {
 		JButton btnNewButton_1 = (JButton) btncreator.createWithIcon("", "C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\folder.png",235, 403, 22, 23);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
