@@ -65,38 +65,66 @@ public class MainFrame extends JFrame {
 	 * @return 
 	 */
 	public MainFrame() {
-		setResizable(false);
-		setTitle("스타벅스 음료 주문 프로그램");
-		//실행 아이콘을 스타벅스 로고로 설정
+
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage("images\\logo\\로고(50x50).jpg"));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//Jfraame 설정
+		setJframe();
+		// 새로운 창이 만들어지는 위치설정
 		setBounds(100, 100, 821, 536);
-		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(0, 2, 0, 0));
+		//ContentPane 설정
+		settingContentPane();
 
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBorder(new EmptyBorder(0, 0, 0, 0));
-		lblNewLabel.setBackground(Color.WHITE);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("images\\logo\\로고(250x250).png"));
-		contentPane.add(lblNewLabel);
+		displayStarbucksLogo();
 
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		contentPane.add(panel);
-		panel.setLayout(null);
+		JPanel panel = makeJPanel();
 
 		displayLogin(panel);
 
 		displayRegister(panel);
 
 		displaySearchIDPW(panel);
+	
+		displayWelcomeMessage(panel);
 
-		
+		displayAdminLoginButton(panel);
+	}
+
+	private JPanel makeJPanel() {
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		return panel;
+	}
+
+	private void displayStarbucksLogo() {
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBorder(new EmptyBorder(0, 0, 0, 0));
+		lblNewLabel.setBackground(Color.WHITE);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setIcon(new ImageIcon("images\\logo\\로고(250x250).png"));
+		contentPane.add(lblNewLabel);
+	}
+
+	private void setJframe() {
+		//프로그램 창 크기를 조절불가능하게 설정
+		setResizable(false);
+		//프로그램 타이틀 설정
+		setTitle("스타벅스 음료 주문 프로그램");
+		//실행 아이콘을 스타벅스 로고로 설정
+		setIconImage(Toolkit.getDefaultToolkit().getImage("images\\logo\\로고(50x50).jpg"));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	private void settingContentPane() {
+		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
+		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+		setContentPane(contentPane);
+		contentPane.setLayout(new GridLayout(0, 2, 0, 0));
+	}
+
+	private void displayWelcomeMessage(JPanel panel) {
 		//"반갑습니다" 출력 라벨
 		JLabel lblNewLabel_5 = new JLabel("반갑습니다.");
 		lblNewLabel_5.setForeground(new Color(0, 102, 51));
@@ -109,13 +137,9 @@ public class MainFrame extends JFrame {
 		label_6.setFont(new Font("굴림", Font.BOLD, 20));
 		label_6.setBounds(29, 43, 361, 24);
 		panel.add(label_6);
+	}
 
-		
-
-		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 10, 0, 463);
-		panel.add(separator);
-		
+	private void displayAdminLoginButton(JPanel panel) {
 		JButton btnAdmin = new JButton("admin");
 		btnAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -242,6 +266,7 @@ public class MainFrame extends JFrame {
 		btnLogin.setForeground(new Color(255, 255, 255));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				String login = txtLogin.getText();
 	            String pw = new String(passwordField.getPassword());
 	            MemberDBMgr mgr = new MemberDBMgr();
