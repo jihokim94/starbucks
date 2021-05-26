@@ -47,8 +47,8 @@ public class adminLoginDialog extends JDialog {
     * Create the dialog.
     */
    public adminLoginDialog() {
-	   this.loginDlg =loginDlg;
-   	setTitle("\uAD00\uB9AC\uC790 \uB85C\uADF8\uC778");
+	  this.loginDlg =loginDlg;
+   	  setTitle("\uAD00\uB9AC\uC790 \uB85C\uADF8\uC778");
       setBounds(100, 100, 532, 511);
       getContentPane().setLayout(new BorderLayout());
       contentPanel.setBackground(new Color(0, 102, 51));

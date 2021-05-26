@@ -476,10 +476,7 @@ public class ProductInfo extends JFrame {
 				if( pdTable.getValueAt(selRow, 5).toString() == "HOT") rdHot.setSelected(true);
 				else rdIce.setSelected(true);
 //				Date regDate =(Date) pdTable.getValueAt(selRow, 6);
-				
-				//클릭값 기반 입력 
 				setProduct(selRow, id, name, imagePath, price);
-
 //				comboCatgory.getSelectedIndex()pdTable.getValueAt(selRow, 2); // comboBox
 			}
 

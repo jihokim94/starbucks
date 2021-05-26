@@ -48,6 +48,7 @@ public class adminMain extends JFrame {
 		setTitle("\uAD00\uB9AC\uC790\uD398\uC774\uC9C0");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 468, 489);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -89,6 +90,12 @@ public class adminMain extends JFrame {
 			}
 		});
 		
+		JButton btnNewButton = setBtnNew();
+		pnAdminList.add(btnNewButton);
+		pnAdminList.add(btnOrderList);
+	}
+
+	private JButton setBtnNew() {
 		JButton btnNewButton = new JButton("\uC0C1\uD488\uAD00\uB9AC");
 		btnNewButton.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		btnNewButton.setBackground(new Color(0,121,51));
@@ -100,8 +107,7 @@ public class adminMain extends JFrame {
 				pdInfo.setVisible(true);
 			}
 		});
-		pnAdminList.add(btnNewButton);
-		pnAdminList.add(btnOrderList);
+		return btnNewButton;
 	}
 	
 
