@@ -393,10 +393,10 @@ public class ProductInfo extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				//입력 읽어오기 
 				String name = txtName.getText();
-				String category= (String) comboCatgory.getSelectedItem();
-				String imagePath = txtImagePath.getText().substring(41);
-				int price = Integer.parseInt(txtPrice.getText());
-				int hot = rdHot.isSelected()?1:2;
+				String category= getCategory() ;
+				String imagePath = getImagePath();
+				int price = getPrice();
+				int hot = getHot();
 				//product 생성 
 				Product pd = new Product(name, category, imagePath, price, hot);
 				//manager에게 요청 후 성공 실패 확인 
@@ -469,17 +469,8 @@ public class ProductInfo extends JFrame {
 				int selRow = pdTable.getSelectedRow();
 				
 				//선택 입력 strign 치환 
-				String menu = pdTable.getValueAt(selRow, 2).toString();
-				//메뉴 찾기 
-				if(menu.equalsIgnoreCase("coffee")) {
-					comboCatgory.setSelectedIndex(0);
-				}else if (menu.equals("Beverage")) {
-					comboCatgory.setSelectedIndex(1);
-				}else if(menu.equals("Salad")){
-					comboCatgory.setSelectedIndex(2);
-				}else {
-					comboCatgory.setSelectedIndex(3);
-				}
+				String menu = pdTable.getValueAt(selRow, 2).toString(); 
+				findMenu(menu);
 				//입력 읽기 
 				int id = (int) pdTable.getValueAt(selRow, 0);
 				String name = (String) pdTable.getValueAt(selRow, 1);
@@ -500,6 +491,18 @@ public class ProductInfo extends JFrame {
 				txtRegDate.setText(DayStr);
 
 //				comboCatgory.getSelectedIndex()pdTable.getValueAt(selRow, 2); // comboBox
+			}
+
+			private void findMenu(String menu) {
+				if(menu.equalsIgnoreCase("coffee")) {
+					comboCatgory.setSelectedIndex(0);
+				}else if (menu.equals("Beverage")) {
+					comboCatgory.setSelectedIndex(1);
+				}else if(menu.equals("Salad")){
+					comboCatgory.setSelectedIndex(2);
+				}else {
+					comboCatgory.setSelectedIndex(3);
+				}
 			}
 		});
 	}
