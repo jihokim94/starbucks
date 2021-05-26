@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import adminFactory_jy.JLabelCreator;
 import data.Member;
 import data.Product;
 import data.db.ProductDBMgr;
@@ -122,6 +123,8 @@ public class ProductInfo extends JFrame {
 		return regDay;
 	}
 	public ProductInfo() {
+		JLabelCreator labelcreator = new JLabelCreator();
+		
 		this.PInfo =PInfo;
 		this.mgr= new ProductDBMgr();
 		
@@ -135,7 +138,7 @@ public class ProductInfo extends JFrame {
 		
 		JPanel pnMain = setpnMain(splitPane);
 		
-		JLabel lblNewLabel = setLabel("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8", 12,10,165,49,"HY°ß°íµñ");
+		JLabel lblNewLabel = (JLabel) labelcreator.createWithHorizontal("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8","HY°ß°íµñ", 12,10,165,49);
 		pnMain.add(lblNewLabel);
 		
 		JButton btnProductList = setBtnProductList();
@@ -158,34 +161,35 @@ public class ProductInfo extends JFrame {
 		splitPane.setRightComponent(pnSub);
 		pnSub.setLayout(null);
 		
-		setlbImage();
+		lbImage = 
+				(JLabel) labelcreator.createWithIcon("", "C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png",12, 20, 245, 220);
 		pnSub.add(lbImage);
 		
-		JLabel lbID = setLabel("\\uAD00\\uB9AC \\uBC88\\uD638",12,266,105, 18,"±¼¸²");
+		JLabel lbID =(JLabel) labelcreator.createWithHorizontal("\\uAD00\\uB9AC \\uBC88\\uD638","±¼¸²",12,266,105, 18);
 		pnSub.add(lbID);
 		
-		JLabel label = setLabel("\uC0C1\uD488\uBA85",12,314,105, 18,"±¼¸²");
+		JLabel label = (JLabel) labelcreator.createWithHorizontal("\uC0C1\uD488\uBA85","±¼¸²",12,314,105, 18);
 		pnSub.add(label);
 		
 		setTxtField(txtName,  311, 128);
 		pnSub.add(txtName);
 		
-		JLabel label_1 = setLabel("\uCE74\uD14C\uACE0\uB9AC",12,360,105, 18,"±¼¸²");
+		JLabel label_1 = (JLabel) labelcreator.createWithHorizontal("\uCE74\uD14C\uACE0\uB9AC","±¼¸²",12,360,105, 18);
 		pnSub.add(label_1);
 		
-		JLabel label_2 = setLabel("\uC0AC\uC9C4\uD30C\uC77C\uACBD\uB85C",12,405,105, 18,"±¼¸²");
+		JLabel label_2 = (JLabel) labelcreator.createWithHorizontal("\uC0AC\uC9C4\uD30C\uC77C\uACBD\uB85C","±¼¸²",12,405,105, 18);
 		pnSub.add(label_2);
 		
 		setTxtField(txtImagePath, 404,105);
 		pnSub.add(txtImagePath);
 		
-		JLabel label_3 = setLabel("\uAC00\uACA9",12,457,105, 18,"±¼¸²");
+		JLabel label_3 = (JLabel) labelcreator.createWithHorizontal("\uAC00\uACA9","±¼¸²",12,457,105, 18);
 		pnSub.add(label_3);
 		
 		setTxtField(txtPrice, 454,128);
 		pnSub.add(txtPrice);
 		
-		JLabel label_4 = setLabel("\uC720\uBB34",12,504,105, 18,"±¼¸²" );
+		JLabel label_4 = (JLabel) labelcreator.createWithHorizontal("\uC720\uBB34","±¼¸²",12,504,105, 18 );
 		pnSub.add(label_4);
 		
 		JButton btnNewButton = setBtnProductAdd();
@@ -200,7 +204,7 @@ public class ProductInfo extends JFrame {
 		JButton button_2 = setBtnProductRemove();
 		pnSub.add(button_2);
 		
-		JLabel label_5 = setLabel("\uCD9C\uC2DC\uC77C",12,541,105, 18,"±¼¸²");
+		JLabel label_5 = (JLabel) labelcreator.createWithHorizontal("\uCD9C\uC2DC\uC77C","±¼¸²",12,541,105, 18);
 		pnSub.add(label_5);
 		
 		setNonEditableTxtField(txtRegDate, 538);
