@@ -203,11 +203,11 @@ public class ProductInfo extends JFrame {
 		JButton button = setBtnInitialize();
 		pnSub.add(button);
 		
-		JButton button_1 = setBtnProductModify();
-		pnSub.add(button_1);
+		JButton btnProductModify = setBtnProductModify();
+		pnSub.add(btnProductModify);
 		
-		JButton button_2 = setBtnProductRemove();
-		pnSub.add(button_2);
+		JButton btnProductRemove = setBtnProductRemove();
+		pnSub.add(btnProductRemove);
 		
 		JLabel label_5 = (JLabel) labelcreator.createWithHorizontal("\uCD9C\uC2DC\uC77C","±¼¸²",12,541,105, 18,13);
 		pnSub.add(label_5);
