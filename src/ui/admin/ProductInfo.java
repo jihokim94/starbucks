@@ -357,20 +357,19 @@ public class ProductInfo extends JFrame {
 				checkOperation(name, b,"수정");
 				
 			}
-
-			private void checkOperation(String name, boolean b, String operation) {
-				if(b) {
-					JOptionPane.showMessageDialog(null,name+ operation+"성공!!");	
-				}else {
-						JOptionPane.showMessageDialog(null,name+ operation+"실패!!");	
-				}
-			}
-
 		});
 		button_1.setBounds(23, 629, 108, 23);
 		return button_1;
 	}
-
+	
+	private void checkOperation(String name, boolean b, String operation) {
+		if(b) {
+			JOptionPane.showMessageDialog(null,name+ operation+"성공!!");	
+		}else {
+				JOptionPane.showMessageDialog(null,name+ operation+"실패!!");	
+		}
+	}
+	
 	private JButton setBtnInitialize() {
 		JButton button = new JButton("\uBAA9\uB85D \uBE44\uC6B0\uAE30");
 		button.addActionListener(new ActionListener() {
@@ -401,11 +400,8 @@ public class ProductInfo extends JFrame {
 				//product 생성 
 				Product pd = new Product(name, category, imagePath, price, hot);
 				//manager에게 요청 후 성공 실패 확인 
-				if(mgr.addNewOneProduct(pd) == true) {
-					JOptionPane.showMessageDialog(null, name+"추가 성공!!");
-				}else {
-					JOptionPane.showMessageDialog(null, name+"추가 실패!!");
-				}	
+				boolean b =mgr.addNewOneProduct(pd) ;
+				checkOperation(name, b, "추가");
 			}
 			
 		});
