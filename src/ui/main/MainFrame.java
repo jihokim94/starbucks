@@ -98,7 +98,7 @@ public class MainFrame extends JFrame {
 
 		
 		//"반갑습니다" 출력 라벨
-		JLabel lblNewLabel_5 = new JLabel("\uBC18\uAC11\uC2B5\uB2C8\uB2E4.");
+		JLabel lblNewLabel_5 = new JLabel("반갑습니다.");
 		lblNewLabel_5.setForeground(new Color(0, 102, 51));
 		lblNewLabel_5.setFont(new Font("굴림", Font.BOLD, 20));
 		lblNewLabel_5.setBounds(29, 20, 275, 24);
@@ -238,7 +238,7 @@ public class MainFrame extends JFrame {
 		lbLoginPw.setBounds(12, 166, 57, 15);
 		panel.add(lbLoginPw);
 
-		JButton btnLogin = new JButton("\uB85C\uADF8\uC778");
+		JButton btnLogin = new JButton("로그인");
 		btnLogin.setForeground(new Color(255, 255, 255));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

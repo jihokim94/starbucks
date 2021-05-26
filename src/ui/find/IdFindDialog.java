@@ -473,7 +473,7 @@ public class IdFindDialog extends JDialog {
 		txtPwPhone3.setBounds(260, 132, 52, 21);
 		pnPwFind.add(txtPwPhone3);
 
-		JButton btnPwCode = new JButton("\uC778\uC99D\uBC88\uD638");
+		JButton btnPwCode = new JButton("인증번호");
 		btnPwCode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Random ran = new Random();
