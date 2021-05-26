@@ -83,9 +83,9 @@ public class Money extends JFrame {
 	 * Create the frame.
 	 */
 	public Money() {
-		//this.mgr = new MemberDBMgr();
+		this.mgr = new MemberDBMgr();
 		this.fr= new MainFrame();
-		//member =mgr.getOneMemberByLogin(MainFrame.Login);
+		member =mgr.getOneMemberByLogin(MainFrame.Login);
 		
 		setTitle("\uC2E0\uC6A9\uCE74\uB4DC \uACB0\uC81C\uD654\uBA74"); //산용카드 결제화면
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2020\\java_ws\\TProject\\images\\icon_card.jpg"));
@@ -166,18 +166,13 @@ public class Money extends JFrame {
 			int OnePdtotalPrice =Integer.parseInt(odList.get(i).pnOC.txtVal.getText());
 			int productPrice = odList.get(i).product.getPrice();
 			int onePdtotalPrice =productPrice *OnePdtotalPrice;
-//			pro
 			
 			 totalPrice += onePdtotalPrice;
 		}
 		lbTotalMoney.setText(String.valueOf(totalPrice) +"원");	
 			
 		
-		
-//		BasketPanel bp = new BasketPanel(frm, pr, amount);
-		
 		panel_1.add(lbTotalMoney);
-		//txtPrice.setText(); // 결제금액 나오게하기
 	}
 
 	private JLabel checkEmail() {
@@ -187,7 +182,7 @@ public class Money extends JFrame {
 		
 		 
 		
-		String email = "abcd@ha.com"; // member.getEmail();
+		String email = member.getEmail();
 		JLabel lbEmail2 = new JLabel(email);
 		lbEmail2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(lbEmail2);
@@ -200,7 +195,7 @@ public class Money extends JFrame {
 		panel_1.add(lbPhone);
 		
 		
-		String phone = "01012345678"; //member.getPhone();
+		String phone = member.getPhone();
 		JLabel lbPhoneNo = new JLabel(phone);
 		
 		lbPhoneNo.setHorizontalAlignment(SwingConstants.CENTER);

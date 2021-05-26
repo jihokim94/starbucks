@@ -45,10 +45,12 @@ public class Money2 extends JFrame {
 	JRadioButton rdbtn1;
 	JRadioButton rdbtn2;
 	JRadioButton rdbtn3;
+	JPanel pnMain;
 	MainFrame Mainfrm;
 	MainMenuFrame menufrm;
 	BasketContainer bc;
 	private JTable table;
+	JSplitPane splitPane;
 	
 	public static void main(String[] args) {
 		System.out.println(MainFrame.Login);
@@ -65,7 +67,7 @@ public class Money2 extends JFrame {
 		});
 	}
 
-	/**
+	/**  
 	 * Create the frame.
 	 */
 	public Money2() {
@@ -81,11 +83,28 @@ public class Money2 extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JSplitPane splitPane = new JSplitPane();
+		splitPane = new JSplitPane();
 		splitPane.setResizeWeight(0.6);
 		contentPane.add(splitPane, BorderLayout.CENTER);
 		
-		JPanel pnMain = new JPanel();
+		setMainPanel();
+		
+		setAllAgreeRadioBtn();
+		
+		setRadioBtn();
+		
+		setSucPayBtn();
+		
+		setAgreeBtn();
+		
+		setTotalPricePanel();
+		
+		showorderList();
+
+	}
+
+	private void setMainPanel() {
+		pnMain = new JPanel();
 		splitPane.setLeftComponent(pnMain);
 		pnMain.setLayout(null);
 		
@@ -94,7 +113,9 @@ public class Money2 extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\TProject\\images\\nicePay.png"));
 		lblNewLabel.setBounds(12, 10, 100, 40);
 		pnMain.add(lblNewLabel);
-		
+	}
+
+	private void setAllAgreeRadioBtn() {
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.LIGHT_GRAY, null, Color.LIGHT_GRAY, null));
 		panel.setBounds(22, 47, 224, 50);
@@ -117,19 +138,9 @@ public class Money2 extends JFrame {
 		radioButton.setHorizontalAlignment(SwingConstants.CENTER);
 		radioButton.setFont(new Font("굴림", Font.BOLD, 20));
 		panel.add(radioButton);
-		
-		rdbtn1 = new JRadioButton("\uC804\uC790 \uAE08\uC735\uAC70\uB798 \uC774\uC6A9\uC57D\uAD00");
-		rdbtn1.setBounds(22, 144, 167, 32);
-		pnMain.add(rdbtn1);
-		
-		rdbtn2 = new JRadioButton("\uAC1C\uC778 \uC815\uBCF4 \uC218\uC9D1 \uBC0F \uC774\uC6A9\uC5D0 \uB300\uD55C \uB3D9\uC758");
-		rdbtn2.setBounds(23, 221, 166, 32);
-		pnMain.add(rdbtn2);
-		
-		rdbtn3 = new JRadioButton("\uAC1C\uC778\uC815\uBCF4 \uC81C 3\uC790 \uC774\uC6A9\uC57D\uAD00 \uB3D9\uC758");
-		rdbtn3.setBounds(22, 303, 167, 32);
-		pnMain.add(rdbtn3);
-		
+	}
+
+	private void setSucPayBtn() {
 		JButton btnSucPay = new JButton("\uACB0\uC81C\uC644\uB8CC");
 		btnSucPay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -148,7 +159,7 @@ public class Money2 extends JFrame {
 						 b =mgr.addOneOrder(bp, orderNumber, memberLogin);
 						if(b) {
 							
-							System.out.println("주문 추가성공 ");
+							System.out.println("주문 추가 성공 ");
 						}else {
 							System.out.println("주문 추가 실패");
 						}
@@ -181,7 +192,9 @@ public class Money2 extends JFrame {
 		});
 		btnSucPay.setBounds(127, 360, 97, 23);
 		pnMain.add(btnSucPay);
-		
+	}
+
+	private void setAgreeBtn() {
 		JButton btnShow1 = new JButton("[\uC790\uC138\uD788\uBCF4\uAE30]");
 		btnShow1.setHorizontalAlignment(SwingConstants.LEADING);
 		btnShow1.addActionListener(new ActionListener() {
@@ -215,7 +228,9 @@ public class Money2 extends JFrame {
 		btnShow3.setHorizontalAlignment(SwingConstants.LEADING);
 		btnShow3.setBounds(252, 312, 109, 23);
 		pnMain.add(btnShow3);
-		
+	}
+
+	private void setTotalPricePanel() {
 		JPanel pnSub = new JPanel();
 		splitPane.setRightComponent(pnSub);
 		pnSub.setLayout(null);
@@ -256,9 +271,23 @@ public class Money2 extends JFrame {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		showorderList();
-
 	}
+
+	private void setRadioBtn() {
+		rdbtn1 = new JRadioButton("\uC804\uC790 \uAE08\uC735\uAC70\uB798 \uC774\uC6A9\uC57D\uAD00");
+		rdbtn1.setBounds(22, 144, 167, 32);
+		pnMain.add(rdbtn1);
+		
+		rdbtn2 = new JRadioButton("\uAC1C\uC778 \uC815\uBCF4 \uC218\uC9D1 \uBC0F \uC774\uC6A9\uC5D0 \uB300\uD55C \uB3D9\uC758");
+		rdbtn2.setBounds(23, 221, 166, 32);
+		pnMain.add(rdbtn2);
+		
+		rdbtn3 = new JRadioButton("\uAC1C\uC778\uC815\uBCF4 \uC81C 3\uC790 \uC774\uC6A9\uC57D\uAD00 \uB3D9\uC758");
+		rdbtn3.setBounds(22, 303, 167, 32);
+		pnMain.add(rdbtn3);
+	}
+	
+	
 	public void showorderList() {
 		ArrayList<BasketPanel> odList =BasketContainer.bkList;
 		String [] columnNames = {"주문 상품", "주문 상품 수량"};
