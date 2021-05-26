@@ -465,13 +465,10 @@ public class ProductInfo extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 //				 {"관리 번호", "상품명", "카테고리", "사진파일경로", "가격", "HOT/ICE" ,"출시일"};
-				//선택 입력 읽어오기 
 				int selRow = pdTable.getSelectedRow();
 				
-				//선택 입력 strign 치환 
 				String menu = pdTable.getValueAt(selRow, 2).toString(); 
 				findMenu(menu);
-				//입력 읽기 
 				int id = (int) pdTable.getValueAt(selRow, 0);
 				String name = (String) pdTable.getValueAt(selRow, 1);
 				String imagePath = (String) pdTable.getValueAt(selRow, 3);
@@ -481,6 +478,12 @@ public class ProductInfo extends JFrame {
 //				Date regDate =(Date) pdTable.getValueAt(selRow, 6);
 				
 				//클릭값 기반 입력 
+				setProduct(selRow, id, name, imagePath, price);
+
+//				comboCatgory.getSelectedIndex()pdTable.getValueAt(selRow, 2); // comboBox
+			}
+
+			private void setProduct(int selRow, int id, String name, String imagePath, int price) {
 				txtID.setText(String.valueOf(id));
 				txtName.setText(name);
 				txtImagePath.setText(imagePath);
@@ -489,8 +492,6 @@ public class ProductInfo extends JFrame {
 				Date regDate = (Date) pdTable.getValueAt(selRow,6);
 				String DayStr = regDate.toString();
 				txtRegDate.setText(DayStr);
-
-//				comboCatgory.getSelectedIndex()pdTable.getValueAt(selRow, 2); // comboBox
 			}
 
 			private void findMenu(String menu) {
