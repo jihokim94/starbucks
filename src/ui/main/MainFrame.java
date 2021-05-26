@@ -270,8 +270,8 @@ public class MainFrame extends JFrame {
 				String login = txtLogin.getText();
 	            String pw = new String(passwordField.getPassword());
 	            MemberDBMgr mgr = new MemberDBMgr();
-	            int r = mgr.loginProcess(login, pw);
-	            switch (r) {
+	            int loginQueryResult = mgr.loginProcess(login, pw);
+	            switch (loginQueryResult) {
 	            case MemberDBMgr.LOGIN_SUCCESS:
 	               lbLoginMessage.setText("로그인에 성공하셨습니다.");
 	               lbLoginMessage.setForeground(Color.black);
