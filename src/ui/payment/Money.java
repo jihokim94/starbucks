@@ -104,18 +104,21 @@ public class Money extends JFrame {
 		
 		inputCreditCard();
 		
-		
 		checkPhoneNum();
 		
 		checkEmail();
 		
 		checkTotalPrice();
 		
+		setButton();
+	}
+
+	private void setButton() {
 		btnAccept = new JButton("\uACB0\uC81C\uC694\uCCAD");
 		btnAccept.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if( !lbNameIn.getText().isEmpty() && !txtFirstCardNo.getText().isEmpty() && !txtLast.getText().isEmpty()
-						&& !lbPhoneNo.getText().isEmpty() && !lbEmail2.getText().isEmpty()) {
+				if( !member.getName().isEmpty() && !txtFirstCardNo.getText().isEmpty() && !txtLast.getText().isEmpty()
+						&& !member.getPhone().isEmpty() && !member.getEmail().isEmpty()) {
 					Money2 mny = new Money2();
 					mny.setVisible(true);
 					btnAccept.setEnabled(true);
