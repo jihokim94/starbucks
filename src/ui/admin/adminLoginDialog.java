@@ -62,21 +62,14 @@ public class adminLoginDialog extends JDialog {
       contentPanel.add(panel);
       panel.setLayout(null);
       
-      txtLogin = new JTextField();
-      txtLogin.setBorder(new LineBorder(new Color(0, 102, 51)));
-      txtLogin.setForeground(Color.BLACK);
-      txtLogin.setBounds(14, 49, 389, 37);
+      setTxtLogin();
       panel.add(txtLogin);
       txtLogin.setColumns(10);
       
-      JLabel lblNewLabel_2 = new JLabel("\uBE44\uBC00\uBC88\uD638");
-      lblNewLabel_2.setFont(new Font("굴림", Font.BOLD, 12));
-      lblNewLabel_2.setBounds(12, 106, 391, 15);
+      JLabel lblNewLabel_2 = setJlabel("\\uBE44\\uBC00\\uBC88\\uD638",12, 106, 391, 15,"굴림");
       panel.add(lblNewLabel_2);
       
-      JLabel label = new JLabel("\uC544\uC774\uB514");
-      label.setFont(new Font("굴림", Font.BOLD, 12));
-      label.setBounds(12, 22, 391, 15);
+      JLabel label = setJlabel("\uC544\uC774\uB514",12, 22, 391, 15,"굴림");
       panel.add(label);
       
       JButton button = new JButton("\uAD00\uB9AC\uC790 \uB85C\uADF8\uC778");
@@ -89,35 +82,21 @@ public class adminLoginDialog extends JDialog {
       		int r =mgr.loginProcess(login, pw);
       		switch (r) {
             case MemberDBMgr.LOGIN_SUCCESS:
-
                JOptionPane.showMessageDialog(null, "로그인에 성공하셨습니다.");
-               
                setVisible(false);
                adminMain adMain = new adminMain();
                adMain.setVisible(true);
-               
                break;
-               
-              
-
             case MemberDBMgr.LOGIN_NOT_FOUND:
-              
                JOptionPane.showMessageDialog(null, "회원의 정보를 찾을 수 없습니다.");
                break;
-
             case MemberDBMgr.LOGIN_PW_MISMATCH:
-              
                JOptionPane.showMessageDialog(null, "로그인 혹은 비밀번호가 틀리셨습니다.");
                break;
 
             case MemberDBMgr.LOGIN_ERROR:
-               
                JOptionPane.showMessageDialog(null, "지원하지 않는 서비스입니다.");
                break;
-               
-               
-              
-
             }
       		
       		
@@ -147,4 +126,19 @@ public class adminLoginDialog extends JDialog {
       label_1.setBounds(50, 170, 415, 26);
       contentPanel.add(label_1);
    }
+
+private void setTxtLogin() {
+	txtLogin = new JTextField();
+      txtLogin.setBorder(new LineBorder(new Color(0, 102, 51)));
+      txtLogin.setForeground(Color.BLACK);
+      txtLogin.setBounds(14, 49, 389, 37);
+}
+
+	private JLabel setJlabel(String unicode, int x, int y, int w, int h,String font) {
+		JLabel label = new JLabel(unicode);
+	    label.setFont(new Font("굴림", Font.BOLD, 12));
+	    label.setBounds(x,y,w,h);
+		return label;
+	}
+
 }

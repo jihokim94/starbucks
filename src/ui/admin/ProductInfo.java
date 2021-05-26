@@ -135,7 +135,7 @@ public class ProductInfo extends JFrame {
 		
 		JPanel pnMain = setpnMain(splitPane);
 		
-		JLabel lblNewLabel = setLabel("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8", 10,165,49,"HY°ß°íµñ");
+		JLabel lblNewLabel = setLabel("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8", 12,10,165,49,"HY°ß°íµñ");
 		pnMain.add(lblNewLabel);
 		
 		JButton btnProductList = setBtnProductList();
@@ -161,31 +161,31 @@ public class ProductInfo extends JFrame {
 		setlbImage();
 		pnSub.add(lbImage);
 		
-		JLabel lbID = setLabel("\\uAD00\\uB9AC \\uBC88\\uD638",266,105, 18,"±¼¸²");
+		JLabel lbID = setLabel("\\uAD00\\uB9AC \\uBC88\\uD638",12,266,105, 18,"±¼¸²");
 		pnSub.add(lbID);
 		
-		JLabel label = setLabel("\uC0C1\uD488\uBA85",314,105, 18,"±¼¸²");
+		JLabel label = setLabel("\uC0C1\uD488\uBA85",12,314,105, 18,"±¼¸²");
 		pnSub.add(label);
 		
 		setTxtField(txtName,  311, 128);
 		pnSub.add(txtName);
 		
-		JLabel label_1 = setLabel("\uCE74\uD14C\uACE0\uB9AC",360,105, 18,"±¼¸²");
+		JLabel label_1 = setLabel("\uCE74\uD14C\uACE0\uB9AC",12,360,105, 18,"±¼¸²");
 		pnSub.add(label_1);
 		
-		JLabel label_2 = setLabel("\uC0AC\uC9C4\uD30C\uC77C\uACBD\uB85C",405,105, 18,"±¼¸²");
+		JLabel label_2 = setLabel("\uC0AC\uC9C4\uD30C\uC77C\uACBD\uB85C",12,405,105, 18,"±¼¸²");
 		pnSub.add(label_2);
 		
 		setTxtField(txtImagePath, 404,105);
 		pnSub.add(txtImagePath);
 		
-		JLabel label_3 = setLabel("\uAC00\uACA9",457,105, 18,"±¼¸²");
+		JLabel label_3 = setLabel("\uAC00\uACA9",12,457,105, 18,"±¼¸²");
 		pnSub.add(label_3);
 		
 		setTxtField(txtPrice, 454,128);
 		pnSub.add(txtPrice);
 		
-		JLabel label_4 = setLabel("\uC720\uBB34",504,105, 18,"±¼¸²" );
+		JLabel label_4 = setLabel("\uC720\uBB34",12,504,105, 18,"±¼¸²" );
 		pnSub.add(label_4);
 		
 		JButton btnNewButton = setBtnProductAdd();
@@ -200,7 +200,7 @@ public class ProductInfo extends JFrame {
 		JButton button_2 = setBtnProductRemove();
 		pnSub.add(button_2);
 		
-		JLabel label_5 = setLabel("\uCD9C\uC2DC\uC77C",541,105, 18,"±¼¸²");
+		JLabel label_5 = setLabel("\uCD9C\uC2DC\uC77C",12,541,105, 18,"±¼¸²");
 		pnSub.add(label_5);
 		
 		setNonEditableTxtField(txtRegDate, 538);
@@ -268,11 +268,11 @@ public class ProductInfo extends JFrame {
 		});
 		txtSearch.setBounds(189, 24, 186, 25);
 	}
-	private JLabel setLabel(String text, int y, int w, int h, String font) {
+	private JLabel setLabel(String text, int x,int y, int w, int h, String font) {
 		JLabel label = new JLabel(text);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font(font, Font.BOLD, 13));
-		label.setBounds(12, y, w,h);
+		label.setBounds(x, y, w,h);
 		return label;
 	}
 
