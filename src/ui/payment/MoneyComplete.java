@@ -69,6 +69,7 @@ public class MoneyComplete extends JFrame {
 			}
 		});
 		btnOk.setBounds(122, 114, 97, 23);
+		
 		contentPane.add(btnOk);
 	}
 }

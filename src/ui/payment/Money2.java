@@ -49,8 +49,10 @@ public class Money2 extends JFrame {
 	MainMenuFrame menufrm;
 	BasketContainer bc;
 	private JTable table;
+	
 	public static void main(String[] args) {
 		System.out.println(MainFrame.Login);
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -68,15 +70,16 @@ public class Money2 extends JFrame {
 	 */
 	public Money2() {
 		this.bc = new BasketContainer(menufrm);
-		this.frm = frm;
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2020\\java_ws\\TProject\\images\\icon_card.jpg"));
 		setTitle("NICE \uD398\uC774");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 684, 461);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
 		
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(0.6);
@@ -135,8 +138,6 @@ public class Money2 extends JFrame {
 					pnMain.add(btnSucPay);
 					System.out.println("결제완료");
 					
-					
-					// 
 					OrderDBMgr mgr = new OrderDBMgr();
 					String memberLogin = MainFrame.Login;
 					String orderNumber = getRandomNumber();
@@ -239,7 +240,7 @@ public class Money2 extends JFrame {
 			int OnePdtotalCount =Integer.parseInt(odList.get(i).pnOC.txtVal.getText());
 			int productPrice = odList.get(i).product.getPrice();
 			int onePdtotalPrice =productPrice *OnePdtotalCount;
-//			pro
+
 			
 			 totalPrice += onePdtotalPrice;
 		}
@@ -256,11 +257,7 @@ public class Money2 extends JFrame {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		showorderList();
-//		for (BasketPanel basketPanel : pdList) {
-//		String PdName = basketPanel.product.getName();
-//		String pdCount = basketPanel.pnOC.txtVal.getText();
-//		a = "주문 상품명 :" +PdName +"주문 수량"+pdCount +"/n";
-	//}
+
 	}
 	public void showorderList() {
 		ArrayList<BasketPanel> odList =BasketContainer.bkList;

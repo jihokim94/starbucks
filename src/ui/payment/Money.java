@@ -53,11 +53,14 @@ public class Money extends JFrame {
 	private JTextField txtDash2;
 	private JTextField txtDash3;
 	JLabel lbCardImage;
+	JPanel panel;
+	JPanel panel_1;
 	JPanel panel_2;
 	JLabel lbReturn;
 	JButton btnAccept;
 	MainFrame fr ;
 	MemberDBMgr mgr;
+	Member member;
 	
 	// Branch Test
 	/**
@@ -80,9 +83,11 @@ public class Money extends JFrame {
 	 * Create the frame.
 	 */
 	public Money() {
-		this.mgr = new MemberDBMgr();
+		//this.mgr = new MemberDBMgr();
 		this.fr= new MainFrame();
-		setTitle("\uC2E0\uC6A9\uCE74\uB4DC \uACB0\uC81C\uD654\uBA74");
+		//member =mgr.getOneMemberByLogin(MainFrame.Login);
+		
+		setTitle("\uC2E0\uC6A9\uCE74\uB4DC \uACB0\uC81C\uD654\uBA74"); //산용카드 결제화면
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2020\\java_ws\\TProject\\images\\icon_card.jpg"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 607, 558);
@@ -91,35 +96,116 @@ public class Money extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
+		setMainPaymentPanel();
 		
-		JLabel lbTitle = new JLabel("\uC2E0\uC6A9\uCE74\uB4DC");
-		lbTitle.setFont(new Font("굴림", Font.BOLD, 18));
-		lbTitle.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\FamilyCafeteria\\icons\\control_fastforward_blue.png"));
-		lbTitle.setBounds(12, 21, 110, 38);
-		panel.add(lbTitle);
+		setSubPaymentPanel();
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 0, 0, 0));
-		panel_1.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(0, 0, 0), new Color(255, 255, 255), new Color(0, 0, 0), new Color(255, 255, 255)));
-		panel_1.setBounds(12, 95, 557, 346);
-		panel.add(panel_1);
-		panel_1.setLayout(new GridLayout(6, 2, 0, 0));
+		checkName();
 		
-		JLabel lbName = new JLabel("\uACB0\uC81C\uC790 \uC131\uBA85");
-		lbName.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\FamilyCafeteria\\icons\\control_play_blue.png"));
-		panel_1.add(lbName);
-		Member mb =mgr.getOneMemberByLogin(MainFrame.Login);
+		inputCreditCard();
 		
-		JLabel lbNameIn = new JLabel("");
-		String name =mb.getName();
-		lbNameIn.setText(name);
-		lbNameIn.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(lbNameIn);
 		
+		checkPhoneNum();
+		
+		checkEmail();
+		
+		checkTotalPrice();
+		
+		btnAccept = new JButton("\uACB0\uC81C\uC694\uCCAD");
+		btnAccept.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if( !lbNameIn.getText().isEmpty() && !txtFirstCardNo.getText().isEmpty() && !txtLast.getText().isEmpty()
+						&& !lbPhoneNo.getText().isEmpty() && !lbEmail2.getText().isEmpty()) {
+					Money2 mny = new Money2();
+					mny.setVisible(true);
+					btnAccept.setEnabled(true);
+					dispose();
+				} else {
+					btnAccept.setEnabled(false);
+					lbReturn.setForeground(Color.RED);
+					lbReturn.setText("빈칸을 채워주세요!");
+				}
+				
+				
+			}
+		});
+		btnAccept.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
+		btnAccept.setBounds(143, 451, 120, 23);
+		panel.add(btnAccept);
+		
+		JButton btnClose = new JButton("\uB2EB\uAE30");
+		btnClose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnClose.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
+		btnClose.setBounds(315, 451, 97, 23);
+		panel.add(btnClose);
+		
+		lbReturn = new JLabel("");
+		lbReturn.setBounds(424, 451, 145, 38);
+		panel.add(lbReturn);
+	}
+
+	private void checkTotalPrice() {
+		JLabel lbTotalPrice = new JLabel("\uCD1D \uACB0\uC81C\uAE08\uC561");
+		lbTotalPrice.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\FamilyCafeteria\\icons\\control_play_blue.png"));
+		panel_1.add(lbTotalPrice);
+		
+		JLabel lbTotalMoney = new JLabel("");
+		lbTotalMoney.setHorizontalAlignment(SwingConstants.CENTER);
+	
+		
+		int totalPrice = 0;
+		ArrayList<BasketPanel>odList = BasketContainer.bkList;
+		for (int i = 0; i < odList.size(); i++) {
+			int OnePdtotalPrice =Integer.parseInt(odList.get(i).pnOC.txtVal.getText());
+			int productPrice = odList.get(i).product.getPrice();
+			int onePdtotalPrice =productPrice *OnePdtotalPrice;
+//			pro
+			
+			 totalPrice += onePdtotalPrice;
+		}
+		lbTotalMoney.setText(String.valueOf(totalPrice) +"원");	
+			
+		
+		
+//		BasketPanel bp = new BasketPanel(frm, pr, amount);
+		
+		panel_1.add(lbTotalMoney);
+		//txtPrice.setText(); // 결제금액 나오게하기
+	}
+
+	private JLabel checkEmail() {
+		JLabel lbEmail = new JLabel("\uC774\uBA54\uC77C");
+		lbEmail.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
+		panel_1.add(lbEmail);
+		
+		 
+		
+		String email = "abcd@ha.com"; // member.getEmail();
+		JLabel lbEmail2 = new JLabel(email);
+		lbEmail2.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lbEmail2);
+		return lbEmail2;
+	}
+
+	private JLabel checkPhoneNum() {
+		JLabel lbPhone = new JLabel("\uC5F0\uB77D\uCC98 ( - \uC5C6\uC774 \uC785\uB825\uD574\uC8FC\uC138\uC694)");
+		lbPhone.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
+		panel_1.add(lbPhone);
+		
+		
+		String phone = "01012345678"; //member.getPhone();
+		JLabel lbPhoneNo = new JLabel(phone);
+		
+		lbPhoneNo.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lbPhoneNo);
+		return lbPhoneNo;
+	}
+
+	private void inputCreditCard() {
 		JLabel lbCardComp = new JLabel("\uCE74\uB4DC\uC0AC\uB97C \uC120\uD0DD\uD574\uC8FC\uC138\uC694");
 		lbCardComp.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
 		panel_1.add(lbCardComp);
@@ -230,100 +316,50 @@ public class Money extends JFrame {
 		lbCardImage.setSize(350, 400);
 		panel_2.add(lbCardImage);
 //		showCardImg(txtFirstCardNo);
+	}
+
+	private JLabel checkName() {
+		JLabel lbName = new JLabel("\uACB0\uC81C\uC790 \uC131\uBA85"); // 결제자 성명
+		lbName.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\FamilyCafeteria\\icons\\control_play_blue.png"));
+		panel_1.add(lbName);
 		
-		
-		JLabel lbPhone = new JLabel("\uC5F0\uB77D\uCC98 ( - \uC5C6\uC774 \uC785\uB825\uD574\uC8FC\uC138\uC694)");
-		lbPhone.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
-		panel_1.add(lbPhone);
-		
-		
-		mb =mgr.getOneMemberByLogin(MainFrame.Login);
-		String phone = mb.getPhone();
-		JLabel lbPhoneNo = new JLabel(phone);
-		
-		lbPhoneNo.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(lbPhoneNo);
-		
-		JLabel lbEmail = new JLabel("\uC774\uBA54\uC77C");
-		lbEmail.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
-		panel_1.add(lbEmail);
-		
-		 
-		
-		String email = mb.getEmail();
-		JLabel lbEmail2 = new JLabel(email);
-		lbEmail2.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(lbEmail2);
-		
-		JLabel lbTotalPrice = new JLabel("\uCD1D \uACB0\uC81C\uAE08\uC561");
-		lbTotalPrice.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\FamilyCafeteria\\icons\\control_play_blue.png"));
-		panel_1.add(lbTotalPrice);
-		
-		JLabel lbTotalMoney = new JLabel("");
-		lbTotalMoney.setHorizontalAlignment(SwingConstants.CENTER);
-	
-		
-		int totalPrice = 0;
-		ArrayList<BasketPanel>odList = BasketContainer.bkList;
-		for (int i = 0; i < odList.size(); i++) {
-			int OnePdtotalPrice =Integer.parseInt(odList.get(i).pnOC.txtVal.getText());
-			int productPrice = odList.get(i).product.getPrice();
-			int onePdtotalPrice =productPrice *OnePdtotalPrice;
-//			pro
-			
-			 totalPrice += onePdtotalPrice;
-		}
-		lbTotalMoney.setText(String.valueOf(totalPrice) +"원");	
-			
-		
-		
-//		BasketPanel bp = new BasketPanel(frm, pr, amount);
-		
-		panel_1.add(lbTotalMoney);
-		//txtPrice.setText(); // 결제금액 나오게하기
-				
+		JLabel lbNameIn = new JLabel("");
+		String name = "abcd"; //member.getName();
+		lbNameIn.setText(name);
+		lbNameIn.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lbNameIn);
+		return lbNameIn;
+	}
+
+	private void setSubPaymentPanel() {
+		panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 0, 0, 0));
+		panel_1.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(0, 0, 0), new Color(255, 255, 255), new Color(0, 0, 0), new Color(255, 255, 255)));
+		panel_1.setBounds(12, 95, 557, 346);
+		panel.add(panel_1);
+		panel_1.setLayout(new GridLayout(6, 2, 0, 0));
 		
 		JLabel lbSentence = new JLabel("\uACB0\uC81C \uAE08\uC561\uC740 \uB2E4\uC74C\uACFC \uAC19\uC2B5\uB2C8\uB2E4");
+		// 결제 금액은 다음과 같습니다.
 		lbSentence.setFont(new Font("굴림", Font.BOLD, 20));
 		lbSentence.setHorizontalAlignment(SwingConstants.CENTER);
 		lbSentence.setBounds(119, 56, 324, 29);
 		panel.add(lbSentence);
+	}
+
+	private void setMainPaymentPanel() {
 		
-		btnAccept = new JButton("\uACB0\uC81C\uC694\uCCAD");
-		btnAccept.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if( !lbNameIn.getText().isEmpty() && !txtFirstCardNo.getText().isEmpty() && !txtLast.getText().isEmpty()
-						&& !lbPhoneNo.getText().isEmpty() && !lbEmail2.getText().isEmpty()) {
-					Money2 mny = new Money2();
-					mny.setVisible(true);
-					btnAccept.setEnabled(true);
-					dispose();
-				} else {
-					btnAccept.setEnabled(false);
-					lbReturn.setForeground(Color.RED);
-					lbReturn.setText("빈칸을 채워주세요!");
-				}
-				
-				
-			}
-		});
-		btnAccept.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
-		btnAccept.setBounds(143, 451, 120, 23);
-		panel.add(btnAccept);
+		panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		contentPane.add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
 		
-		JButton btnClose = new JButton("\uB2EB\uAE30");
-		btnClose.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		btnClose.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
-		btnClose.setBounds(315, 451, 97, 23);
-		panel.add(btnClose);
-		
-		lbReturn = new JLabel("");
-		lbReturn.setBounds(424, 451, 145, 38);
-		panel.add(lbReturn);
+		JLabel lbTitle = new JLabel("\uC2E0\uC6A9\uCE74\uB4DC");//
+		//JLabel lbTitle = new JLabel("신용카드");//
+		lbTitle.setFont(new Font("굴림", Font.BOLD, 18));
+		lbTitle.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\FamilyCafeteria\\icons\\control_fastforward_blue.png"));
+		lbTitle.setBounds(12, 21, 110, 38);
+		panel.add(lbTitle);
 	}
 	
 	public void showCardImg(JTextField txtFirstCardNo) {
