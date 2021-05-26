@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
+import adminFactory_jy.JLabelCreator;
 import data.db.AdminDBMgr;
 import data.db.MemberDBMgr;
 
@@ -47,6 +48,8 @@ public class adminLoginDialog extends JDialog {
     * Create the dialog.
     */
    public adminLoginDialog() {
+	   JLabelCreator labelcreator = new JLabelCreator();
+	   
 	  this.loginDlg =loginDlg;
    	  setTitle("\uAD00\uB9AC\uC790 \uB85C\uADF8\uC778");
       setBounds(100, 100, 532, 511);
@@ -64,10 +67,10 @@ public class adminLoginDialog extends JDialog {
       panel.add(txtLogin);
       txtLogin.setColumns(10);
       
-      JLabel lblNewLabel_2 = setJlabel("\\uBE44\\uBC00\\uBC88\\uD638",12, 106, 391, 15,"±¼¸²");
+      JLabel lblNewLabel_2 = (JLabel) labelcreator.create("\\uBE44\\uBC00\\uBC88\\uD638","±¼¸²",12, 106, 391, 15);
       panel.add(lblNewLabel_2);
       
-      JLabel label = setJlabel("\uC544\uC774\uB514",12, 22, 391, 15,"±¼¸²");
+      JLabel label = (JLabel) labelcreator.create("\uC544\uC774\uB514","±¼¸²",12, 22, 391, 15);
       panel.add(label);
       
       JButton button = setJbutton("\uAD00\uB9AC\uC790 \uB85C\uADF8\uC778",12, 194, 391, 40);
@@ -104,15 +107,12 @@ public class adminLoginDialog extends JDialog {
       setJpasswordField();
       panel.add(psfPW);
       
-      JLabel lblNewLabel = new JLabel("");
-      lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-      lblNewLabel.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png"));
-      lblNewLabel.setBounds(12, 10, 492, 150);
+      JLabel lblNewLabel = (JLabel) labelcreator.createWithIcon
+    		  ("", "C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png",12, 10, 492, 150);
       contentPanel.add(lblNewLabel);
       
-      JLabel labelLogin = setJlabel("½ºÅ¸¹÷½º °ü¸®ÀÚ ·Î±×ÀÎ",50, 170, 415, 26,"±¼¸²");
+      JLabel labelLogin = (JLabel) labelcreator.createWithHorizontal("½ºÅ¸¹÷½º °ü¸®ÀÚ ·Î±×ÀÎ","±¼¸²",50, 170, 415, 26,12);
       labelLogin.setForeground(new Color(255, 255, 255));
-      labelLogin.setHorizontalAlignment(SwingConstants.CENTER);
       contentPanel.add(labelLogin);
    }
 
