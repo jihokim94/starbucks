@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import adminFactory_jy.JButtonCreator;
+
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -76,11 +79,8 @@ public class adminMain extends JFrame {
 	}
 
 	private JButton setBtnCustomer() {
-		JButton btnCustomer = new JButton("\uD68C\uC6D0\uC815\uBCF4 \uBC0F \uAD00\uB9AC");
-		btnCustomer.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		btnCustomer.setBackground(new Color(0,121,51));
-		btnCustomer.setForeground(new Color(255, 255, 255));
-		btnCustomer.setFont(new Font("Dialog", Font.BOLD, 15));
+		JButtonCreator btncreator = new JButtonCreator();
+		JButton btnCustomer = (JButton) btncreator.createWithAlignment("\uD68C\uC6D0\uC815\uBCF4 \uBC0F \uAD00\uB9AC");
 		btnCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CustomerInfo CInfo = new CustomerInfo();
@@ -91,11 +91,10 @@ public class adminMain extends JFrame {
 	}
 
 	private JButton setBtnOrder() {
-		JButton btnOrderList = new JButton("\uC8FC\uBB38\uAD00\uB9AC");
-		btnOrderList.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		btnOrderList.setBackground(new Color(0,121,51));
-		btnOrderList.setForeground(new Color(255, 255, 255));
-		btnOrderList.setFont(new Font("Dialog", Font.BOLD, 15));
+
+		JButtonCreator btncreator = new JButtonCreator();
+		JButton btnOrderList = (JButton) btncreator.createWithAlignment("\uC8FC\uBB38\uAD00\uB9AC");
+		
 		btnOrderList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OrderInfo Oinfo= new OrderInfo();
@@ -106,11 +105,8 @@ public class adminMain extends JFrame {
 	}
 
 	private JButton setBtnProduct() {
-		JButton btnNewButton = new JButton("\uC0C1\uD488\uAD00\uB9AC");
-		btnNewButton.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		btnNewButton.setBackground(new Color(0,121,51));
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setFont(new Font("Dialog", Font.BOLD, 15));
+		JButtonCreator btncreator = new JButtonCreator();
+		JButton btnNewButton = (JButton) btncreator.createWithAlignment("\uC0C1\uD488\uAD00\uB9AC");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ProductInfo pdInfo = new ProductInfo();

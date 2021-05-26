@@ -163,6 +163,7 @@ public class ProductInfo extends JFrame {
 		
 		lbImage = 
 				(JLabel) labelcreator.createWithIcon("", "C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png",12, 20, 245, 220);
+		lbImage.setBackground(new Color(0, 255, 0));
 		pnSub.add(lbImage);
 		
 		JLabel lbID =(JLabel) labelcreator.createWithHorizontal("\\uAD00\\uB9AC \\uBC88\\uD638","±¼¸²",12,266,105, 18,13);
@@ -284,7 +285,7 @@ public class ProductInfo extends JFrame {
 		lbImage = new JLabel("");
 		lbImage.setHorizontalAlignment(SwingConstants.CENTER);
 		lbImage.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png"));
-		lbImage.setBackground(new Color(0, 255, 0));
+		
 		lbImage.setBounds(12, 20, 245, 220);
 	}
 	

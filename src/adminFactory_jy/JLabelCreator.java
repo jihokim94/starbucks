@@ -35,4 +35,11 @@ public class JLabelCreator extends Jcreator {
 		return label;
 	}
 
+	@Override
+	public JComponent createWithAlignment(String text) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }
