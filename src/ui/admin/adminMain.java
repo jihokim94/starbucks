@@ -65,6 +65,17 @@ public class adminMain extends JFrame {
 		contentPane.add(pnAdminList, BorderLayout.CENTER);
 		pnAdminList.setLayout(new GridLayout(1, 0, 0, 0));
 		
+		JButton btnCustomer = setBtnCustomer();
+		pnAdminList.add(btnCustomer);
+		
+		JButton btnOrderList = setBtnOrder();
+		
+		JButton btnNewButton = setBtnProduct();
+		pnAdminList.add(btnNewButton);
+		pnAdminList.add(btnOrderList);
+	}
+
+	private JButton setBtnCustomer() {
 		JButton btnCustomer = new JButton("\uD68C\uC6D0\uC815\uBCF4 \uBC0F \uAD00\uB9AC");
 		btnCustomer.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		btnCustomer.setBackground(new Color(0,121,51));
@@ -76,8 +87,10 @@ public class adminMain extends JFrame {
 				CInfo.setVisible(true);
 			}
 		});
-		pnAdminList.add(btnCustomer);
-		
+		return btnCustomer;
+	}
+
+	private JButton setBtnOrder() {
 		JButton btnOrderList = new JButton("\uC8FC\uBB38\uAD00\uB9AC");
 		btnOrderList.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		btnOrderList.setBackground(new Color(0,121,51));
@@ -89,13 +102,10 @@ public class adminMain extends JFrame {
 				Oinfo.setVisible(true);
 			}
 		});
-		
-		JButton btnNewButton = setBtnNew();
-		pnAdminList.add(btnNewButton);
-		pnAdminList.add(btnOrderList);
+		return btnOrderList;
 	}
 
-	private JButton setBtnNew() {
+	private JButton setBtnProduct() {
 		JButton btnNewButton = new JButton("\uC0C1\uD488\uAD00\uB9AC");
 		btnNewButton.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		btnNewButton.setBackground(new Color(0,121,51));
