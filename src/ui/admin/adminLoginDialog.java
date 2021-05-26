@@ -131,27 +131,11 @@ private void setJpasswordField() {
       psfPW.setBounds(14, 131, 389, 37);
 }
 
-private JButton setJbutton(String unicode,int x, int y, int w, int h ) {
-	JButton button = new JButton(unicode);
-      button.setFont(new Font("±¼¸²", Font.BOLD, 13));
-      button.setForeground(new Color(0, 0, 0));
-      button.setBackground(new Color(0, 102, 51));
-      button.setBounds(x,y,w,h);
-	return button;
-}
-
 private void setTxtLogin() {
 	txtLogin = new JTextField();
       txtLogin.setBorder(new LineBorder(new Color(0, 102, 51)));
       txtLogin.setForeground(Color.BLACK);
       txtLogin.setBounds(14, 49, 389, 37);
 }
-
-	private JLabel setJlabel(String unicode, int x, int y, int w, int h,String font) {
-		JLabel label = new JLabel(unicode);
-	    label.setFont(new Font("±¼¸²", Font.BOLD, 12));
-	    label.setBounds(x,y,w,h);
-		return label;
-	}
 
 }

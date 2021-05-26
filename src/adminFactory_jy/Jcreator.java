@@ -1,5 +1,6 @@
 package adminFactory_jy;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
 public abstract class Jcreator {

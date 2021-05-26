@@ -277,22 +277,6 @@ public class ProductInfo extends JFrame {
 		});
 		txtSearch.setBounds(189, 24, 186, 25);
 	}
-	private JLabel setLabel(String text, int x,int y, int w, int h, String font) {
-		JLabel label = new JLabel(text);
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font(font, Font.BOLD, 13));
-		label.setBounds(x, y, w,h);
-		return label;
-	}
-
-	private void setlbImage() {
-		lbImage = new JLabel("");
-		lbImage.setHorizontalAlignment(SwingConstants.CENTER);
-		lbImage.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png"));
-		
-		lbImage.setBounds(12, 20, 245, 220);
-	}
-	
 	
 	private void setBtnRd(JRadioButton rd, int x,int y, int w,int h) {
 		if(rd.equals(rdIce)) {
@@ -476,19 +460,19 @@ public class ProductInfo extends JFrame {
 				int price =Integer.parseInt(pdTable.getValueAt(selRow, 4).toString());
 				if( pdTable.getValueAt(selRow, 5).toString() == "HOT") rdHot.setSelected(true);
 				else rdIce.setSelected(true);
+				Date regDate = (Date) pdTable.getValueAt(selRow,6);
+				String DayStr = regDate.toString();
 //				Date regDate =(Date) pdTable.getValueAt(selRow, 6);
-				setProduct(selRow, id, name, imagePath, price);
+				setProduct(selRow, id, name, imagePath, price,DayStr);
 //				comboCatgory.getSelectedIndex()pdTable.getValueAt(selRow, 2); // comboBox
 			}
 
-			private void setProduct(int selRow, int id, String name, String imagePath, int price) {
+			private void setProduct(int selRow, int id, String name, String imagePath, int price,String DayStr) {
 				txtID.setText(String.valueOf(id));
 				txtName.setText(name);
 				txtImagePath.setText(imagePath);
 				lbImage.setIcon(new ImageIcon( "C:\\dev2020\\java_ws\\Starbucks\\images\\menu\\"+ imagePath));
 				txtPrice.setText(String.valueOf(price));
-				Date regDate = (Date) pdTable.getValueAt(selRow,6);
-				String DayStr = regDate.toString();
 				txtRegDate.setText(DayStr);
 			}
 
