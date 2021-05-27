@@ -18,7 +18,7 @@ public class FontDecorator extends Decorator {
 	@Override
 	public void decorate() {
 		super.decorate();
-		decoratedComponent.setFont(new Font(font, Font.BOLD, 12));
+		decoratedComponent.setFont(new Font(font, Font.BOLD, fontsize));
 		
 	}
 		
