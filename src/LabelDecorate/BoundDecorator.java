@@ -1,10 +1,11 @@
 package decorate_jy;
 
+import javax.swing.JLabel;
+
 public class BoundDecorator extends Decorator{
-	private Component decoratedComponent;
 	protected int x,y,w,h;
 	
-	public BoundDecorator(Component component,int x, int y, int w, int h) {
+	public BoundDecorator(LabelComponent component,int x, int y, int w, int h) {
 		super(component);
 		this.x = x; this.y = y; this.w = w; this.h = h;
 		

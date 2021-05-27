@@ -1,9 +1,9 @@
 package decorate_jy;
 
-public class Decorator extends Component {
-	private Component decoratedComponent;
+public class Decorator extends LabelComponent {
+	protected LabelComponent decoratedComponent;
 
-	public Decorator(Component component) {
+	public Decorator(LabelComponent component) {
 		this.decoratedComponent = component;
 	}
 
