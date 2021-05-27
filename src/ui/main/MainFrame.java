@@ -139,6 +139,13 @@ public class MainFrame extends JFrame {
 	private void displayAdminLoginButton(JPanel panel) {
 		JButtonCreator buttoncreator = new JButtonCreator();
 		JButton btnAdmin = (JButton) buttoncreator.create("admin", "굴림", 308, 20, 82, 23);
+		btnAdminFunction(btnAdmin);
+		btnAdmin.setForeground(new Color(255, 255, 255));
+		btnAdmin.setBackground(new Color(0, 121, 51));
+		panel.add(btnAdmin);
+	}
+
+	private void btnAdminFunction(JButton btnAdmin) {
 		btnAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				adminLoginDialog ad = new adminLoginDialog();
@@ -146,9 +153,6 @@ public class MainFrame extends JFrame {
 				
 			}
 		});
-		btnAdmin.setForeground(new Color(255, 255, 255));
-		btnAdmin.setBackground(new Color(0, 121, 51));
-		panel.add(btnAdmin);
 	}
 
 	private void displaySearchIDPW(JPanel panel) {
@@ -157,19 +161,12 @@ public class MainFrame extends JFrame {
 		JLabel SearchIconLabel = (JLabel) labelcreator.createWithIcon("","images\\icons\\search.png" , 12, 394, 62, 62);
 		panel.add(SearchIconLabel);
 
-		JButton btnfindn = (JButton) buttoncreator.createWithFont("아이디 / 비밀번호 찾기", "굴림", Font.PLAIN, 86, 433, 304, 23,12);
+		JButton btnfindIDPW = (JButton) buttoncreator.createWithFont("아이디 / 비밀번호 찾기", "굴림", Font.PLAIN, 86, 433, 304, 23,12);
 
-		btnfindn.setForeground(new Color(255, 255, 255));
-		btnfindn.setBackground(new Color(0, 102, 51));
-		btnfindn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				IdOrPwFindFrame IDPWFinderFrame = new IdOrPwFindFrame();
-				IDPWFinderFrame.setVisible(true);
-//				setVisible(false);
-
-			}
-		});
-		panel.add(btnfindn);
+		btnfindIDPW.setForeground(new Color(255, 255, 255));
+		btnfindIDPW.setBackground(new Color(0, 102, 51));
+		btnfindIDPWFunction(btnfindIDPW);
+		panel.add(btnfindIDPW);
 
 
 		JLabel SearchDescriptLabel = (JLabel) labelcreator.createWithFont("고객님의 정보 인증을 통해 찾을 수 있습니다.","굴림",Font.PLAIN, 86, 413, 304, 15,12);
@@ -178,6 +175,17 @@ public class MainFrame extends JFrame {
 		
 		JLabel finderQuestionLabel = (JLabel) labelcreator.createWithFont("아이디 / 비밀번호를 잊으셨나요?","굴림",Font.PLAIN, 86, 394, 304, 15,12);
 		panel.add(finderQuestionLabel);
+	}
+
+	private void btnfindIDPWFunction(JButton btnfindIDPW) {
+		btnfindIDPW.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				IdOrPwFindFrame IDPWFinderFrame = new IdOrPwFindFrame();
+				IDPWFinderFrame.setVisible(true);
+//				setVisible(false);
+
+			}
+		});
 	}
 
 	private void displayRegister(JPanel panel) {
@@ -212,6 +220,15 @@ public class MainFrame extends JFrame {
 		JButton btnRegister = (JButton) buttoncreator.createWithFont("회원가입하기", "굴림", Font.PLAIN, 86, 345, 304, 23,12);
 		btnRegister.setForeground(new Color(255, 255, 255));
 		btnRegister.setBackground(new Color(0, 102, 51));
+		btmRegisterFunction(btnRegister);
+		panel.add(btnRegister);
+		
+		JLabel OffterMemberLabel = (JLabel) labelcreator.createWithFont("스타벅스 회원만의 특별한 혜택을 누리세요!","굴림", Font.PLAIN , 86, 325, 304, 15,12);
+		OffterMemberLabel.setForeground(new Color(0, 102, 51));
+		panel.add(OffterMemberLabel);
+	}
+
+	private void btmRegisterFunction(JButton btnRegister) {
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MemberJoinFrame frm = new MemberJoinFrame();
@@ -219,11 +236,6 @@ public class MainFrame extends JFrame {
 				setVisible(false);
 			}
 		});
-		panel.add(btnRegister);
-		
-		JLabel OffterMemberLabel = (JLabel) labelcreator.createWithFont("스타벅스 회원만의 특별한 혜택을 누리세요!","굴림", Font.PLAIN , 86, 325, 304, 15,12);
-		OffterMemberLabel.setForeground(new Color(0, 102, 51));
-		panel.add(OffterMemberLabel);
 	}
 
 	private void displayLogin(JPanel panel) {
@@ -248,6 +260,18 @@ public class MainFrame extends JFrame {
 		JButton btnLogin = (JButton) buttoncreator.createWithFont("로그인", "굴림", Font.PLAIN,303, 120, 87, 61,12);
 		btnLogin.setForeground(new Color(255, 255, 255));
 		btnLogin.setBackground(new Color(0, 102, 51));
+		btnLoginFunction(btnLogin);
+		panel.add(btnLogin);
+		
+		JLabel LoginImageLabel = (JLabel) labelcreator.createWithIcon("", "images\\icons\\login(62x62).png",12, 306, 62, 62);		
+		LoginImageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(LoginImageLabel);
+		
+		JLabel RequestLoginLabel = (JLabel) labelcreator.createWithFont("서비스 이용을 위해 로그인 해주시기 바랍니다.","굴림", Font.PLAIN , 29, 86, 284, 16,13);
+		panel.add(RequestLoginLabel);
+	}
+
+	private void btnLoginFunction(JButton btnLogin) {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -286,13 +310,5 @@ public class MainFrame extends JFrame {
 	            }
 			}
 		});
-		panel.add(btnLogin);
-		
-		JLabel LoginImageLabel = (JLabel) labelcreator.createWithIcon("", "images\\icons\\login(62x62).png",12, 306, 62, 62);		
-		LoginImageLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(LoginImageLabel);
-		
-		JLabel RequestLoginLabel = (JLabel) labelcreator.createWithFont("서비스 이용을 위해 로그인 해주시기 바랍니다.","굴림", Font.PLAIN , 29, 86, 284, 16,13);
-		panel.add(RequestLoginLabel);
 	}
 }
