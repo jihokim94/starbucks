@@ -50,11 +50,6 @@ public class AdminDBMgr {
 		}
 		return null;
 		
-		
-		
-		
-		
-		
 	}
 	
 	// 회원을 인증할 수 있다. (로그인 계정명, 패스워드 - 비암호화)
