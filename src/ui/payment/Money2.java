@@ -247,15 +247,11 @@ public class Money2 extends JFrame {
 		pnSub.add(panel_1);
 		panel_1.setLayout(new GridLayout(2, 0, 0, 0));
 		
-		JLabel lbTotalPrice = new JLabel("\uCD1D \uACB0\uC81C\uAE08\uC561");
-		lbTotalPrice.setFont(new Font("±¼¸²", Font.BOLD, 15));
-		lbTotalPrice.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lbTotalPrice = (JLabel) labelCreator.createWithHorizontal("\uCD1D \uACB0\uC81C\uAE08\uC561", "±¼¸²", -1, -1, -1, -1, 15);
 		panel_1.add(lbTotalPrice);
 		
-		JLabel lbPrice = new JLabel("");
-		lbPrice.setHorizontalAlignment(SwingConstants.CENTER);
-		
-
+		JLabel lbPrice = (JLabel) labelCreator.createWithHorizontal("", null, -1,-1,-1,-1, -1);
+	
 		int totalPrice = 0;
 		ArrayList<BasketPanel>odList = BasketContainer.bkList;
 		for (int i = 0; i < odList.size(); i++) {

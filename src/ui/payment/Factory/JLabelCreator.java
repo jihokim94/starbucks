@@ -26,11 +26,11 @@ public class JLabelCreator extends Jcreator {
 	}
 
 	@Override
-	public JComponent createWithHorizontal(String text, String font, int x, int y, int w, int h,int fontsize) {
+	public JComponent createWithHorizontal(String text, String font, int x, int y, int w, int h, int fontsize) {
 		JLabel label = new JLabel(text);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		if(font != null) label.setFont(new Font(text, Font.BOLD, fontsize));
-		if(x != -1) label.setBounds(x, y, w,h);
+		if(x != -1) label.setBounds(x, y, w, h);
 		return label;
 	}
 
