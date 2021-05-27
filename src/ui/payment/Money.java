@@ -15,6 +15,8 @@ import menu.basket.BasketPanel;
 import menu.main.MainMenuFrame;
 import menu.main.components.BasketContainer;
 import ui.main.MainFrame;
+import ui.payment.Factory.JButtonCreator;
+import ui.payment.Factory.JLabelCreator;
 
 import java.awt.Toolkit;
 import javax.swing.JLabel;
@@ -49,9 +51,8 @@ public class Money extends JFrame {
 	private JPasswordField pfSecond;
 	private JPasswordField pfThird;
 	private JTextField txtLast;
-	private JTextField txtDash;
-	private JTextField txtDash2;
-	private JTextField txtDash3;
+	private JLabelCreator labelCreator;
+	private JButtonCreator btnCreator;
 	JLabel lbCardImage;
 	JPanel panel;
 	JPanel panel_1;
@@ -86,6 +87,9 @@ public class Money extends JFrame {
 		this.mgr = new MemberDBMgr();
 		this.fr= new MainFrame();
 		member =mgr.getOneMemberByLogin(MainFrame.Login);
+		member = new Member("name", "login", "password", 1, "birth", "email", "Phone");
+		labelCreator = new JLabelCreator();
+		btnCreator = new JButtonCreator();
 		
 		setTitle("\uC2E0\uC6A9\uCE74\uB4DC \uACB0\uC81C\uD654\uBA74"); //산용카드 결제화면
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2020\\java_ws\\TProject\\images\\icon_card.jpg"));
@@ -114,7 +118,9 @@ public class Money extends JFrame {
 	}
 
 	private void setButton() {
-		btnAccept = new JButton("\uACB0\uC81C\uC694\uCCAD");
+		btnAccept = (JButton) btnCreator.createWithIcon("\uACB0\uC81C\uC694\uCCAD"
+				, "C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"
+				, 143, 451, 120, 23);
 		btnAccept.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if( !member.getName().isEmpty() && !txtFirstCardNo.getText().isEmpty() && !txtLast.getText().isEmpty()
@@ -132,33 +138,29 @@ public class Money extends JFrame {
 				
 			}
 		});
-		btnAccept.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
-		btnAccept.setBounds(143, 451, 120, 23);
 		panel.add(btnAccept);
 		
-		JButton btnClose = new JButton("\uB2EB\uAE30");
+		JButton btnClose = (JButton) btnCreator.createWithIcon("\uB2EB\uAE30"
+				, "C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"
+				, 315, 451, 97, 23);
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btnClose.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
-		btnClose.setBounds(315, 451, 97, 23);
 		panel.add(btnClose);
 		
-		lbReturn = new JLabel("");
-		lbReturn.setBounds(424, 451, 145, 38);
+		lbReturn = (JLabel) labelCreator.create("", null, 424, 451, 145, 38);
 		panel.add(lbReturn);
 	}
 
 	private void checkTotalPrice() {
-		JLabel lbTotalPrice = new JLabel("\uCD1D \uACB0\uC81C\uAE08\uC561");
-		lbTotalPrice.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\FamilyCafeteria\\icons\\control_play_blue.png"));
+		JLabel lbTotalPrice = (JLabel) labelCreator.createWithIcon("\uCD1D \uACB0\uC81C\uAE08\uC561"
+				,"C:\\dev2020\\java_ws\\FamilyCafeteria\\icons\\control_play_blue.png"
+				, -1, -1, -1, -1);
 		panel_1.add(lbTotalPrice);
 		
-		JLabel lbTotalMoney = new JLabel("");
-		lbTotalMoney.setHorizontalAlignment(SwingConstants.CENTER);
-	
+		JLabel lbTotalMoney = (JLabel) labelCreator.createWithHorizontal("", null, -1, -1, -1, -1, 0);	
 		
 		int totalPrice = 0;
 		ArrayList<BasketPanel>odList = BasketContainer.bkList;
@@ -169,43 +171,45 @@ public class Money extends JFrame {
 			
 			 totalPrice += onePdtotalPrice;
 		}
+		
 		lbTotalMoney.setText(String.valueOf(totalPrice) +"원");	
-			
 		
 		panel_1.add(lbTotalMoney);
 	}
 
 	private JLabel checkEmail() {
-		JLabel lbEmail = new JLabel("\uC774\uBA54\uC77C");
-		lbEmail.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
+		JLabel lbEmail = (JLabel) labelCreator.createWithIcon("\uC774\uBA54\uC77C"
+				, "C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"
+				, -1, -1, -1, -1);
 		panel_1.add(lbEmail);
 		
-		 
-		
 		String email = member.getEmail();
-		JLabel lbEmail2 = new JLabel(email);
-		lbEmail2.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lbEmail2 = (JLabel) labelCreator.createWithHorizontal(email, null, -1, -1, -1, -1, 0);
 		panel_1.add(lbEmail2);
 		return lbEmail2;
 	}
 
 	private JLabel checkPhoneNum() {
-		JLabel lbPhone = new JLabel("\uC5F0\uB77D\uCC98 ( - \uC5C6\uC774 \uC785\uB825\uD574\uC8FC\uC138\uC694)");
-		lbPhone.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
+		JLabel lbPhone = (JLabel) labelCreator.createWithIcon("\uC5F0\uB77D\uCC98 ( - \uC5C6\uC774 \uC785\uB825\uD574\uC8FC\uC138\uC694)"
+				, "C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"
+				, -1, -1, -1, -1);
 		panel_1.add(lbPhone);
 		
-		
 		String phone = member.getPhone();
-		JLabel lbPhoneNo = new JLabel(phone);
-		
-		lbPhoneNo.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lbPhoneNo = (JLabel) labelCreator.createWithHorizontal(phone, null, -1, -1, -1, -1, 0);
 		panel_1.add(lbPhoneNo);
 		return lbPhoneNo;
 	}
 
 	private void inputCreditCard() {
-		JLabel lbCardComp = new JLabel("\uCE74\uB4DC\uC0AC\uB97C \uC120\uD0DD\uD574\uC8FC\uC138\uC694");
-		lbCardComp.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
+		JTextField txtDash;
+		JTextField txtDash2;
+		JTextField txtDash3;
+		
+		
+		JLabel lbCardComp = (JLabel) labelCreator.createWithIcon("\uCE74\uB4DC\uC0AC\uB97C \uC120\uD0DD\uD574\uC8FC\uC138\uC694"
+				, "C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"
+				, -1, -1, -1, -1);
 		panel_1.add(lbCardComp);
 		
 		JComboBox comboBox = new JComboBox();
@@ -214,8 +218,9 @@ public class Money extends JFrame {
 		comboBox.setSelectedIndex(0);
 		panel_1.add(comboBox);
 		
-		JLabel lbCardNo = new JLabel("\uCE74\uB4DC \uBC88\uD638\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694");
-		lbCardNo.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
+		JLabel lbCardNo = (JLabel) labelCreator.createWithIcon("\uCE74\uB4DC \uBC88\uD638\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694"
+				,"C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"
+				, -1, -1, -1, -1);
 		panel_1.add(lbCardNo);
 		
 		panel_2 = new JPanel();
@@ -313,18 +318,17 @@ public class Money extends JFrame {
 		lbCardImage = new JLabel("");
 		lbCardImage.setSize(350, 400);
 		panel_2.add(lbCardImage);
-//		showCardImg(txtFirstCardNo);
+
 	}
 
 	private JLabel checkName() {
-		JLabel lbName = new JLabel("\uACB0\uC81C\uC790 \uC131\uBA85"); // 결제자 성명
-		lbName.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\FamilyCafeteria\\icons\\control_play_blue.png"));
+		JLabel lbName = (JLabel) labelCreator.createWithIcon("\uACB0\uC81C\uC790 \uC131\uBA85"
+				, "C:\\dev2020\\java_ws\\FamilyCafeteria\\icons\\control_play_blue.png"
+				, -1, -1, -1, -1);
 		panel_1.add(lbName);
 		
-		JLabel lbNameIn = new JLabel("");
-		String name = "abcd"; //member.getName();
-		lbNameIn.setText(name);
-		lbNameIn.setHorizontalAlignment(SwingConstants.CENTER);
+		String name = member.getName();
+		JLabel lbNameIn = (JLabel) labelCreator.create(name, null, -1, -1, -1, -1);
 		panel_1.add(lbNameIn);
 		return lbNameIn;
 	}
@@ -337,11 +341,8 @@ public class Money extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(new GridLayout(6, 2, 0, 0));
 		
-		JLabel lbSentence = new JLabel("\uACB0\uC81C \uAE08\uC561\uC740 \uB2E4\uC74C\uACFC \uAC19\uC2B5\uB2C8\uB2E4");
-		// 결제 금액은 다음과 같습니다.
-		lbSentence.setFont(new Font("굴림", Font.BOLD, 20));
-		lbSentence.setHorizontalAlignment(SwingConstants.CENTER);
-		lbSentence.setBounds(119, 56, 324, 29);
+		JLabel lbSentence = (JLabel) labelCreator.createWithHorizontal("\uACB0\uC81C \uAE08\uC561\uC740 \uB2E4\uC74C\uACFC \uAC19\uC2B5\uB2C8\uB2E4"
+				,"굴림", 119, 56, 324, 29, 20);
 		panel.add(lbSentence);
 	}
 
@@ -352,11 +353,10 @@ public class Money extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel lbTitle = new JLabel("\uC2E0\uC6A9\uCE74\uB4DC");//
-		//JLabel lbTitle = new JLabel("신용카드");//
+		JLabel lbTitle = (JLabel) labelCreator.createWithIcon("\uC2E0\uC6A9\uCE74\uB4DC"
+				, "C:\\dev2020\\java_ws\\FamilyCafeteria\\icons\\control_fastforward_blue.png"
+				, 12, 21, 110, 38);//
 		lbTitle.setFont(new Font("굴림", Font.BOLD, 18));
-		lbTitle.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\FamilyCafeteria\\icons\\control_fastforward_blue.png"));
-		lbTitle.setBounds(12, 21, 110, 38);
 		panel.add(lbTitle);
 	}
 	

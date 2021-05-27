@@ -13,6 +13,8 @@ import menu.basket.BasketPanel;
 import menu.main.MainMenuFrame;
 import menu.main.components.BasketContainer;
 import ui.main.MainFrame;
+import ui.payment.Factory.JButtonCreator;
+import ui.payment.Factory.JLabelCreator;
 import ui.payment.dialog.AgreementDlg;
 
 //import dialog.AgreementDlg;
@@ -41,6 +43,8 @@ import javax.swing.ScrollPaneConstants;
 public class Money2 extends JFrame {
 
 	private JPanel contentPane;
+	private JLabelCreator labelCreator;
+	private JButtonCreator btnCreator;
 	Money2 frm;
 	JRadioButton rdbtn1;
 	JRadioButton rdbtn2;
@@ -72,6 +76,8 @@ public class Money2 extends JFrame {
 	 */
 	public Money2() {
 		this.bc = new BasketContainer(menufrm);
+		labelCreator = new JLabelCreator();
+		btnCreator = new JButtonCreator();
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2020\\java_ws\\TProject\\images\\icon_card.jpg"));
 		setTitle("NICE \uD398\uC774");
@@ -108,10 +114,10 @@ public class Money2 extends JFrame {
 		splitPane.setLeftComponent(pnMain);
 		pnMain.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("NICEPAY");
+		JLabel lblNewLabel = (JLabel) labelCreator.createWithIcon("NICEPAY"
+				, "C:\\dev2020\\java_ws\\TProject\\images\\nicePay.png"
+				, 12, 10, 100, 40);
 		lblNewLabel.setFont(new Font("±¼¸²", Font.BOLD, 15));
-		lblNewLabel.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\TProject\\images\\nicePay.png"));
-		lblNewLabel.setBounds(12, 10, 100, 40);
 		pnMain.add(lblNewLabel);
 	}
 
@@ -142,6 +148,7 @@ public class Money2 extends JFrame {
 
 	private void setSucPayBtn() {
 		JButton btnSucPay = new JButton("\uACB0\uC81C\uC644\uB8CC");
+		btnSucPay.setBounds(127, 360, 97, 23);
 		btnSucPay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(rdbtn1.isSelected() || rdbtn2.isSelected() || rdbtn3.isSelected()) {
@@ -190,7 +197,7 @@ public class Money2 extends JFrame {
 				
 			}
 		});
-		btnSucPay.setBounds(127, 360, 97, 23);
+		
 		pnMain.add(btnSucPay);
 	}
 
