@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import adminFactory_jy.JButtonCreator;
+
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -48,6 +51,7 @@ public class adminMain extends JFrame {
 		setTitle("\uAD00\uB9AC\uC790\uD398\uC774\uC9C0");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 468, 489);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -64,44 +68,52 @@ public class adminMain extends JFrame {
 		contentPane.add(pnAdminList, BorderLayout.CENTER);
 		pnAdminList.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		JButton btnCustomer = new JButton("\uD68C\uC6D0\uC815\uBCF4 \uBC0F \uAD00\uB9AC");
-		btnCustomer.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		btnCustomer.setBackground(new Color(0,121,51));
-		btnCustomer.setForeground(new Color(255, 255, 255));
-		btnCustomer.setFont(new Font("Dialog", Font.BOLD, 15));
+		JButton btnCustomer = setBtnCustomer();
+		pnAdminList.add(btnCustomer);
+		
+		JButton btnOrderList = setBtnOrder();
+		
+		JButton btnNewButton = setBtnProduct();
+		pnAdminList.add(btnNewButton);
+		pnAdminList.add(btnOrderList);
+	}
+
+	private JButton setBtnCustomer() {
+		JButtonCreator btncreator = new JButtonCreator();
+		JButton btnCustomer = (JButton) btncreator.createWithAlignment("\uD68C\uC6D0\uC815\uBCF4 \uBC0F \uAD00\uB9AC");
 		btnCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CustomerInfo CInfo = new CustomerInfo();
 				CInfo.setVisible(true);
 			}
 		});
-		pnAdminList.add(btnCustomer);
+		return btnCustomer;
+	}
+
+	private JButton setBtnOrder() {
+
+		JButtonCreator btncreator = new JButtonCreator();
+		JButton btnOrderList = (JButton) btncreator.createWithAlignment("\uC8FC\uBB38\uAD00\uB9AC");
 		
-		JButton btnOrderList = new JButton("\uC8FC\uBB38\uAD00\uB9AC");
-		btnOrderList.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		btnOrderList.setBackground(new Color(0,121,51));
-		btnOrderList.setForeground(new Color(255, 255, 255));
-		btnOrderList.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnOrderList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OrderInfo Oinfo= new OrderInfo();
 				Oinfo.setVisible(true);
 			}
 		});
-		
-		JButton btnNewButton = new JButton("\uC0C1\uD488\uAD00\uB9AC");
-		btnNewButton.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		btnNewButton.setBackground(new Color(0,121,51));
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setFont(new Font("Dialog", Font.BOLD, 15));
+		return btnOrderList;
+	}
+
+	private JButton setBtnProduct() {
+		JButtonCreator btncreator = new JButtonCreator();
+		JButton btnNewButton = (JButton) btncreator.createWithAlignment("\uC0C1\uD488\uAD00\uB9AC");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ProductInfo pdInfo = new ProductInfo();
 				pdInfo.setVisible(true);
 			}
 		});
-		pnAdminList.add(btnNewButton);
-		pnAdminList.add(btnOrderList);
+		return btnNewButton;
 	}
 	
 
