@@ -44,7 +44,7 @@ import java.util.ArrayList;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
-public class Money extends JFrame {
+public class paymentWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtFirstCardNo;
@@ -71,7 +71,7 @@ public class Money extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Money frame = new Money();
+					paymentWindow frame = new paymentWindow();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -83,7 +83,7 @@ public class Money extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Money() {
+	public paymentWindow() {
 		this.mgr = new MemberDBMgr();
 		this.fr= new MainFrame();
 		member =mgr.getOneMemberByLogin(MainFrame.Login);
@@ -125,7 +125,7 @@ public class Money extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if( !member.getName().isEmpty() && !txtFirstCardNo.getText().isEmpty() && !txtLast.getText().isEmpty()
 						&& !member.getPhone().isEmpty() && !member.getEmail().isEmpty()) {
-					Money2 mny = new Money2();
+					paymentAgreeWindow mny = new paymentAgreeWindow();
 					mny.setVisible(true);
 					btnAccept.setEnabled(true);
 					dispose();

@@ -40,12 +40,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 
-public class Money2 extends JFrame {
+public class paymentAgreeWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JLabelCreator labelCreator;
 	private JButtonCreator btnCreator;
-	Money2 frm;
+	paymentAgreeWindow frm;
 	JRadioButton rdbtn1;
 	JRadioButton rdbtn2;
 	JRadioButton rdbtn3;
@@ -62,7 +62,7 @@ public class Money2 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Money2 frame = new Money2();
+					paymentAgreeWindow frame = new paymentAgreeWindow();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -74,7 +74,7 @@ public class Money2 extends JFrame {
 	/**  
 	 * Create the frame.
 	 */
-	public Money2() {
+	public paymentAgreeWindow() {
 		this.bc = new BasketContainer(menufrm);
 		labelCreator = new JLabelCreator();
 		btnCreator = new JButtonCreator();
@@ -171,7 +171,7 @@ public class Money2 extends JFrame {
 							System.out.println("주문 추가 실패");
 						}
 					}
-					MoneyComplete mc = new MoneyComplete();
+					completePayment mc = new completePayment();
 					mc.setVisible(true);
 				
 					dispose();
