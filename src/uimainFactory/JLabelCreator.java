@@ -18,6 +18,8 @@ public class JLabelCreator extends Jcreator {
 	@Override
 	public JComponent createWithIcon(String text, String iconText,int x, int y, int w, int h) {
 		JLabel label = new JLabel(text);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setFont(new Font("±¼¸²", Font.PLAIN, 12));
 		label.setIcon(new ImageIcon(iconText));
 		label.setBounds(x,y,w,h);
 		return label;
@@ -26,6 +28,7 @@ public class JLabelCreator extends Jcreator {
 	@Override
 	public JComponent createWithFont(String text, String font,int PlainBold ,int x, int y, int w, int h,int fontsize) {
 		JLabel label = new JLabel(text);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font(text, PlainBold, fontsize));
 		label.setBounds(x, y, w,h);
 		return label;
