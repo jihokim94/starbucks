@@ -16,6 +16,8 @@ import data.db.MemberDBMgr;
 import ui.admin.adminLoginDialog;
 import ui.admin.adminMain;
 import ui.find.IdOrPwFindFrame;
+import uimainFactory.JButtonCreator;
+import uimainFactory.JLabelCreator;
 import member.MemberJoinFrame;
 import member.MemberShipFrame;
 import menu.main.MainMenuFrame;
@@ -66,21 +68,65 @@ public class MainFrame extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @return 
 	 */
 	public MainFrame() {
-		setResizable(false);
-		setTitle("½ºÅ¸¹÷½º À½·á ÁÖ¹® ÇÁ·Î±×·¥");
-		setIconImage(Toolkit.getDefaultToolkit()
-				.getImage("C:\\Users\\User\\Desktop\\\uC2A4\uD0C0\uBC85\uC2A4\\\uB85C\uACE0(50x50).jpg"));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		
+		//Jfraame ì„¤ì •
+		setJframe();
+		// ìƒˆë¡œìš´ ì°½ì´ ë§Œë“¤ì–´ì§€ëŠ” ìœ„ì¹˜ì„¤ì •
 		setBounds(100, 100, 821, 536);
+		//ContentPane ì„¤ì •
+		settingContentPane();
+
+		displayStarbucksLogo();
+
+		JPanel panel = makeJPanel();
+
+		displayLogin(panel);
+
+		displayRegister(panel);
+
+		displaySearchIDPW(panel);
+	
+		displayWelcomeMessage(panel);
+
+		displayAdminLoginButton(panel);
+	}
+
+	private JPanel makeJPanel() {
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		return panel;
+	}
+
+	private void displayStarbucksLogo() {
+		JLabelCreator labelcreator = new JLabelCreator();
+		JLabel StarbucksLogo = (JLabel)labelcreator.createWithIcon("", "images\\logo\\ë¡œê³ (250x250).png",0, 0, 0, 0);
+		StarbucksLogo.setHorizontalAlignment((int) CENTER_ALIGNMENT);
+		contentPane.add(StarbucksLogo);
+	}
+
+	private void setJframe() {
+		//í”„ë¡œê·¸ë¨ ì°½ í¬ê¸°ë¥¼ ì¡°ì ˆë¶ˆê°€ëŠ¥í•˜ê²Œ ì„¤ì •
+		setResizable(false);
+		//í”„ë¡œê·¸ë¨ íƒ€ì´í‹€ ì„¤ì •
+		setTitle("ìŠ¤íƒ€ë²…ìŠ¤ ìŒë£Œ ì£¼ë¬¸ í”„ë¡œê·¸ë¨");
+		//ì‹¤í–‰ ì•„ì´ì½˜ì„ ìŠ¤íƒ€ë²…ìŠ¤ ë¡œê³ ë¡œ ì„¤ì •
+		setIconImage(Toolkit.getDefaultToolkit().getImage("images\\logo\\ë¡œê³ (50x50).jpg"));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	private void settingContentPane() {
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 2, 0, 0));
-
-		
+	}		
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -90,190 +136,17 @@ public class MainFrame extends JFrame {
 				new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(250x250).png"));
 		contentPane.add(lblNewLabel);
 
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		contentPane.add(panel);
-		panel.setLayout(null);
 
-		txtLogin = new JTextField();
-		txtLogin.setFont(new Font("±¼¸²", Font.PLAIN, 12));
-		txtLogin.setBounds(86, 120, 205, 21);
-		panel.add(txtLogin);
-		
-		txtLogin.setColumns(10);
-		
-		//JLabel lbLoginId = new JLabel("¾ÆÀÌµğ");
-		JLabel lbLoginId = new LabelBound(new LabelFont(new JLabel("¾ÆÀÌµğ"), "±¼¸²",12),12, 123, 57, 15).getLabel();
-		
-		//lbLoginId.setFont(new Font("±¼¸²", Font.PLAIN, 12));
-		lbLoginId.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbLoginId.setBounds(12, 123, 57, 15);
-		panel.add(lbLoginId);
+	private void displayAdminLoginButton(JPanel panel) {
+		JButtonCreator buttoncreator = new JButtonCreator();
+		JButton btnAdmin = (JButton) buttoncreator.create("admin", "êµ´ë¦¼", 308, 20, 82, 23);
+		btnAdminFunction(btnAdmin);
+		btnAdmin.setForeground(new Color(255, 255, 255));
+		btnAdmin.setBackground(new Color(0, 121, 51));
+		panel.add(btnAdmin);
+	}
 
-		JLabel lbLoginPw = new JLabel("ºñ¹Ğ¹øÈ£");
-		lbLoginPw.setFont(new Font("±¼¸²", Font.PLAIN, 12));
-		lbLoginPw.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbLoginPw.setBounds(12, 166, 57, 15);
-		panel.add(lbLoginPw);
-
-		JButton btnLogin = new JButton("\uB85C\uADF8\uC778");
-		btnLogin.setForeground(new Color(255, 255, 255));
-		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String login = txtLogin.getText();
-	            String pw = new String(passwordField.getPassword());
-	            MemberDBMgr mgr = new MemberDBMgr();
-	            int r = mgr.loginProcess(login, pw);
-	            switch (r) {
-	            case MemberDBMgr.LOGIN_SUCCESS:
-	               lbLoginMessage.setText("·Î±×ÀÎ¿¡ ¼º°øÇÏ¼Ì½À´Ï´Ù.");
-	               lbLoginMessage.setForeground(Color.black);
-	               JOptionPane.showMessageDialog(null, "·Î±×ÀÎ¿¡ ¼º°øÇÏ¼Ì½À´Ï´Ù.");
-	               Login = txtLogin.getText();
-	               MainMenuFrame menuFrm = new MainMenuFrame();
-	               menuFrm.setVisible(true);
-
-	               break;
-
-	            case MemberDBMgr.LOGIN_NOT_FOUND:
-	               lbLoginMessage.setText("È¸¿øÀÇ Á¤º¸¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
-	               lbLoginMessage.setForeground(Color.red);
-	               JOptionPane.showMessageDialog(null, "È¸¿øÀÇ Á¤º¸¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
-	               break;
-
-	            case MemberDBMgr.LOGIN_PW_MISMATCH:
-	               lbLoginMessage.setText("·Î±×ÀÎ È¤Àº ºñ¹Ğ¹øÈ£°¡ Æ²¸®¼Ì½À´Ï´Ù.");
-	               lbLoginMessage.setForeground(Color.red);
-	               JOptionPane.showMessageDialog(null, "·Î±×ÀÎ È¤Àº ºñ¹Ğ¹øÈ£°¡ Æ²¸®¼Ì½À´Ï´Ù.");
-	               break;
-
-	            case MemberDBMgr.LOGIN_ERROR:
-	               lbLoginMessage.setText("Áö¿øÇÏÁö ¾Ê´Â ¼­ºñ½ºÀÔ´Ï´Ù.");
-	               lbLoginMessage.setForeground(Color.red);
-	               JOptionPane.showMessageDialog(null, "Áö¿øÇÏÁö ¾Ê´Â ¼­ºñ½ºÀÔ´Ï´Ù.");
-	               break;
-
-	            }
-			}
-		});
-		btnLogin.setFont(new Font("±¼¸²", Font.PLAIN, 12));
-		btnLogin.setBackground(new Color(0, 102, 51));
-		btnLogin.setBounds(303, 120, 87, 61);
-		panel.add(btnLogin);
-
-		JLabel lblNewLabel_2 = new JLabel("´ëÇÑ¹Î±¹¿¡¼­ °¡Àå ¸ÀÀÖ´Â Ä¿ÇÇ, ½ºÅ¸¹÷½ºÀÇ È¸¿øÀÌ µÇ½Ã¸é");
-		lblNewLabel_2.setFont(new Font("±¼¸²", Font.PLAIN, 12));
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(29, 240, 344, 15);
-		panel.add(lblNewLabel_2);
-
-		JLabel label_1 = new JLabel("½ºÅ¸¹÷½ºÀÇ ´Ù¾çÇÑ ¼­ºñ½º¿Í ÇıÅÃÀ» ¹ŞÀ¸½Ç ¼ö ÀÖ½À´Ï´Ù.");
-		label_1.setFont(new Font("±¼¸²", Font.PLAIN, 12));
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(29, 259, 344, 15);
-		panel.add(label_1);
-
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(12, 219, 378, 2);
-		panel.add(separator_1);
-
-		passwordField = new JPasswordField();
-		passwordField.setFont(new Font("±¼¸²", Font.PLAIN, 12));
-		passwordField.setBounds(86, 163, 205, 21);
-		panel.add(passwordField);
-
-		lbLoginMessage = new JLabel("");
-		lbLoginMessage.setFont(new Font("±¼¸²", Font.PLAIN, 12));
-		lbLoginMessage.setBounds(86, 194, 270, 15);
-		panel.add(lbLoginMessage);
-
-		JLabel lblNewLabel_3 = new JLabel("¾ÆÁ÷ ½ºÅ¸¹÷½ºÀÇ È¸¿øÀÌ ¾Æ´Ï½Å°¡¿ä?");
-		lblNewLabel_3.setFont(new Font("±¼¸²", Font.PLAIN, 12));
-		lblNewLabel_3.setBounds(86, 306, 304, 15);
-		panel.add(lblNewLabel_3);
-
-		JButton btnNewButton = new JButton("È¸¿ø°¡ÀÔÇÏ±â");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MemberJoinFrame frm = new MemberJoinFrame();
-				frm.setVisible(true);
-				setVisible(false);
-			}
-		});
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setFont(new Font("±¼¸²", Font.PLAIN, 12));
-		btnNewButton.setBackground(new Color(0, 102, 51));
-		btnNewButton.setBounds(86, 345, 304, 23);
-		panel.add(btnNewButton);
-
-		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\login(62x62).png"));
-		lblNewLabel_4.setBackground(Color.WHITE);
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setBounds(12, 306, 62, 62);
-		panel.add(lblNewLabel_4);
-
-		JLabel label_2 = new JLabel("½ºÅ¸¹÷½º È¸¿ø¸¸ÀÇ Æ¯º°ÇÑ ÇıÅÃÀ» ´©¸®¼¼¿ä!");
-		label_2.setFont(new Font("±¼¸²", Font.PLAIN, 12));
-		label_2.setForeground(new Color(0, 102, 51));
-		label_2.setBounds(86, 325, 304, 15);
-		panel.add(label_2);
-
-		JLabel label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\search.png"));
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setBackground(Color.WHITE);
-		label_3.setBounds(12, 394, 62, 62);
-		panel.add(label_3);
-
-		JButton button = new JButton("¾ÆÀÌµğ / ºñ¹Ğ¹øÈ£ Ã£±â");
-		button.setForeground(new Color(255, 255, 255));
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				IdOrPwFindFrame frm = new IdOrPwFindFrame();
-				frm.setVisible(true);
-//				setVisible(false);
-
-			}
-		});
-		button.setFont(new Font("±¼¸²", Font.PLAIN, 12));
-		button.setBackground(new Color(0, 102, 51));
-		button.setBounds(86, 433, 304, 23);
-		panel.add(button);
-
-		JLabel label_4 = new JLabel("°í°´´ÔÀÇ Á¤º¸ ÀÎÁõÀ» ÅëÇØ Ã£À» ¼ö ÀÖ½À´Ï´Ù.");
-		label_4.setFont(new Font("±¼¸²", Font.PLAIN, 12));
-		label_4.setForeground(new Color(0, 102, 51));
-		label_4.setBounds(86, 413, 304, 15);
-		panel.add(label_4);
-
-		JLabel label_5 = new JLabel("¾ÆÀÌµğ / ºñ¹Ğ¹øÈ£¸¦ ÀØÀ¸¼Ì³ª¿ä?");
-		label_5.setFont(new Font("±¼¸²", Font.PLAIN, 12));
-		label_5.setBounds(86, 394, 304, 15);
-		panel.add(label_5);
-
-		JLabel lblNewLabel_5 = new JLabel("\uBC18\uAC11\uC2B5\uB2C8\uB2E4.");
-		lblNewLabel_5.setForeground(new Color(0, 102, 51));
-		lblNewLabel_5.setFont(new Font("±¼¸²", Font.BOLD, 20));
-		lblNewLabel_5.setBounds(29, 20, 275, 24);
-		panel.add(lblNewLabel_5);
-
-		JLabel label_6 = new JLabel("½ºÅ¸¹÷½ºÀÔ´Ï´Ù.");
-		label_6.setForeground(new Color(0, 102, 51));
-		label_6.setFont(new Font("±¼¸²", Font.BOLD, 20));
-		label_6.setBounds(29, 43, 361, 24);
-		panel.add(label_6);
-
-		JLabel label_7 = new JLabel("¼­ºñ½º ÀÌ¿ëÀ» À§ÇØ ·Î±×ÀÎ ÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.");
-		label_7.setFont(new Font("±¼¸²", Font.PLAIN, 13));
-		label_7.setBounds(29, 86, 284, 16);
-		panel.add(label_7);
-
-		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 10, 0, 463);
-		panel.add(separator);
-		
-		JButton btnAdmin = new JButton("admin");
+	private void btnAdminFunction(JButton btnAdmin) {
 		btnAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				adminLoginDialog ad = new adminLoginDialog();
@@ -281,9 +154,167 @@ public class MainFrame extends JFrame {
 				
 			}
 		});
-		btnAdmin.setForeground(new Color(255, 255, 255));
-		btnAdmin.setBackground(new Color(0, 121, 51));
-		btnAdmin.setBounds(308, 20, 82, 23);
-		panel.add(btnAdmin);
+	}
+
+	private void displaySearchIDPW(JPanel panel) {
+		JButtonCreator buttoncreator = new JButtonCreator();
+		JLabelCreator labelcreator = new JLabelCreator();
+		JLabel SearchIconLabel = (JLabel) labelcreator.createWithIcon("","images\\icons\\search.png" , 12, 394, 62, 62);
+		panel.add(SearchIconLabel);
+
+		JButton btnfindIDPW = (JButton) buttoncreator.createWithFont("ì•„ì´ë”” / ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°", "êµ´ë¦¼", Font.PLAIN, 86, 433, 304, 23,12);
+
+		btnfindIDPW.setForeground(new Color(255, 255, 255));
+		btnfindIDPW.setBackground(new Color(0, 102, 51));
+		btnfindIDPWFunction(btnfindIDPW);
+		panel.add(btnfindIDPW);
+
+
+		JLabel SearchDescriptLabel = (JLabel) labelcreator.createWithFont("ê³ ê°ë‹˜ì˜ ì •ë³´ ì¸ì¦ì„ í†µí•´ ì°¾ì„ ìˆ˜ ìˆìŠµë‹ˆë‹¤.","êµ´ë¦¼",Font.PLAIN, 86, 413, 304, 15,12);
+		SearchDescriptLabel.setForeground(new Color(0, 102, 51));
+		panel.add(SearchDescriptLabel);
+		
+		JLabel finderQuestionLabel = (JLabel) labelcreator.createWithFont("ì•„ì´ë”” / ë¹„ë°€ë²ˆí˜¸ë¥¼ ìŠìœ¼ì…¨ë‚˜ìš”?","êµ´ë¦¼",Font.PLAIN, 86, 394, 304, 15,12);
+		panel.add(finderQuestionLabel);
+	}
+
+	private void btnfindIDPWFunction(JButton btnfindIDPW) {
+		btnfindIDPW.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				IdOrPwFindFrame IDPWFinderFrame = new IdOrPwFindFrame();
+				IDPWFinderFrame.setVisible(true);
+//				setVisible(false);
+
+			}
+		});
+	}
+
+	private void displayRegister(JPanel panel) {
+		JButtonCreator buttoncreator = new JButtonCreator();
+		JLabelCreator labelcreator = new JLabelCreator();
+		
+		JLabel RegisterLabel = (JLabel) labelcreator.createWithFont("ëŒ€í•œë¯¼êµ­ì—ì„œ ê°€ì¥ ë§›ìˆëŠ” ì»¤í”¼, ìŠ¤íƒ€ë²…ìŠ¤ì˜ íšŒì›ì´ ë˜ì‹œë©´","êµ´ë¦¼", Font.PLAIN , 29, 240, 344, 15,12);
+		RegisterLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(RegisterLabel);
+
+		JLabel RegisterProfitLabel = (JLabel) labelcreator.createWithFont("ìŠ¤íƒ€ë²…ìŠ¤ì˜ ë‹¤ì–‘í•œ ì„œë¹„ìŠ¤ì™€ í˜œíƒì„ ë°›ìœ¼ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.","êµ´ë¦¼", Font.PLAIN , 29, 259, 344, 15,12);
+		RegisterProfitLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(RegisterProfitLabel);
+
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(12, 219, 378, 2);
+		panel.add(separator_1);
+
+		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 12));
+		passwordField.setBounds(86, 163, 205, 21);
+		panel.add(passwordField);
+
+		lbLoginMessage = new JLabel("");
+		lbLoginMessage.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 12));
+		lbLoginMessage.setBounds(86, 194, 270, 15);
+		panel.add(lbLoginMessage);
+
+		JLabel IsMemberLabel = (JLabel) labelcreator.createWithFont("ì•„ì§ ìŠ¤íƒ€ë²…ìŠ¤ì˜ íšŒì›ì´ ì•„ë‹ˆì‹ ê°€ìš”?","êµ´ë¦¼", Font.PLAIN , 86, 306, 304, 15,12);
+		panel.add(IsMemberLabel);
+
+		JButton btnRegister = (JButton) buttoncreator.createWithFont("íšŒì›ê°€ì…í•˜ê¸°", "êµ´ë¦¼", Font.PLAIN, 86, 345, 304, 23,12);
+		btnRegister.setForeground(new Color(255, 255, 255));
+		btnRegister.setBackground(new Color(0, 102, 51));
+		btmRegisterFunction(btnRegister);
+		panel.add(btnRegister);
+		
+		JLabel OffterMemberLabel = (JLabel) labelcreator.createWithFont("ìŠ¤íƒ€ë²…ìŠ¤ íšŒì›ë§Œì˜ íŠ¹ë³„í•œ í˜œíƒì„ ëˆ„ë¦¬ì„¸ìš”!","êµ´ë¦¼", Font.PLAIN , 86, 325, 304, 15,12);
+		OffterMemberLabel.setForeground(new Color(0, 102, 51));
+		panel.add(OffterMemberLabel);
+	}
+
+	private void btmRegisterFunction(JButton btnRegister) {
+		btnRegister.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MemberJoinFrame frm = new MemberJoinFrame();
+				frm.setVisible(true);
+				setVisible(false);
+			}
+		});
+	}
+
+	private void displayLogin(JPanel panel) {
+		JButtonCreator buttoncreator = new JButtonCreator();
+		JLabelCreator labelcreator = new JLabelCreator();
+		
+		txtLogin = new JTextField();
+		txtLogin.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 12));
+		txtLogin.setBounds(86, 120, 205, 21);
+		panel.add(txtLogin);
+		
+		txtLogin.setColumns(10);
+		
+		//JLabel lbLoginId = new JLabel("ì•„ì´ë””");
+		JLabel lbLoginId = new LabelBound(new LabelFont(new JLabel("ì•„ì´ë””"), "êµ´ë¦¼",12),12, 123, 57, 15).getLabel();
+		
+		//lbLoginId.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 12));
+		lbLoginId.setHorizontalAlignment(SwingConstants.RIGHT);
+		lbLoginId.setBounds(12, 123, 57, 15);
+		panel.add(lbLoginId);
+
+
+		JLabel lbLoginPwLabel = (JLabel) labelcreator.createWithFont("ë¹„ë°€ë²ˆí˜¸","êµ´ë¦¼", Font.PLAIN ,12, 166, 57, 15,12);
+		lbLoginPwLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel.add(lbLoginPwLabel);
+
+		JButton btnLogin = (JButton) buttoncreator.createWithFont("ë¡œê·¸ì¸", "êµ´ë¦¼", Font.PLAIN,303, 120, 87, 61,12);
+		btnLogin.setForeground(new Color(255, 255, 255));
+		btnLogin.setBackground(new Color(0, 102, 51));
+		btnLoginFunction(btnLogin);
+		panel.add(btnLogin);
+		
+		JLabel LoginImageLabel = (JLabel) labelcreator.createWithIcon("", "images\\icons\\login(62x62).png",12, 306, 62, 62);		
+		LoginImageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(LoginImageLabel);
+		
+		JLabel RequestLoginLabel = (JLabel) labelcreator.createWithFont("ì„œë¹„ìŠ¤ ì´ìš©ì„ ìœ„í•´ ë¡œê·¸ì¸ í•´ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.","êµ´ë¦¼", Font.PLAIN , 29, 86, 284, 16,13);
+		panel.add(RequestLoginLabel);
+	}
+
+	private void btnLoginFunction(JButton btnLogin) {
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				String login = txtLogin.getText();
+	            String pw = new String(passwordField.getPassword());
+	            MemberDBMgr mgr = new MemberDBMgr();
+	            int loginQueryResult = mgr.loginProcess(login, pw);
+	            switch (loginQueryResult) {
+	            case MemberDBMgr.LOGIN_SUCCESS:
+	               lbLoginMessage.setText("ë¡œê·¸ì¸ì— ì„±ê³µí•˜ì…¨ìŠµë‹ˆë‹¤.");
+	               lbLoginMessage.setForeground(Color.black);
+	               JOptionPane.showMessageDialog(null, "ë¡œê·¸ì¸ì— ì„±ê³µí•˜ì…¨ìŠµë‹ˆë‹¤.");
+	               Login = txtLogin.getText();
+	               MainMenuFrame menuFrm = new MainMenuFrame();
+	               menuFrm.setVisible(true);
+	               break;
+
+	            case MemberDBMgr.LOGIN_NOT_FOUND:
+	               lbLoginMessage.setText("íšŒì›ì˜ ì •ë³´ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+	               lbLoginMessage.setForeground(Color.red);
+	               JOptionPane.showMessageDialog(null, "íšŒì›ì˜ ì •ë³´ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+	               break;
+
+	            case MemberDBMgr.LOGIN_PW_MISMATCH:
+	               lbLoginMessage.setText("ë¡œê·¸ì¸ í˜¹ì€ ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë¦¬ì…¨ìŠµë‹ˆë‹¤.");
+	               lbLoginMessage.setForeground(Color.red);
+	               JOptionPane.showMessageDialog(null, "ë¡œê·¸ì¸ í˜¹ì€ ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë¦¬ì…¨ìŠµë‹ˆë‹¤.");
+	               break;
+
+	            case MemberDBMgr.LOGIN_ERROR:
+	               lbLoginMessage.setText("ì§€ì›í•˜ì§€ ì•ŠëŠ” ì„œë¹„ìŠ¤ì…ë‹ˆë‹¤.");
+	               lbLoginMessage.setForeground(Color.red);
+	               JOptionPane.showMessageDialog(null, "ì§€ì›í•˜ì§€ ì•ŠëŠ” ì„œë¹„ìŠ¤ì…ë‹ˆë‹¤.");
+	               break;
+
+	            }
+			}
+		});
 	}
 }

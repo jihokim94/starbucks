@@ -1,5 +1,7 @@
 package ui.admin;
 
+import adminFactory_sh.JButtonCreator;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.util.ArrayList;

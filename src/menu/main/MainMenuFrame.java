@@ -16,7 +16,7 @@ import menu.main.components.BasketContainer;
 import menu.main.components.CategoryPanel;
 import menu.main.components.MenuPanel;
 import ui.admin.OrderSheetDialog;
-import ui.payment.Money;
+import ui.payment.paymentWindow;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -189,7 +189,7 @@ public class MainMenuFrame extends JFrame
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
-				Money m = new Money();
+				paymentWindow m = new paymentWindow();
 				m.setVisible(true);
 			}
 		});
