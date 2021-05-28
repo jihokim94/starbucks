@@ -16,6 +16,14 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
+import ButtonDecorate.ButtonBackGround;
+import ButtonDecorate.ButtonBound;
+import ButtonDecorate.ButtonFont;
+import ButtonDecorate.ButtonForeGround;
+import LabelDecorate.LabelBound;
+import LabelDecorate.LabelFont;
+import LabelDecorate.LabelHorizon;
+import LabelDecorate.LabelIcon;
 import adminFactory_jy.JButtonCreator;
 import adminFactory_jy.JLabelCreator;
 import data.db.AdminDBMgr;
@@ -49,19 +57,42 @@ public class adminLoginDialog extends JDialog {
     * Create the dialog.
     */
    public adminLoginDialog() {
-	   JLabelCreator labelcreator = new JLabelCreator();
-	   JButtonCreator btncreator = new JButtonCreator();
-	   
 	  this.loginDlg =loginDlg;
-   	  setTitle("\uAD00\uB9AC\uC790 \uB85C\uADF8\uC778");
+   	  setLoginDialog();
+      
+      setPanel();
+      
+      setIcon();
+      
+      setLogin();
+   }
+
+private void setLogin() {
+	JLabel labelLogin = new LabelHorizon(new LabelFont(new LabelBound(new JLabel("½ºÅ¸¹÷½º °ü¸®ÀÚ ·Î±×ÀÎ"),
+			50, 170, 415, 26), "±¼¸²",Font.BOLD,12)).getLabel();
+      contentPanel.add(labelLogin);
+}
+
+private void setIcon() {
+	JLabel lblNewLabel = new LabelHorizon(new LabelIcon(
+			new LabelBound(new JLabel(""),12, 10, 492, 150), 
+			"C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png")).getLabel();
+      contentPanel.add(lblNewLabel);
+}
+
+private void setLoginDialog() {
+	setTitle("\uAD00\uB9AC\uC790 \uB85C\uADF8\uC778");
       setBounds(100, 100, 532, 511);
+      
       getContentPane().setLayout(new BorderLayout());
       contentPanel.setBackground(new Color(0, 102, 51));
       contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
       getContentPane().add(contentPanel, BorderLayout.CENTER);
       contentPanel.setLayout(null);
-      
-      JPanel panel = setJpanel(50, 206, 415, 256);
+}
+
+private void setPanel() {
+	JPanel panel = setJpanel(50, 206, 415, 256);
       contentPanel.add(panel);
       panel.setLayout(null);
       
@@ -69,13 +100,17 @@ public class adminLoginDialog extends JDialog {
       panel.add(txtLogin);
       txtLogin.setColumns(10);
       
-      JLabel lblNewLabel_2 = (JLabel) labelcreator.create("\\uBE44\\uBC00\\uBC88\\uD638","±¼¸²",12, 106, 391, 15);
+      JLabel lblNewLabel_2 = new LabelFont(new LabelBound(new JLabel("\\uBE44\\uBC00\\uBC88\\uD638"),
+    		  12, 106, 391, 15), "±¼¸²", Font.BOLD, 12).getLabel();
       panel.add(lblNewLabel_2);
       
-      JLabel label = (JLabel) labelcreator.create("\uC544\uC774\uB514","±¼¸²",12, 22, 391, 15);
+      JLabel label = new LabelFont(new LabelBound(new JLabel("\uC544\uC774\uB514"),
+    		  12, 22, 391, 15), "±¼¸²", Font.BOLD, 12).getLabel();
       panel.add(label);
       
-      JButton button = (JButton) btncreator.create("\uAD00\uB9AC\uC790 \uB85C\uADF8\uC778","±¼¸²",12, 194, 391, 40);
+      JButton button = new ButtonFont(new ButtonForeGround(
+    		  new ButtonBackGround(new ButtonBound(new JButton("\uAD00\uB9AC\uC790 \uB85C\uADF8\uC778"), 12, 194, 391, 40)
+    				  , 0, 102, 51), 0, 0, 0), "±¼¸²", Font.BOLD, 13).getButton();
       button.addActionListener(new ActionListener() {
       	public void actionPerformed(ActionEvent arg0) {
       		String login =txtLogin.getText();
@@ -108,15 +143,7 @@ public class adminLoginDialog extends JDialog {
       
       setJpasswordField();
       panel.add(psfPW);
-      
-      JLabel lblNewLabel = (JLabel) labelcreator.createWithIcon
-    		  ("", "C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png",12, 10, 492, 150);
-      contentPanel.add(lblNewLabel);
-      
-      JLabel labelLogin = (JLabel) labelcreator.createWithHorizontal("½ºÅ¸¹÷½º °ü¸®ÀÚ ·Î±×ÀÎ","±¼¸²",50, 170, 415, 26,12);
-      labelLogin.setForeground(new Color(255, 255, 255));
-      contentPanel.add(labelLogin);
-   }
+}
 
 private JPanel setJpanel(int x, int y, int w, int h) {
 	JPanel panel = new JPanel();

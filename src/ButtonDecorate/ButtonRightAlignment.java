@@ -5,11 +5,13 @@ import javax.swing.JButton;
 
 public class ButtonRightAlignment extends ButtonDecorator{
 	
-	public ButtonRightAlignment(ButtonDecorator button,String imageText) {
+	public ButtonRightAlignment(ButtonDecorator button) {
 		this.button = button.getButton();
+		decorate();
 	}
-	public ButtonRightAlignment(JButton button,String imageText) {
+	public ButtonRightAlignment(JButton button) {
 		super(button);
+		decorate();
 	}
 	@Override
 	public void decorate() {

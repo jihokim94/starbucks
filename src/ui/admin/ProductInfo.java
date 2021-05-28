@@ -41,10 +41,10 @@ import ButtonDecorate.ButtonBound;
 import ButtonDecorate.ButtonFont;
 import ButtonDecorate.ButtonIcon;
 import LabelDecorate.LabelBackGround;
-import LabelDecorate.BoundDecorator;
+import LabelDecorate.LabelBound;
 import LabelDecorate.LabelFont;
 import LabelDecorate.LabelHorizon;
-import LabelDecorate.IconDecorator;
+import LabelDecorate.LabelIcon;
 import adminFactory_jy.JButtonCreator;
 import adminFactory_jy.JLabelCreator;
 import data.Product;
@@ -155,37 +155,37 @@ public class ProductInfo extends JFrame {
 		pnSub.setLayout(null);
 		
 		lbImage = 
-				new LabelBackGround(new LabelHorizon(new IconDecorator(new BoundDecorator(new JLabel(""), 12, 20, 245, 220), "C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png")), 0, 255, 0).getLabel();
+				new LabelBackGround(new LabelHorizon(new LabelIcon(new LabelBound(new JLabel(""), 12, 20, 245, 220), "C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png")), 0, 255, 0).getLabel();
 		pnSub.add(lbImage);
 		
-		JLabel lbID = new LabelHorizon(new LabelFont(new BoundDecorator(new JLabel("\\uAD00\\uB9AC \\uBC88\\uD638"),266,105, 18,13 ), "±¼¸²",12,Font.BOLD)).getLabel();
+		JLabel lbID = new LabelHorizon(new LabelFont(new LabelBound(new JLabel("\\uAD00\\uB9AC \\uBC88\\uD638"),266,105, 18,13 ), "±¼¸²",12,Font.BOLD)).getLabel();
 		pnSub.add(lbID);
 		
 		JLabel lb_productName = 
-				new LabelHorizon(new LabelFont(new BoundDecorator(new JLabel("\uC0C1\uD488\uBA85"),314,105, 18,13 ), "±¼¸²",12,Font.BOLD)).getLabel();
+				new LabelHorizon(new LabelFont(new LabelBound(new JLabel("\uC0C1\uD488\uBA85"),314,105, 18,13 ), "±¼¸²",12,Font.BOLD)).getLabel();
 		pnSub.add(lb_productName);
 		
 		setTxtField(txtName,  311, 128);
 		pnSub.add(txtName);
 		
 		JLabel lb_category = 
-				new LabelHorizon(new LabelFont(new BoundDecorator(new JLabel("\uCE74\uD14C\uACE0\uB9AC"),360,105, 18,13 ), "±¼¸²",12,Font.BOLD)).getLabel();
+				new LabelHorizon(new LabelFont(new LabelBound(new JLabel("\uCE74\uD14C\uACE0\uB9AC"),360,105, 18,13 ), "±¼¸²",12,Font.BOLD)).getLabel();
 		pnSub.add(lb_category);
 		
-		JLabel lb_imagePath = new LabelHorizon(new LabelFont(new BoundDecorator(new JLabel("\uC0AC\uC9C4\uD30C\uC77C\uACBD\uB85C"),405,105, 18,13), "±¼¸²",12,Font.BOLD)).getLabel();
+		JLabel lb_imagePath = new LabelHorizon(new LabelFont(new LabelBound(new JLabel("\uC0AC\uC9C4\uD30C\uC77C\uACBD\uB85C"),405,105, 18,13), "±¼¸²",12,Font.BOLD)).getLabel();
 		pnSub.add(lb_imagePath);
 		
 		setTxtField(txtImagePath, 404,105);
 		pnSub.add(txtImagePath);
 		
-		JLabel lb_price = new LabelHorizon(new LabelFont(new BoundDecorator(new JLabel("\uAC00\uACA9"),457,105, 18,13), "±¼¸²",12,Font.BOLD)).getLabel();
+		JLabel lb_price = new LabelHorizon(new LabelFont(new LabelBound(new JLabel("\uAC00\uACA9"),457,105, 18,13), "±¼¸²",12,Font.BOLD)).getLabel();
 
 		pnSub.add(lb_price);
 		
 		setTxtField(txtPrice, 454,128);
 		pnSub.add(txtPrice);
 		
-		JLabel lb_presence = new LabelHorizon(new LabelFont(new BoundDecorator(new JLabel("\uC720\uBB34"),504,105, 18 ,13), "±¼¸²",12,Font.BOLD)).getLabel();
+		JLabel lb_presence = new LabelHorizon(new LabelFont(new LabelBound(new JLabel("\uC720\uBB34"),504,105, 18 ,13), "±¼¸²",12,Font.BOLD)).getLabel();
 
 		pnSub.add(lb_presence);
 		
@@ -201,7 +201,7 @@ public class ProductInfo extends JFrame {
 		JButton btnProductRemove = setBtnProductRemove();
 		pnSub.add(btnProductRemove);
 		
-		JLabel lb_realeaseDate = new LabelHorizon(new LabelFont(new BoundDecorator(new JLabel("\uCD9C\uC2DC\uC77C"),541,105, 18,13), "±¼¸²",12,Font.BOLD)).getLabel();
+		JLabel lb_realeaseDate = new LabelHorizon(new LabelFont(new LabelBound(new JLabel("\uCD9C\uC2DC\uC77C"),541,105, 18,13), "±¼¸²",12,Font.BOLD)).getLabel();
 		pnSub.add(lb_realeaseDate);
 		
 		setNonEditableTxtField(txtRegDate, 538);
@@ -226,7 +226,7 @@ public class ProductInfo extends JFrame {
 	private void makePnMain(JSplitPane splitPane) {
 		JPanel pnMain = setpnMain(splitPane);
 		
-		JLabel lb_productList = new LabelHorizon(new LabelFont(new BoundDecorator(new JLabel("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8"),10,165,49,13), "±¼¸²",12,Font.BOLD)).getLabel();
+		JLabel lb_productList = new LabelHorizon(new LabelFont(new LabelBound(new JLabel("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8"),10,165,49,13), "±¼¸²",12,Font.BOLD)).getLabel();
 		pnMain.add(lb_productList);
 		
 		JButton btnProductList = setBtnProductList();

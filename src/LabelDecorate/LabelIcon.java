@@ -3,14 +3,14 @@ package LabelDecorate;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class IconDecorator extends LabelDecorator{
+public class LabelIcon extends LabelDecorator{
 	protected String  imageText;
 	
-	public IconDecorator(LabelDecorator label,String imageText) {
+	public LabelIcon(LabelDecorator label,String imageText) {
 		this.label = label.getLabel();
 		this.imageText = imageText;
 	}
-	public IconDecorator(JLabel label,String imageText) {
+	public LabelIcon(JLabel label,String imageText) {
 		super(label);
 		this.imageText = imageText;
 	}
