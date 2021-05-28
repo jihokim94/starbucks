@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class MoneyComplete extends JFrame {
+public class completePayment extends JFrame {
 /*
  * 최종 결제 화면 
  * 확인 누르면 종료되도록
@@ -20,14 +20,14 @@ public class MoneyComplete extends JFrame {
 	private JPanel contentPane;
 	JButton btnOk;
 
-	/**
+	/*
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MoneyComplete frame = new MoneyComplete();
+					completePayment frame = new completePayment();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,7 +39,7 @@ public class MoneyComplete extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MoneyComplete() {
+	public completePayment() {
 		setTitle("\uACB0\uC81C\uC644\uB8CC");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2020\\java_ws\\TProject\\images\\icon_card.jpg"));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -63,12 +63,13 @@ public class MoneyComplete extends JFrame {
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				Money2 m2 = new Money2();
+				paymentAgreeWindow m2 = new paymentAgreeWindow();
 				m2.setVisible(false);
 				
 			}
 		});
 		btnOk.setBounds(122, 114, 97, 23);
+		
 		contentPane.add(btnOk);
 	}
 }
