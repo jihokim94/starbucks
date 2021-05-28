@@ -7,7 +7,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-public class JLabelCreator extends Jcreator {
+public class JLabelCreator extends JCreator {
 
 	@Override
 	public JComponent create(String text, String font, int x, int y, int w, int h) {

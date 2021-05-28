@@ -20,7 +20,7 @@ public class completePayment extends JFrame {
 	private JPanel contentPane;
 	JButton btnOk;
 
-	/**
+	/*
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {

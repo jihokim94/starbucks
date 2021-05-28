@@ -105,7 +105,7 @@ public class paymentAgreeWindow extends JFrame {
 		
 		setTotalPricePanel();
 		
-		showorderList();
+		showOrderList();
 
 	}
 
@@ -291,7 +291,7 @@ public class paymentAgreeWindow extends JFrame {
 	}
 	
 	
-	public void showorderList() {
+	public void showOrderList() {
 		ArrayList<BasketPanel> odList =BasketContainer.bkList;
 		String [] columnNames = {"주문 상품", "주문 상품 수량"};
 		

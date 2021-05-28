@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 
-public class JButtonCreator extends Jcreator{
+public class JButtonCreator extends JCreator{
 
 	@Override
 	public JComponent create(String text, String font, int x, int y, int w, int h) {
