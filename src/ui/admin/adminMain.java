@@ -12,6 +12,8 @@ import ButtonDecorate.ButtonFont;
 import ButtonDecorate.ButtonForeGround;
 import ButtonDecorate.ButtonRightAlignment;
 import LabelDecorate.LabelIcon;
+import PanelDecorate.PanelBorder;
+import PanelDecorate.PanelLayout;
 import adminFactory_jy.JButtonCreator;
 
 import java.awt.GridLayout;
@@ -75,9 +77,7 @@ public class adminMain extends JFrame {
 	}
 
 	private void makeContentPane() {
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane = new PanelBorder(new PanelLayout(new JPanel(),0, 0),5, 5, 5, 5).getPanel();
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();

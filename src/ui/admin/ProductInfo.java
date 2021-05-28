@@ -45,6 +45,12 @@ import LabelDecorate.LabelBound;
 import LabelDecorate.LabelFont;
 import LabelDecorate.LabelHorizon;
 import LabelDecorate.LabelIcon;
+import PanelDecorate.PanelBackground;
+import PanelDecorate.PanelBorder;
+import PanelDecorate.PanelLayout;
+import TextDecorate.NonTextEditable;
+import TextDecorate.TextBound;
+import TextDecorate.TextColumns;
 import adminFactory_jy.JButtonCreator;
 import adminFactory_jy.JLabelCreator;
 import data.Product;
@@ -52,8 +58,6 @@ import data.db.ProductDBMgr;
 
 public class ProductInfo extends JFrame {
 	
-	private JButtonCreator btncreator;
-	private JLabelCreator labelcreator;
 	private JPanel contentPane;
 	private JTextField txtName;
 	private JTextField txtImagePath;
@@ -128,9 +132,6 @@ public class ProductInfo extends JFrame {
 	}
 	
 	public ProductInfo() {
-		labelcreator = new JLabelCreator();
-		btncreator = new JButtonCreator();
-		
 		this.PInfo =PInfo;
 		this.mgr= new ProductDBMgr();
 		
@@ -150,9 +151,8 @@ public class ProductInfo extends JFrame {
 	}
 
 	private void makePnSub(JSplitPane splitPane) {
-		JPanel pnSub = setpnsub();
+		JPanel pnSub = new PanelLayout(new PanelBackground(new JPanel(),255, 255, 255)).getPanel();
 		splitPane.setRightComponent(pnSub);
-		pnSub.setLayout(null);
 		
 		lbImage = 
 				new LabelBackGround(new LabelHorizon(new LabelIcon(new LabelBound(new JLabel(""), 12, 20, 245, 220), "C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png")), 0, 255, 0).getLabel();
@@ -165,7 +165,7 @@ public class ProductInfo extends JFrame {
 				new LabelHorizon(new LabelFont(new LabelBound(new JLabel("\uC0C1\uD488\uBA85"),314,105, 18,13 ), "±¼¸²",12,Font.BOLD)).getLabel();
 		pnSub.add(lb_productName);
 		
-		setTxtField(txtName,  311, 128);
+		txtName =  new TextColumns(new TextBound(new JTextField(),129,311, 128 ,21), 10).getTextField();
 		pnSub.add(txtName);
 		
 		JLabel lb_category = 
@@ -175,14 +175,14 @@ public class ProductInfo extends JFrame {
 		JLabel lb_imagePath = new LabelHorizon(new LabelFont(new LabelBound(new JLabel("\uC0AC\uC9C4\uD30C\uC77C\uACBD\uB85C"),405,105, 18,13), "±¼¸²",12,Font.BOLD)).getLabel();
 		pnSub.add(lb_imagePath);
 		
-		setTxtField(txtImagePath, 404,105);
+		txtImagePath = new TextColumns(new TextBound(new JTextField(),129, 404,105 ,21), 10).getTextField();
 		pnSub.add(txtImagePath);
 		
 		JLabel lb_price = new LabelHorizon(new LabelFont(new LabelBound(new JLabel("\uAC00\uACA9"),457,105, 18,13), "±¼¸²",12,Font.BOLD)).getLabel();
 
 		pnSub.add(lb_price);
 		
-		setTxtField(txtPrice, 454,128);
+		txtPrice = new TextColumns(new TextBound(new JTextField(),129,454,128 ,21), 10).getTextField();
 		pnSub.add(txtPrice);
 		
 		JLabel lb_presence = new LabelHorizon(new LabelFont(new LabelBound(new JLabel("\uC720\uBB34"),504,105, 18 ,13), "±¼¸²",12,Font.BOLD)).getLabel();
@@ -204,7 +204,7 @@ public class ProductInfo extends JFrame {
 		JLabel lb_realeaseDate = new LabelHorizon(new LabelFont(new LabelBound(new JLabel("\uCD9C\uC2DC\uC77C"),541,105, 18,13), "±¼¸²",12,Font.BOLD)).getLabel();
 		pnSub.add(lb_realeaseDate);
 		
-		setNonEditableTxtField(txtRegDate, 538);
+		txtRegDate=new NonTextEditable(new TextColumns(new TextBound(new JTextField(),129,538, 128 ,21), 10)).getTextField();
 		pnSub.add(txtRegDate);
 		
 		setBtnRd(rdHot,129, 500, 62, 23);
@@ -215,8 +215,7 @@ public class ProductInfo extends JFrame {
 		
 		setComboCategory();
 		pnSub.add(comboCatgory);
-		
-		setNonEditableTxtField(txtID, 265);
+		txtID=new NonTextEditable(new TextColumns(new TextBound(new JTextField(),129,265, 128 ,21), 10)).getTextField();
 		pnSub.add(txtID);
 		
 		JButton btnNewButton_1 = setbtnopenFolder();
@@ -265,22 +264,9 @@ public class ProductInfo extends JFrame {
 		contentPane.add(splitPane, BorderLayout.CENTER);
 		return splitPane;
 	}
-	
-	private void setTxtField(JTextField txtField, int y,int w) {
-		txtField = new JTextField();
-		txtField.setColumns(10);
-		txtField.setBounds(129, y,w ,21);
-	}
-	
-	private void setNonEditableTxtField(JTextField txtField, int y) {
-		txtField = new JTextField();
-		txtField.setEditable(false);
-		txtField.setColumns(10);
-		txtField.setBounds(129, y,128 ,21);
-	}
-	
+
 	private void settxtSearch() {
-		txtSearch = new JTextField();
+		txtSearch = new TextBound(new JTextField(),189, 24, 186, 25).getTextField();
 		txtSearch.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -288,7 +274,6 @@ public class ProductInfo extends JFrame {
 				showSearchProduct(target);
 			}
 		});
-		txtSearch.setBounds(189, 24, 186, 25);
 	}
 	
 	private void setBtnRd(JRadioButton rd, int x,int y, int w,int h) {
@@ -321,7 +306,7 @@ public class ProductInfo extends JFrame {
 	}
 
 	private JButton setBtnProductRemove() {
-		JButton button_2 = new ButtonBound(new JButton("\uC0C1\uD488 \uC0AD\uC81C"),144, 629, 113, 23);
+		JButton button_2 = new ButtonBound(new JButton("\uC0C1\uD488 \uC0AD\uC81C"),144, 629, 113, 23).getButton();
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//ÀÔ·Â ÀÐ¾î¿À±â 
@@ -434,25 +419,16 @@ public class ProductInfo extends JFrame {
 		return btnProductList;
 	}
 
-	private JPanel setpnsub() {
-		JPanel pnSub = new JPanel();
-		pnSub.setBackground(new Color(255, 255, 255));
-		return pnSub;
-	}
 	
 	private JPanel setpnMain(JSplitPane splitPane) {
-		JPanel pnMain = new JPanel();
-		pnMain.setBackground(new Color(0, 101, 70));
+		JPanel pnMain = new PanelBackground(new PanelLayout(new JPanel()), 0, 101, 70).getPanel();
 		splitPane.setLeftComponent(pnMain);
-		pnMain.setLayout(null);
 		return pnMain;
 	}
 	
 	private void setContentPane() {
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane = new PanelBorder(new PanelLayout(new JPanel(),0,0), 5, 5, 5, 5).getPanel();
 		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
 	}
 	
 

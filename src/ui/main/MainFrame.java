@@ -8,10 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import LabelDecorate.LabelBound;
+import ButtonDecorate.ButtonFont;
 import LabelDecorate.LabelFont;
-import LabelDecorate.LabelHorizon;
-import LabelDecorate.LabelDecorator;
 import data.db.MemberDBMgr;
 import ui.admin.adminLoginDialog;
 import ui.admin.adminMain;
@@ -80,8 +78,6 @@ public class MainFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 2, 0, 0));
 
-		
-		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBorder(new EmptyBorder(0, 0, 0, 0));
 		lblNewLabel.setBackground(Color.WHITE);
@@ -101,17 +97,16 @@ public class MainFrame extends JFrame {
 		panel.add(txtLogin);
 		
 		txtLogin.setColumns(10);
-		
-		//JLabel lbLoginId = new JLabel("아이디");
-		JLabel lbLoginId = new LabelBound(new LabelFont(new JLabel("아이디"), "굴림",12),12, 123, 57, 15).getLabel();
-		
-		//lbLoginId.setFont(new Font("굴림", Font.PLAIN, 12));
+
+		JLabel lbLoginId = new JLabel("아이디");
+		lbLoginId.setFont(new Font("굴림", Font.PLAIN, 12));
 		lbLoginId.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbLoginId.setBounds(12, 123, 57, 15);
 		panel.add(lbLoginId);
 
-		JLabel lbLoginPw = new JLabel("비밀번호");
-		lbLoginPw.setFont(new Font("굴림", Font.PLAIN, 12));
+		JLabel lbLoginPw = new LabelFont(new JLabel("비밀번호"),"굴림",12, Font.PLAIN).getLabel();
+				//new JLabel("비밀번호");
+		//lbLoginPw.setFont(new Font("굴림", Font.PLAIN, 12));
 		lbLoginPw.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbLoginPw.setBounds(12, 166, 57, 15);
 		panel.add(lbLoginPw);

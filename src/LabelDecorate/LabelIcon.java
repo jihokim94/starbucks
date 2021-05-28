@@ -9,10 +9,12 @@ public class LabelIcon extends LabelDecorator{
 	public LabelIcon(LabelDecorator label,String imageText) {
 		this.label = label.getLabel();
 		this.imageText = imageText;
+		decorate();
 	}
 	public LabelIcon(JLabel label,String imageText) {
 		super(label);
 		this.imageText = imageText;
+		decorate();
 	}
 	@Override
 	public void decorate() {

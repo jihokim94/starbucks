@@ -1,6 +1,6 @@
 /ui/
 /util/
-/decorate_jy/
-/LabelDecorate/
 /ButtonDecorate/
-/adminFactory_jy/
+/LabelDecorate/
+/TextDecorate/
+/PanelDecorate/

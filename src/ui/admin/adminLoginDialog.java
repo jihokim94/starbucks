@@ -24,6 +24,13 @@ import LabelDecorate.LabelBound;
 import LabelDecorate.LabelFont;
 import LabelDecorate.LabelHorizon;
 import LabelDecorate.LabelIcon;
+import PanelDecorate.PanelBackground;
+import PanelDecorate.PanelBound;
+import PanelDecorate.PanelLayout;
+import TextDecorate.TextBorder;
+import TextDecorate.TextBound;
+import TextDecorate.TextColumns;
+import TextDecorate.TextForeGroud;
 import adminFactory_jy.JButtonCreator;
 import adminFactory_jy.JLabelCreator;
 import data.db.AdminDBMgr;
@@ -92,13 +99,11 @@ private void setLoginDialog() {
 }
 
 private void setPanel() {
-	JPanel panel = setJpanel(50, 206, 415, 256);
+	JPanel panel =  new PanelLayout(new PanelBackground(new PanelBound(new JPanel(),50, 206, 415, 256),255, 255, 255)) .getPanel();
       contentPanel.add(panel);
-      panel.setLayout(null);
       
-      setTxtLogin();
+      txtLogin =new TextColumns(new TextBorder(new TextBound(new TextForeGroud(new JTextField(), 0,0,0),14, 49, 389, 37),0, 102, 51),10).getTextField();
       panel.add(txtLogin);
-      txtLogin.setColumns(10);
       
       JLabel lblNewLabel_2 = new LabelFont(new LabelBound(new JLabel("\\uBE44\\uBC00\\uBC88\\uD638"),
     		  12, 106, 391, 15), "±¼¸²", Font.BOLD, 12).getLabel();
@@ -145,12 +150,6 @@ private void setPanel() {
       panel.add(psfPW);
 }
 
-private JPanel setJpanel(int x, int y, int w, int h) {
-	JPanel panel = new JPanel();
-    panel.setBackground(new Color(255, 255, 255));
-    panel.setBounds(x,y,w,h);
-	return panel;
-}
 
 private void setJpasswordField() {
 	psfPW = new JPasswordField();
@@ -158,11 +157,5 @@ private void setJpasswordField() {
       psfPW.setBounds(14, 131, 389, 37);
 }
 
-private void setTxtLogin() {
-	txtLogin = new JTextField();
-      txtLogin.setBorder(new LineBorder(new Color(0, 102, 51)));
-      txtLogin.setForeground(Color.BLACK);
-      txtLogin.setBounds(14, 49, 389, 37);
-}
 
 }
