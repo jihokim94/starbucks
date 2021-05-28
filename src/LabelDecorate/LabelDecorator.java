@@ -4,7 +4,7 @@ import javax.swing.JLabel;
 
 public class LabelDecorator extends LabelComponent {
 
-	protected String texti;
+	protected String text;
 
 	public LabelDecorator(JLabel label) {
 		this.label = label;
