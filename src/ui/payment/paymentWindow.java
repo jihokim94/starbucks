@@ -15,6 +15,8 @@ import menu.basket.BasketPanel;
 import menu.main.MainMenuFrame;
 import menu.main.components.BasketContainer;
 import ui.main.MainFrame;
+import ui.payment.Factory.JButtonCreator;
+import ui.payment.Factory.JLabelCreator;
 
 import java.awt.Toolkit;
 import javax.swing.JLabel;
@@ -42,26 +44,25 @@ import java.util.ArrayList;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
-public class Money extends JFrame {
+public class paymentWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtFirstCardNo;
 	private JPasswordField pfSecond;
 	private JPasswordField pfThird;
 	private JTextField txtLast;
-	private JTextField txtDash;
-	private JTextField txtDash2;
-	private JTextField txtDash3;
+	private JLabelCreator labelCreator;
+	private JButtonCreator btnCreator;
 	JLabel lbCardImage;
-	JPanel panel;
-	JPanel panel_1;
-	JPanel panel_2;
+	JPanel mainPanel;
+	JPanel subPanel;
+	JPanel craditCardPaenl;
 	JLabel lbReturn;
 	JButton btnAccept;
 	MainFrame fr ;
 	MemberDBMgr mgr;
 	Member member;
-	
+
 	// Branch Test
 	/**
 	 * Launch the application.
@@ -70,7 +71,7 @@ public class Money extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Money frame = new Money();
+					paymentWindow frame = new paymentWindow();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -82,12 +83,15 @@ public class Money extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Money() {
+	public paymentWindow() {
 		this.mgr = new MemberDBMgr();
 		this.fr= new MainFrame();
 		member =mgr.getOneMemberByLogin(MainFrame.Login);
-		
-		setTitle("\uC2E0\uC6A9\uCE74\uB4DC \uACB0\uC81C\uD654\uBA74"); //»ê¿ëÄ«µå °áÁ¦È­¸é
+		member = new Member("name", "login", "password", 1, "birth", "email", "Phone");
+		labelCreator = new JLabelCreator();
+		btnCreator = new JButtonCreator();
+
+		setTitle("\uC2E0\uC6A9\uCE74\uB4DC \uACB0\uC81C\uD654\uBA74"); //ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2020\\java_ws\\TProject\\images\\icon_card.jpg"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 607, 558);
@@ -95,133 +99,110 @@ public class Money extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		
+
 		setMainPaymentPanel();
-		
+
 		setSubPaymentPanel();
-		
-		checkName();
-		
+
+		Facade facadeForClientInfo = new Facade(mainPanel, subPanel, member);
+
+		facadeForClientInfo.viewClientInfo();
+
+		addTotalPriceLabel();
+
 		inputCreditCard();
-		
-		checkPhoneNum();
-		
-		checkEmail();
-		
-		checkTotalPrice();
-		
+
 		setButton();
 	}
 
 	private void setButton() {
-		btnAccept = new JButton("\uACB0\uC81C\uC694\uCCAD");
+		btnAccept = (JButton) btnCreator.createWithIcon("\uACB0\uC81C\uC694\uCCAD"
+				, "C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"
+				, 143, 451, 120, 23);
 		btnAccept.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if( !member.getName().isEmpty() && !txtFirstCardNo.getText().isEmpty() && !txtLast.getText().isEmpty()
 						&& !member.getPhone().isEmpty() && !member.getEmail().isEmpty()) {
-					Money2 mny = new Money2();
+					paymentAgreeWindow mny = new paymentAgreeWindow();
 					mny.setVisible(true);
 					btnAccept.setEnabled(true);
 					dispose();
 				} else {
 					btnAccept.setEnabled(false);
 					lbReturn.setForeground(Color.RED);
-					lbReturn.setText("ºóÄ­À» Ã¤¿öÁÖ¼¼¿ä!");
+					lbReturn.setText("ï¿½ï¿½Ä­ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½!");
 				}
-				
-				
+
+
 			}
 		});
-		btnAccept.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
-		btnAccept.setBounds(143, 451, 120, 23);
-		panel.add(btnAccept);
-		
-		JButton btnClose = new JButton("\uB2EB\uAE30");
+		mainPanel.add(btnAccept);
+
+		JButton btnClose = (JButton) btnCreator.createWithIcon("\uB2EB\uAE30"
+				, "C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"
+				, 315, 451, 97, 23);
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btnClose.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
-		btnClose.setBounds(315, 451, 97, 23);
-		panel.add(btnClose);
-		
-		lbReturn = new JLabel("");
-		lbReturn.setBounds(424, 451, 145, 38);
-		panel.add(lbReturn);
+		mainPanel.add(btnClose);
+
+		lbReturn = (JLabel) labelCreator.create("", null, 424, 451, 145, 38);
+		mainPanel.add(lbReturn);
 	}
 
-	private void checkTotalPrice() {
-		JLabel lbTotalPrice = new JLabel("\uCD1D \uACB0\uC81C\uAE08\uC561");
-		lbTotalPrice.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\FamilyCafeteria\\icons\\control_play_blue.png"));
-		panel_1.add(lbTotalPrice);
-		
-		JLabel lbTotalMoney = new JLabel("");
-		lbTotalMoney.setHorizontalAlignment(SwingConstants.CENTER);
-	
-		
+	private void addTotalPriceLabel() {
+		JLabel lbTotalPrice = (JLabel) labelCreator.createWithIcon("\uCD1D \uACB0\uC81C\uAE08\uC561"
+				,"C:\\dev2020\\java_ws\\FamilyCafeteria\\icons\\control_play_blue.png"
+				, -1, -1, -1, -1);
+		subPanel.add(lbTotalPrice);
+
+		JLabel lbTotalMoney = (JLabel) labelCreator.createWithHorizontal("", null, -1, -1, -1, -1, 0);
+
 		int totalPrice = 0;
 		ArrayList<BasketPanel>odList = BasketContainer.bkList;
 		for (int i = 0; i < odList.size(); i++) {
 			int OnePdtotalPrice =Integer.parseInt(odList.get(i).pnOC.txtVal.getText());
 			int productPrice = odList.get(i).product.getPrice();
 			int onePdtotalPrice =productPrice *OnePdtotalPrice;
-			
+
 			 totalPrice += onePdtotalPrice;
 		}
-		lbTotalMoney.setText(String.valueOf(totalPrice) +"¿ø");	
-			
-		
-		panel_1.add(lbTotalMoney);
+
+		lbTotalMoney.setText(String.valueOf(totalPrice) +"ï¿½ï¿½");
+
+		subPanel.add(lbTotalMoney);
 	}
 
-	private JLabel checkEmail() {
-		JLabel lbEmail = new JLabel("\uC774\uBA54\uC77C");
-		lbEmail.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
-		panel_1.add(lbEmail);
-		
-		 
-		
-		String email = member.getEmail();
-		JLabel lbEmail2 = new JLabel(email);
-		lbEmail2.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(lbEmail2);
-		return lbEmail2;
-	}
 
-	private JLabel checkPhoneNum() {
-		JLabel lbPhone = new JLabel("\uC5F0\uB77D\uCC98 ( - \uC5C6\uC774 \uC785\uB825\uD574\uC8FC\uC138\uC694)");
-		lbPhone.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
-		panel_1.add(lbPhone);
-		
-		
-		String phone = member.getPhone();
-		JLabel lbPhoneNo = new JLabel(phone);
-		
-		lbPhoneNo.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(lbPhoneNo);
-		return lbPhoneNo;
-	}
 
 	private void inputCreditCard() {
-		JLabel lbCardComp = new JLabel("\uCE74\uB4DC\uC0AC\uB97C \uC120\uD0DD\uD574\uC8FC\uC138\uC694");
-		lbCardComp.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
-		panel_1.add(lbCardComp);
-		
+		JTextField txtDash;
+		JTextField txtDash2;
+		JTextField txtDash3;
+
+
+		JLabel lbCardComp = (JLabel) labelCreator.createWithIcon("\uCE74\uB4DC\uC0AC\uB97C \uC120\uD0DD\uD574\uC8FC\uC138\uC694"
+				, "C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"
+				, -1, -1, -1, -1);
+		subPanel.add(lbCardComp);
+
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBackground(UIManager.getColor("text"));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"\uAD6D\uBBFC", "\uBE44\uC528", "\uC6B0\uB9AC", "\uD558\uB098", "\uD558\uB098(\uAD6C)\uC678\uD658", "\uC2E0\uD55C", "\uB18D\uD611", "\uAE30\uC5C5"}));
 		comboBox.setSelectedIndex(0);
-		panel_1.add(comboBox);
-		
-		JLabel lbCardNo = new JLabel("\uCE74\uB4DC \uBC88\uD638\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694");
-		lbCardNo.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"));
-		panel_1.add(lbCardNo);
-		
-		panel_2 = new JPanel();
-		panel_2.setBackground(UIManager.getColor("text"));
-		panel_1.add(panel_2);
-		
+		subPanel.add(comboBox);
+
+		JLabel lbCardNo = (JLabel) labelCreator.createWithIcon("\uCE74\uB4DC \uBC88\uD638\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694"
+				,"C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\control_play_blue.png"
+				, -1, -1, -1, -1);
+		subPanel.add(lbCardNo);
+
+		craditCardPaenl = new JPanel();
+		craditCardPaenl.setBackground(UIManager.getColor("text"));
+		subPanel.add(craditCardPaenl);
+
 		txtFirstCardNo = new JTextField();
 		txtFirstCardNo.addFocusListener(new FocusAdapter() {
 			@Override
@@ -241,15 +222,15 @@ public class Money extends JFrame {
 				showCardImg(txtFirstCardNo);
 			}
 		});
-		panel_2.add(txtFirstCardNo);
+		craditCardPaenl.add(txtFirstCardNo);
 		txtFirstCardNo.setColumns(4);
-			
+
 		txtDash = new JTextField();
 		txtDash.setBackground(new Color(192, 192, 192));
 		txtDash.setText("-");
-		panel_2.add(txtDash);
+		craditCardPaenl.add(txtDash);
 		txtDash.setColumns(1);
-		
+
 		pfSecond = new JPasswordField();
 		pfSecond.setColumns(4);
 		pfSecond.addFocusListener(new FocusAdapter() {
@@ -264,14 +245,14 @@ public class Money extends JFrame {
 				pfSecond.setForeground(Color.BLACK);
 			}
 		});
-		panel_2.add(pfSecond);
-		
+		craditCardPaenl.add(pfSecond);
+
 		txtDash2 = new JTextField();
 		txtDash2.setText("-");
 		txtDash2.setColumns(1);
 		txtDash2.setBackground(Color.LIGHT_GRAY);
-		panel_2.add(txtDash2);
-		
+		craditCardPaenl.add(txtDash2);
+
 		pfThird = new JPasswordField();
 		pfThird.setColumns(4);
 		pfThird.addFocusListener(new FocusAdapter() {
@@ -286,14 +267,14 @@ public class Money extends JFrame {
 				pfThird.setForeground(Color.BLACK);
 			}
 		});
-		panel_2.add(pfThird);
-		
+		craditCardPaenl.add(pfThird);
+
 		txtDash3 = new JTextField();
 		txtDash3.setText("-");
 		txtDash3.setColumns(1);
 		txtDash3.setBackground(Color.LIGHT_GRAY);
-		panel_2.add(txtDash3);
-		
+		craditCardPaenl.add(txtDash3);
+
 		txtLast = new JTextField();
 		txtLast.addFocusListener(new FocusAdapter() {
 			@Override
@@ -307,91 +288,77 @@ public class Money extends JFrame {
 				txtLast.setForeground(Color.BLACK);
 			}
 		});
-		panel_2.add(txtLast);
+		craditCardPaenl.add(txtLast);
 		txtLast.setColumns(4);
-		
+
 		lbCardImage = new JLabel("");
 		lbCardImage.setSize(350, 400);
-		panel_2.add(lbCardImage);
-//		showCardImg(txtFirstCardNo);
+		craditCardPaenl.add(lbCardImage);
+
 	}
 
-	private JLabel checkName() {
-		JLabel lbName = new JLabel("\uACB0\uC81C\uC790 \uC131\uBA85"); // °áÁ¦ÀÚ ¼º¸í
-		lbName.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\FamilyCafeteria\\icons\\control_play_blue.png"));
-		panel_1.add(lbName);
-		
-		JLabel lbNameIn = new JLabel("");
-		String name = "abcd"; //member.getName();
-		lbNameIn.setText(name);
-		lbNameIn.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(lbNameIn);
-		return lbNameIn;
-	}
+
 
 	private void setSubPaymentPanel() {
-		panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 0, 0, 0));
-		panel_1.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(0, 0, 0), new Color(255, 255, 255), new Color(0, 0, 0), new Color(255, 255, 255)));
-		panel_1.setBounds(12, 95, 557, 346);
-		panel.add(panel_1);
-		panel_1.setLayout(new GridLayout(6, 2, 0, 0));
-		
-		JLabel lbSentence = new JLabel("\uACB0\uC81C \uAE08\uC561\uC740 \uB2E4\uC74C\uACFC \uAC19\uC2B5\uB2C8\uB2E4");
-		// °áÁ¦ ±Ý¾×Àº ´ÙÀ½°ú °°½À´Ï´Ù.
-		lbSentence.setFont(new Font("±¼¸²", Font.BOLD, 20));
-		lbSentence.setHorizontalAlignment(SwingConstants.CENTER);
-		lbSentence.setBounds(119, 56, 324, 29);
-		panel.add(lbSentence);
+		subPanel = new JPanel();
+		subPanel.setBackground(new Color(255, 0, 0, 0));
+		subPanel.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(0, 0, 0), new Color(255, 255, 255), new Color(0, 0, 0), new Color(255, 255, 255)));
+		subPanel.setBounds(12, 95, 557, 346);
+		mainPanel.add(subPanel);
+		subPanel.setLayout(new GridLayout(6, 2, 0, 0));
+
+		JLabel lbSentence = (JLabel) labelCreator.createWithHorizontal("\uACB0\uC81C \uAE08\uC561\uC740 \uB2E4\uC74C\uACFC \uAC19\uC2B5\uB2C8\uB2E4"
+				,"ï¿½ï¿½ï¿½ï¿½", 119, 56, 324, 29, 20);
+		mainPanel.add(lbSentence);
 	}
 
 	private void setMainPaymentPanel() {
-		
-		panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
-		
-		JLabel lbTitle = new JLabel("\uC2E0\uC6A9\uCE74\uB4DC");//
-		//JLabel lbTitle = new JLabel("½Å¿ëÄ«µå");//
-		lbTitle.setFont(new Font("±¼¸²", Font.BOLD, 18));
-		lbTitle.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\FamilyCafeteria\\icons\\control_fastforward_blue.png"));
-		lbTitle.setBounds(12, 21, 110, 38);
-		panel.add(lbTitle);
+
+		mainPanel = new JPanel();
+		mainPanel.setBackground(Color.WHITE);
+		contentPane.add(mainPanel, BorderLayout.CENTER);
+		mainPanel.setLayout(null);
+
+		JLabel lbTitle = (JLabel) labelCreator.createWithIcon("\uC2E0\uC6A9\uCE74\uB4DC"
+				, "C:\\dev2020\\java_ws\\FamilyCafeteria\\icons\\control_fastforward_blue.png"
+				, 12, 21, 110, 38);//
+		lbTitle.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 18));
+		mainPanel.add(lbTitle);
 	}
-	
+
+
 	public void showCardImg(JTextField txtFirstCardNo) {
 		if ( txtFirstCardNo != null ) {
-			if ( txtFirstCardNo.getText().equals("9420") || 
+			if ( txtFirstCardNo.getText().equals("9420") ||
 					txtFirstCardNo.getText().equals("9421") ||
 					txtFirstCardNo.getText().equals("9430")) { // bc
 				ImageIcon ic = new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\card\\bc.png");
 				lbCardImage.setIcon(ic);
 				lbCardImage.repaint();
-			} 
-			if ( txtFirstCardNo.getText().equals("9409") ) { // ·Ôµ¥
+			}
+			if ( txtFirstCardNo.getText().equals("9409") ) { // ï¿½Ôµï¿½
 				ImageIcon ic = new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\card\\lt.jpg");
 				lbCardImage.setIcon(ic);
 				lbCardImage.repaint();
 			}
-			if ( txtFirstCardNo.getText().equals("9410")) { // »ï¼ºÄ«µå
+			if ( txtFirstCardNo.getText().equals("9410")) { // ï¿½ï¼ºÄ«ï¿½ï¿½
 				ImageIcon ic = new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\card\\ss.PNG");
 				lbCardImage.setIcon(ic);
 				lbCardImage.repaint();
 			}
-			if ( txtFirstCardNo.getText().equals("9407")) { // ¼öÇù
+			if ( txtFirstCardNo.getText().equals("9407")) { // ï¿½ï¿½ï¿½ï¿½
 				ImageIcon ic = new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\card\\soo.jpg");
 				lbCardImage.setIcon(ic);
 				lbCardImage.repaint();
 			}
-			if ( txtFirstCardNo.getText().equals("9420")) { // ½ÅÇÑ
+			if ( txtFirstCardNo.getText().equals("9420")) { // ï¿½ï¿½ï¿½ï¿½
 				ImageIcon ic = new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\card\\sh.jpg");
 				lbCardImage.setIcon(ic);
 				lbCardImage.repaint();
 			}
 			if ( txtFirstCardNo.getText().equals("9411") ||
-					txtFirstCardNo.getText().equals("9441") || 
-					 txtFirstCardNo.getText().equals("9463")) { // ³óÇù
+					txtFirstCardNo.getText().equals("9441") ||
+					 txtFirstCardNo.getText().equals("9463")) { // ï¿½ï¿½ï¿½ï¿½
 				ImageIcon ic = new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\card\\nh.png");
 				lbCardImage.setIcon(ic);
 				lbCardImage.repaint();
@@ -404,17 +371,17 @@ public class Money extends JFrame {
 				lbCardImage.repaint();
 			}
 			if (txtFirstCardNo.getText().equals("9425") ||
-					txtFirstCardNo.getText().equals("9445")) { // ¿ì¸®
+					txtFirstCardNo.getText().equals("9445")) { // ï¿½ì¸®
 				ImageIcon ic = new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\card\\wr.png");
 				lbCardImage.setIcon(ic);
 				lbCardImage.repaint();
 			}
-			if ( txtFirstCardNo.getText().equals("9400")) { // ½ÃÆ¼
+			if ( txtFirstCardNo.getText().equals("9400")) { // ï¿½ï¿½Æ¼
 				ImageIcon ic = new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\card\\ct.png");
 				lbCardImage.setIcon(ic);
 				lbCardImage.repaint();
 			}
-			if ( txtFirstCardNo.getText().equals("9490")) { // Çö´ë
+			if ( txtFirstCardNo.getText().equals("9490")) { // ï¿½ï¿½ï¿½ï¿½
 				ImageIcon ic = new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\card\\hd.jpg");
 				lbCardImage.setIcon(ic);
 				lbCardImage.repaint();
@@ -422,9 +389,7 @@ public class Money extends JFrame {
 		} else {
 			lbCardImage.setText("");
 		}
-		
-		
+
+
 	}
 }
-
-
