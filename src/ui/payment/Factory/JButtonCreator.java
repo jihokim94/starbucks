@@ -43,7 +43,4 @@ public class JButtonCreator extends JCreator{
 		button.setBackground(new Color(0,121,51));
 		return null;
 	}
-
-	
-
 }
