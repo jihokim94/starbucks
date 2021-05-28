@@ -5,15 +5,15 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-public class HorizonDecorator extends LabelDecorator{
+public class LabelHorizon extends LabelDecorator{
 
-	public HorizonDecorator(LabelDecorator label) {
+	public LabelHorizon(LabelDecorator label) {
 		this.label = label.getLabel();
-		
+		decorate();
 	}
-	public HorizonDecorator(JLabel label) {
+	public LabelHorizon(JLabel label) {
 		super(label);
-		
+		decorate();
 	}
 	public void decorate() {
 		label.setHorizontalAlignment(SwingConstants.CENTER);

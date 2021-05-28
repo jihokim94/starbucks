@@ -3,12 +3,12 @@ package ButtonDecorate;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class RightAlignmentDecorator extends ButtonDecorator{
+public class ButtonRightAlignment extends ButtonDecorator{
 	
-	public RightAlignmentDecorator(ButtonDecorator button,String imageText) {
+	public ButtonRightAlignment(ButtonDecorator button,String imageText) {
 		this.button = button.getButton();
 	}
-	public RightAlignmentDecorator(JButton button,String imageText) {
+	public ButtonRightAlignment(JButton button,String imageText) {
 		super(button);
 	}
 	@Override

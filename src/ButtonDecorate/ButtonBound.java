@@ -4,14 +4,14 @@ import javax.swing.JButton;
 
 import LabelDecorate.LabelDecorator;
 
-public class BoundDecorator extends ButtonDecorator{
+public class ButtonBound extends ButtonDecorator{
 	protected int x,y,w,h;
-	public BoundDecorator(ButtonDecorator button, int x, int y, int w, int h) {
+	public ButtonBound(ButtonDecorator button, int x, int y, int w, int h) {
 		this.button = button.getButton();
 		this.x = x; this.y = y; this.w = w; this.h = h;
 		decorate();
 	}
-	public BoundDecorator(JButton button, int x, int y, int w, int h) {
+	public ButtonBound(JButton button, int x, int y, int w, int h) {
 		super(button);
 		this.x = x; this.y=y; this.w=w; this.h=h;
 		decorate();

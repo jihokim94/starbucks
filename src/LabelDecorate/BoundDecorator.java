@@ -1,5 +1,6 @@
 package LabelDecorate;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 public class BoundDecorator extends LabelDecorator{
@@ -17,6 +18,7 @@ public class BoundDecorator extends LabelDecorator{
 		decorate();
 		
 	} 
+
 	@Override
 	public void decorate() {
 		//super.decorate();

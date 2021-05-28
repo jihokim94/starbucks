@@ -9,8 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import LabelDecorate.BoundDecorator;
-import LabelDecorate.FontDecorator;
-import LabelDecorate.HorizonDecorator;
+import LabelDecorate.LabelFont;
+import LabelDecorate.LabelHorizon;
 import LabelDecorate.LabelDecorator;
 import data.db.MemberDBMgr;
 import ui.admin.adminLoginDialog;
@@ -103,7 +103,7 @@ public class MainFrame extends JFrame {
 		txtLogin.setColumns(10);
 		
 		//JLabel lbLoginId = new JLabel("¾ÆÀÌµð");
-		JLabel lbLoginId = new BoundDecorator(new FontDecorator(new JLabel("¾ÆÀÌµð"), "±¼¸²",12),12, 123, 57, 15).getLabel();
+		JLabel lbLoginId = new BoundDecorator(new LabelFont(new JLabel("¾ÆÀÌµð"), "±¼¸²",12),12, 123, 57, 15).getLabel();
 		
 		//lbLoginId.setFont(new Font("±¼¸²", Font.PLAIN, 12));
 		lbLoginId.setHorizontalAlignment(SwingConstants.RIGHT);

@@ -3,16 +3,18 @@ package ButtonDecorate;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class IconDecorator extends ButtonDecorator{
+public class ButtonIcon extends ButtonDecorator{
 	protected String  imageText;
 	
-	public IconDecorator(ButtonDecorator button,String imageText) {
+	public ButtonIcon(ButtonDecorator button,String imageText) {
 		this.button = button.getButton();
 		this.imageText = imageText;
+		decorate();
 	}
-	public IconDecorator(JButton button,String imageText) {
+	public ButtonIcon(JButton button,String imageText) {
 		super(button);
 		this.imageText = imageText;
+		decorate();
 	}
 	@Override
 	public void decorate() {

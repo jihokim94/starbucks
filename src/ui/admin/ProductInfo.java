@@ -1,58 +1,54 @@
 package ui.admin;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
-
-import LabelDecorate.BackGroundDecorator;
-import LabelDecorate.BoundDecorator;
-import LabelDecorate.FontDecorator;
-import LabelDecorate.HorizonDecorator;
-import LabelDecorate.IconDecorator;
-import adminFactory_jy.JButtonCreator;
-import adminFactory_jy.JLabelCreator;
-import data.Member;
-import data.Product;
-import data.db.ProductDBMgr;
-
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.JTable;
-import javax.swing.JSplitPane;
-import java.awt.CardLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.RowFilter;
-import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
 import java.awt.Color;
-import java.awt.Rectangle;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.DefaultComboBoxModel;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Date;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.awt.Dialog.ModalExclusionType;
+import java.util.ArrayList;
+import java.util.Date;
+
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
+import ButtonDecorate.ButtonBound;
+import ButtonDecorate.ButtonFont;
+import ButtonDecorate.ButtonIcon;
+import LabelDecorate.LabelBackGround;
+import LabelDecorate.BoundDecorator;
+import LabelDecorate.LabelFont;
+import LabelDecorate.LabelHorizon;
+import LabelDecorate.IconDecorator;
+import adminFactory_jy.JButtonCreator;
+import adminFactory_jy.JLabelCreator;
+import data.Product;
+import data.db.ProductDBMgr;
 
 public class ProductInfo extends JFrame {
 	
@@ -159,37 +155,37 @@ public class ProductInfo extends JFrame {
 		pnSub.setLayout(null);
 		
 		lbImage = 
-				new BackGroundDecorator(new HorizonDecorator(new IconDecorator(new BoundDecorator(new JLabel(""), 12, 20, 245, 220), "C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png")), 0, 255, 0).getLabel();
+				new LabelBackGround(new LabelHorizon(new IconDecorator(new BoundDecorator(new JLabel(""), 12, 20, 245, 220), "C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png")), 0, 255, 0).getLabel();
 		pnSub.add(lbImage);
 		
-		JLabel lbID = new HorizonDecorator(new FontDecorator(new BoundDecorator(new JLabel("\\uAD00\\uB9AC \\uBC88\\uD638"),266,105, 18,13 ), "±¼¸²",12)).getLabel();
+		JLabel lbID = new LabelHorizon(new LabelFont(new BoundDecorator(new JLabel("\\uAD00\\uB9AC \\uBC88\\uD638"),266,105, 18,13 ), "±¼¸²",12,Font.BOLD)).getLabel();
 		pnSub.add(lbID);
 		
 		JLabel lb_productName = 
-				new HorizonDecorator(new FontDecorator(new BoundDecorator(new JLabel("\uC0C1\uD488\uBA85"),314,105, 18,13 ), "±¼¸²",12)).getLabel();
+				new LabelHorizon(new LabelFont(new BoundDecorator(new JLabel("\uC0C1\uD488\uBA85"),314,105, 18,13 ), "±¼¸²",12,Font.BOLD)).getLabel();
 		pnSub.add(lb_productName);
 		
 		setTxtField(txtName,  311, 128);
 		pnSub.add(txtName);
 		
 		JLabel lb_category = 
-				new HorizonDecorator(new FontDecorator(new BoundDecorator(new JLabel("\uCE74\uD14C\uACE0\uB9AC"),360,105, 18,13 ), "±¼¸²",12)).getLabel();
+				new LabelHorizon(new LabelFont(new BoundDecorator(new JLabel("\uCE74\uD14C\uACE0\uB9AC"),360,105, 18,13 ), "±¼¸²",12,Font.BOLD)).getLabel();
 		pnSub.add(lb_category);
 		
-		JLabel lb_imagePath = new HorizonDecorator(new FontDecorator(new BoundDecorator(new JLabel("\uC0AC\uC9C4\uD30C\uC77C\uACBD\uB85C"),405,105, 18,13), "±¼¸²",12)).getLabel();
+		JLabel lb_imagePath = new LabelHorizon(new LabelFont(new BoundDecorator(new JLabel("\uC0AC\uC9C4\uD30C\uC77C\uACBD\uB85C"),405,105, 18,13), "±¼¸²",12,Font.BOLD)).getLabel();
 		pnSub.add(lb_imagePath);
 		
 		setTxtField(txtImagePath, 404,105);
 		pnSub.add(txtImagePath);
 		
-		JLabel lb_price = new HorizonDecorator(new FontDecorator(new BoundDecorator(new JLabel("\uAC00\uACA9"),457,105, 18,13), "±¼¸²",12)).getLabel();
+		JLabel lb_price = new LabelHorizon(new LabelFont(new BoundDecorator(new JLabel("\uAC00\uACA9"),457,105, 18,13), "±¼¸²",12,Font.BOLD)).getLabel();
 
 		pnSub.add(lb_price);
 		
 		setTxtField(txtPrice, 454,128);
 		pnSub.add(txtPrice);
 		
-		JLabel lb_presence = new HorizonDecorator(new FontDecorator(new BoundDecorator(new JLabel("\uC720\uBB34"),504,105, 18 ,13), "±¼¸²",12)).getLabel();
+		JLabel lb_presence = new LabelHorizon(new LabelFont(new BoundDecorator(new JLabel("\uC720\uBB34"),504,105, 18 ,13), "±¼¸²",12,Font.BOLD)).getLabel();
 
 		pnSub.add(lb_presence);
 		
@@ -205,7 +201,7 @@ public class ProductInfo extends JFrame {
 		JButton btnProductRemove = setBtnProductRemove();
 		pnSub.add(btnProductRemove);
 		
-		JLabel lb_realeaseDate = new HorizonDecorator(new FontDecorator(new BoundDecorator(new JLabel("\uCD9C\uC2DC\uC77C"),541,105, 18,13), "±¼¸²",12)).getLabel();
+		JLabel lb_realeaseDate = new LabelHorizon(new LabelFont(new BoundDecorator(new JLabel("\uCD9C\uC2DC\uC77C"),541,105, 18,13), "±¼¸²",12,Font.BOLD)).getLabel();
 		pnSub.add(lb_realeaseDate);
 		
 		setNonEditableTxtField(txtRegDate, 538);
@@ -230,7 +226,7 @@ public class ProductInfo extends JFrame {
 	private void makePnMain(JSplitPane splitPane) {
 		JPanel pnMain = setpnMain(splitPane);
 		
-		JLabel lb_productList = new HorizonDecorator(new FontDecorator(new BoundDecorator(new JLabel("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8"),10,165,49,13), "±¼¸²",12)).getLabel();
+		JLabel lb_productList = new LabelHorizon(new LabelFont(new BoundDecorator(new JLabel("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8"),10,165,49,13), "±¼¸²",12,Font.BOLD)).getLabel();
 		pnMain.add(lb_productList);
 		
 		JButton btnProductList = setBtnProductList();
@@ -307,8 +303,9 @@ public class ProductInfo extends JFrame {
 	}
 	
 	private JButton setbtnopenFolder() {
-		JButton btnNewButton_1 = (JButton) btncreator.createWithIcon("", "C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\folder.png",235, 403, 22, 23);
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btnOpenFolder = new ButtonIcon(new ButtonBound(new JButton(""), 235, 403, 22, 23), 
+				"C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\folder.png").getButton();
+		btnOpenFolder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				final String currentDirectoryPath 	= "./images";
 				JFileChooser openDlg = new JFileChooser(currentDirectoryPath);
@@ -320,11 +317,11 @@ public class ProductInfo extends JFrame {
 				}
 			}
 		});
-		return btnNewButton_1;
+		return btnOpenFolder;
 	}
 
 	private JButton setBtnProductRemove() {
-		JButton button_2 = new JButton("\uC0C1\uD488 \uC0AD\uC81C");
+		JButton button_2 = new ButtonBound(new JButton("\uC0C1\uD488 \uC0AD\uC81C"),144, 629, 113, 23);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//ÀÔ·Â ÀÐ¾î¿À±â 
@@ -339,11 +336,11 @@ public class ProductInfo extends JFrame {
 				}
 			}
 		});
-		button_2.setBounds(144, 629, 113, 23);
 		return button_2;
 	}
+	
 	private JButton setBtnProductModify() {
-		JButton button_1 = new JButton("\uC0C1\uD488 \uC218\uC815");
+		JButton button_1 = new ButtonBound(new JButton("\uC0C1\uD488 \uC218\uC815"),23, 629, 108, 23).getButton();
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//read input 
@@ -364,7 +361,6 @@ public class ProductInfo extends JFrame {
 				
 			}
 		});
-		button_1.setBounds(23, 629, 108, 23);
 		return button_1;
 	}
 	
@@ -377,7 +373,7 @@ public class ProductInfo extends JFrame {
 	}
 	
 	private JButton setBtnInitialize() {
-		JButton button = new JButton("\uBAA9\uB85D \uBE44\uC6B0\uAE30");
+		JButton button = new ButtonBound(new JButton("\uBAA9\uB85D \uBE44\uC6B0\uAE30"), 143, 584, 114, 23).getButton();
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				txtID.setText("");
@@ -390,11 +386,11 @@ public class ProductInfo extends JFrame {
 				lbImage.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\·Î°í(150x150).png"));	
 			}
 		});
-		button.setBounds(143, 584, 114, 23);
 		return button;
 	}
 	private JButton setBtnProductAdd() {
-		JButton btnNewButton = new JButton("\uC0C1\uD488 \uCD94\uAC00");
+		JButton btnNewButton = new ButtonBound(new JButton("\uC0C1\uD488 \uCD94\uAC00"),23, 584, 108, 23).getButton();
+				new JButton("\uC0C1\uD488 \uCD94\uAC00");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//ÀÔ·Â ÀÐ¾î¿À±â 
@@ -415,8 +411,9 @@ public class ProductInfo extends JFrame {
 		return btnNewButton;
 	}
 	private JButton setbtnClear() {
-		JButton btnclear = (JButton) btncreator.createWithIcon("", "C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\bin.png",387, 25, 47, 23);
-		btnclear.addActionListener(new ActionListener() {
+		JButton btnclear = new ButtonIcon(new ButtonBound(new JButton(""),387, 25, 47, 23),
+				"C:\\dev2020\\java_ws\\Starbucks\\images\\icons\\bin.png").getButton();
+			btnclear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtSearch.setText("");
 				showSearchProduct("");
@@ -426,15 +423,14 @@ public class ProductInfo extends JFrame {
 		return btnclear;
 	}
 	private JButton setBtnProductList() {
-		JButton btnProductList = new JButton("\uC0C1\uD488 \uC804\uCCB4 \uB9AC\uC2A4\uD2B8");
+		JButton btnProductList = new ButtonBound(new ButtonFont(new JButton("\uC0C1\uD488 \uC804\uCCB4 \uB9AC\uC2A4\uD2B8"), "±¼¸²", Font.BOLD, 12), 
+				446, 22, 133, 28).getButton();
 		btnProductList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				txtSearch.setText("");
 				showSearchProduct("");
 			}
 		});
-		btnProductList.setFont(new Font("±¼¸²", Font.BOLD, 12));
-		btnProductList.setBounds(446, 22, 133, 28);
 		return btnProductList;
 	}
 
