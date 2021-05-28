@@ -1,6 +1,6 @@
 package ui.admin;
 
-import adminFactory_jy.JButtonCreator;
+import adminFactory_sh.JButtonCreator;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -129,4 +129,3 @@ public class OrderSheetDialog extends JDialog {
 	
 	
 }
-

@@ -1,7 +1,7 @@
 package ui.admin;
 
-import adminFactory_jy.JButtonCreator;
-import adminFactory_jy.JLabelCreator;
+import adminFactory_sh.JButtonCreator;
+import adminFactory_sh.JLabelCreator;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -55,8 +55,6 @@ import java.awt.event.FocusEvent;
 
 public class CustomerInfo extends JFrame {
 
-	private JButtonCreator btncreator;
-	private JLabelCreator labelcreator;
    private JPanel contentPane;
    private JTextField txtSearch;
    private final ButtonGroup buttonGroup = new ButtonGroup();
@@ -82,7 +80,6 @@ public class CustomerInfo extends JFrame {
       setTitle("\uD68C\uC6D0\uC815\uBCF4 \uBC0F \uAD00\uB9AC");
       setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
       setBounds(100, 100, 999, 710);
-    
       contentPane = new JPanel();
       contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
       contentPane.setLayout(new BorderLayout(0, 0));
@@ -97,7 +94,10 @@ public class CustomerInfo extends JFrame {
       contentPane.add(panel_1, BorderLayout.CENTER);
       panel_1.setLayout(null);
       
-      JLabel lblNewLabel = (JLabel) labelcreator.createWithHorizontal("\uD68C\uC6D0 \uB9AC\uC2A4\uD2B8","맑은 고딕", 97, 16, 147, 29, 20);
+      JLabel lblNewLabel = new JLabel("\uD68C\uC6D0 \uB9AC\uC2A4\uD2B8");
+      lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+      lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+      lblNewLabel.setBounds(97, 16, 147, 29);
       panel_1.add(lblNewLabel);
       
       JButton btnAllMembers = new JButton("\uD68C\uC6D0 \uC804\uCCB4 \uB9AC\uC2A4\uD2B8");
@@ -111,7 +111,11 @@ public class CustomerInfo extends JFrame {
       btnAllMembers.setBounds(813, 13, 147, 23);
       panel_1.add(btnAllMembers);
       
-      JScrollPane scrollPane = setScrollPane(panel_1);
+      JScrollPane scrollPane = new JScrollPane();
+      scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+      scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+      scrollPane.setBounds(256, 52, 715, 581);
+      panel_1.add(scrollPane);
 //      String [] headings = {"관리 번호","이름","아이디","비밀번호","이메일","휴대폰 번호","생년월일","성별"};
 //                  
 //      Object [][] rowdata = new Object[mbList.size()][headings.length]; // coustomer.getUserList();  // return Object[][size = 5]디비에서  오브젝트 2차 배열로 요소갑들 불러와서 저장
@@ -141,7 +145,12 @@ public class CustomerInfo extends JFrame {
             }else {
                rdFemale.setSelected(true);
             }
-
+            
+            
+         
+           
+         
+            
          }
       });
       scrollPane.setViewportView(MemberTable);
@@ -166,42 +175,135 @@ public class CustomerInfo extends JFrame {
       panel_1.add(panel_2);
       panel_2.setLayout(null);
       
-      
-      JLabel lblNewLabel_1 = (JLabel) labelcreator.createWithHorizontal("\uC774\uB984","돋움",12, 69, 69, 31, 14);
+      JLabel lblNewLabel_1 = new JLabel("\uC774\uB984");
+      lblNewLabel_1.setFont(new Font("돋움", Font.BOLD, 14));
+      lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+      lblNewLabel_1.setBounds(12, 69, 69, 31);
       panel_2.add(lblNewLabel_1);
       
       txtName = new JTextField();
-      panel_2.add(setJTextField(txtName, 93, 69, 116, 34));
+      txtName.setHorizontalAlignment(SwingConstants.CENTER);
+      txtName.setBounds(93, 69, 116, 34);
+      panel_2.add(txtName);
+      txtName.setColumns(10);
       
-      JLabel label = (JLabel) labelcreator.createWithHorizontal("\uC544\uC774\uB514","돋움", 12, 125, 69, 31, 14);
+      JLabel label = new JLabel("\uC544\uC774\uB514");
+      label.setFont(new Font("돋움", Font.BOLD, 14));
+      label.setHorizontalAlignment(SwingConstants.CENTER);
+      label.setBounds(12, 125, 69, 31);
       panel_2.add(label);
       
       txtLogin = new JTextField();
-      panel_2.add(setJTextField(txtLogin, 93, 125, 116, 34));
+      txtLogin.setHorizontalAlignment(SwingConstants.CENTER);
+      txtLogin.setColumns(10);
+      txtLogin.setBounds(93, 125, 116, 34);
+      panel_2.add(txtLogin);
       
-      JLabel label_1 = (JLabel) labelcreator.createWithHorizontal("\uD328\uC2A4\uC6CC\uB4DC","돋움", 12, 191, 69, 31, 14);
+      JLabel label_1 = new JLabel("\uD328\uC2A4\uC6CC\uB4DC");
+      label_1.setFont(new Font("돋움", Font.BOLD, 14));
+      label_1.setHorizontalAlignment(SwingConstants.CENTER);
+      label_1.setBounds(12, 191, 69, 31);
       panel_2.add(label_1);
       
       txtPw = new JTextField();
-      panel_2.add(setJTextField(txtPw, 93, 191, 116, 34));
+      txtPw.setHorizontalAlignment(SwingConstants.CENTER);
+      txtPw.setColumns(10);
+      txtPw.setBounds(93, 191, 116, 34);
+      panel_2.add(txtPw);
       
-      JLabel label_2 = (JLabel) labelcreator.createWithHorizontal("\uC774\uBA54\uC77C","돋움",12, 248, 69, 31, 14);
+      JLabel label_2 = new JLabel("\uC774\uBA54\uC77C");
+      label_2.setFont(new Font("돋움", Font.BOLD, 14));
+      label_2.setHorizontalAlignment(SwingConstants.CENTER);
+      label_2.setBounds(12, 248, 69, 31);
       panel_2.add(label_2);
       
       txtEmail = new JTextField();
-      panel_2.add(setJTextField(txtEmail, 93, 248, 116, 34));
+      txtEmail.setHorizontalAlignment(SwingConstants.CENTER);
+      txtEmail.setColumns(10);
+      txtEmail.setBounds(93, 248, 116, 34);
+      panel_2.add(txtEmail);
       
-      JLabel label_3 = (JLabel) labelcreator.createWithHorizontal("\uD734\uB300\uD3F0","돋움",12, 309, 69, 31, 14);
+      JLabel label_3 = new JLabel("\uD734\uB300\uD3F0");
+      label_3.setFont(new Font("돋움", Font.BOLD, 14));
+      label_3.setHorizontalAlignment(SwingConstants.CENTER);
+      label_3.setBounds(12, 309, 69, 31);
       panel_2.add(label_3);
-
-      panel_2.add(setPhoneJTextField("-\uB97C\uBE7C\uACE0\uC785\uB825",93, 309, 116, 34));
       
-      JLabel label_4 = (JLabel) labelcreator.createWithHorizontal("\uC0DD\uB144\uC6D4\uC77C","돋움",12, 372, 69, 31, 14);
+      txtPhone = new JTextField();
+      txtPhone.setText("-\uB97C\uBE7C\uACE0\uC785\uB825");
+      txtPhone.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				txtPhone.setForeground(Color.BLACK);
+				txtPhone.setBackground(Color.YELLOW);
+				String phone = txtPhone.getText();
+				
+				if( phone.equals("-를빼고입력") )
+					txtPhone.setText("");
+			}			
+			@Override
+			public void focusLost(FocusEvent e) {
+				txtPhone.setBackground(Color.WHITE);
+				txtPhone.setForeground(Color.BLACK);
+				String phone = txtPhone.getText();
+				if(phone.contains("-"))
+				{
+					JOptionPane.showMessageDialog(null, "-를빼고입력");
+					txtPhone.setText("-를빼고입력");
+				}
+				if( phone.isEmpty() ) {
+					txtPhone.setText("-를빼고입력");
+				}
+			}
+		});
+      txtPhone.setHorizontalAlignment(SwingConstants.CENTER);
+      txtPhone.setColumns(10);
+      txtPhone.setBounds(93, 309, 116, 34);
+      panel_2.add(txtPhone);
+      
+      JLabel label_4 = new JLabel("\uC0DD\uB144\uC6D4\uC77C");
+      label_4.setFont(new Font("돋움", Font.BOLD, 14));
+      label_4.setHorizontalAlignment(SwingConstants.CENTER);
+      label_4.setBounds(12, 372, 69, 31);
       panel_2.add(label_4);
       
-      panel_2.add(setBirthJTextField("yyyymmdd\uD615\uC2DD",93, 372, 116, 34));
+      txtBirth = new JTextField();
+      txtBirth.setText("yyyymmdd\uD615\uC2DD");
+      txtBirth.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				txtBirth.setForeground(Color.BLACK);
+				txtBirth.setBackground(Color.YELLOW);
+				String birth = txtBirth.getText();
+				if( birth.equals("yyyymmdd형식")) {
+					txtBirth.setText("");
+				} 
+					
+			}			
+			@Override
+			public void focusLost(FocusEvent e) {
+				txtBirth.setBackground(Color.WHITE);
+				txtBirth.setForeground(Color.BLACK);
+				String birth = txtBirth.getText();
+				if(birth.contains("-") || birth.toCharArray().length>=9 ||birth.toCharArray().length <=7) {
+					JOptionPane.showMessageDialog(null, "yyyymmdd형식에 맞지 않습니다");
+					txtBirth.setText("yyyymmdd형식");
+				}
+					
+				if( birth.isEmpty() ) {
+					txtBirth.setText("yyyymmdd형식");
+				}
+			}
+		});
+      txtBirth.setHorizontalAlignment(SwingConstants.CENTER);
+      txtBirth.setColumns(10);
+      txtBirth.setBounds(93, 372, 116, 34);
+      panel_2.add(txtBirth);
       
-      JLabel label_5 = (JLabel) labelcreator.createWithHorizontal("\uC131\uBCC4","돋움",12, 429, 69, 31, 14);
+      JLabel label_5 = new JLabel("\uC131\uBCC4");
+      label_5.setFont(new Font("돋움", Font.BOLD, 14));
+      label_5.setHorizontalAlignment(SwingConstants.CENTER);
+      label_5.setBounds(12, 429, 69, 31);
       panel_2.add(label_5);
       
        rdMale = new JRadioButton("\uB0A8\uC790");
@@ -223,6 +325,7 @@ public class CustomerInfo extends JFrame {
       btnUpdateMember.setBounds(24, 530, 92, 23);
       panel_2.add(btnUpdateMember);
       
+      
       JButton btnAddMember = new JButton("\uD68C\uC6D0\uCD94\uAC00");
       btnAddMember.setBounds(24, 497, 92, 23);
       panel_2.add(btnAddMember);
@@ -231,9 +334,17 @@ public class CustomerInfo extends JFrame {
       btnDeleteMember.setBounds(128, 530, 92, 23);
       panel_2.add(btnDeleteMember);
       
-      panel_2.add(setIdJTextField(93, 9, 116, 34));
+      txtId = new JTextField();
+      txtId.setEditable(false);
+      txtId.setHorizontalAlignment(SwingConstants.CENTER);
+      txtId.setColumns(10);
+      txtId.setBounds(93, 9, 116, 34);
+      panel_2.add(txtId);
       
-      JLabel label_6 = (JLabel) labelcreator.createWithHorizontal("\uAD00\uB9AC\uBC88\uD638","돋움",12, 11, 69, 31, 14);
+      JLabel label_6 = new JLabel("\uAD00\uB9AC\uBC88\uD638");
+      label_6.setHorizontalAlignment(SwingConstants.CENTER);
+      label_6.setFont(new Font("돋움", Font.BOLD, 14));
+      label_6.setBounds(12, 11, 69, 31);
       panel_2.add(label_6);
       
       JButton btnSearch = new JButton("\uAC80\uC0C9");
@@ -302,10 +413,13 @@ public class CustomerInfo extends JFrame {
             	 mgr.AddOneMember(mb);
                 
                   
-             }else{
+             }else {
             	 JOptionPane.showMessageDialog(null, login+"회원가입 추가실패");
-            	 System.out.println("올바른 정보를 기입해 주세요!");
+                System.out.println("올바른 정보를 기입해 주세요!");
              }
+            
+             
+            
          }
       });
       btnUpdateMember.addActionListener(new ActionListener() {
@@ -351,101 +465,6 @@ public class CustomerInfo extends JFrame {
       });
       
    }
-
-public JTextField setIdJTextField( int x, int y, int z, int w) {
-	txtId = new JTextField();
-      txtId.setEditable(false);
-      txtId.setHorizontalAlignment(SwingConstants.CENTER);
-      txtId.setColumns(10);
-      txtId.setBounds(93, 9, 116, 34);
-      return txtId;
-}
-
-public JTextField setPhoneJTextField(String text, int x, int y, int z, int w) {
-	txtPhone = new JTextField();
-      txtPhone.setText("-\uB97C\uBE7C\uACE0\uC785\uB825");
-      txtPhone.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				txtPhone.setForeground(Color.BLACK);
-				txtPhone.setBackground(Color.YELLOW);
-				String phone = txtPhone.getText();
-				
-				if( phone.equals("-를빼고입력") )
-					txtPhone.setText("");
-			}			
-			@Override
-			public void focusLost(FocusEvent e) {
-				txtPhone.setBackground(Color.WHITE);
-				txtPhone.setForeground(Color.BLACK);
-				String phone = txtPhone.getText();
-				if(phone.contains("-"))
-				{
-					JOptionPane.showMessageDialog(null, "-를빼고입력");
-					txtPhone.setText("-를빼고입력");
-				}
-				if( phone.isEmpty() ) {
-					txtPhone.setText("-를빼고입력");
-				}
-			}
-		});
-      txtPhone.setHorizontalAlignment(SwingConstants.CENTER);
-      txtPhone.setColumns(10);
-      txtPhone.setBounds(93, 309, 116, 34);
-      return txtPhone;
-}
-
-public JTextField setBirthJTextField(String text,int x, int y, int z, int w) {
-	txtBirth = new JTextField();
-      txtBirth.setText("yyyymmdd\uD615\uC2DD");
-      txtBirth.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				txtBirth.setForeground(Color.BLACK);
-				txtBirth.setBackground(Color.YELLOW);
-				String birth = txtBirth.getText();
-				if( birth.equals("yyyymmdd형식")) {
-					txtBirth.setText("");
-				} 
-					
-			}			
-			@Override
-			public void focusLost(FocusEvent e) {
-				txtBirth.setBackground(Color.WHITE);
-				txtBirth.setForeground(Color.BLACK);
-				String birth = txtBirth.getText();
-				if(birth.contains("-") || birth.toCharArray().length>=9 ||birth.toCharArray().length <=7) {
-					JOptionPane.showMessageDialog(null, "yyyymmdd형식에 맞지 않습니다");
-					txtBirth.setText("yyyymmdd형식");
-				}
-					
-				if( birth.isEmpty() ) {
-					txtBirth.setText("yyyymmdd형식");
-				}
-			}
-		});
-      txtBirth.setHorizontalAlignment(SwingConstants.CENTER);
-      txtBirth.setColumns(10);
-      txtBirth.setBounds(93, 372, 116, 34);
-      return txtBirth;
-}
-   
-public JTextField setJTextField(JTextField txt, int x, int y, int z, int w) {
-      txt.setHorizontalAlignment(SwingConstants.CENTER);
-      txt.setBounds(x, y, z, w);
-      txt.setColumns(10);
-      return txt;
-}
-
-private JScrollPane setScrollPane(JPanel panel_1) {
-	JScrollPane scrollPane = new JScrollPane();
-      scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-      scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-      scrollPane.setBounds(256, 52, 715, 581);
-      panel_1.add(scrollPane);
-	return scrollPane;
-}
-
    public void showSpecificMember(String target) {
       final String [] columnNames = {"관리 번호","이름","아이디","비밀번호","이메일","휴대폰 번호","생년월일","성별"};
       
@@ -475,7 +494,10 @@ private JScrollPane setScrollPane(JPanel panel_1) {
       MemberTable.setRowSorter(trs);
 
       trs.setRowFilter(RowFilter.regexFilter(target));
- 
+      
+
+      
+      
    }
    public void searchMember(String target) {
       TableRowSorter<TableModel> trs=new TableRowSorter<TableModel>( MemberTable.getModel());
@@ -512,5 +534,4 @@ private JScrollPane setScrollPane(JPanel panel_1) {
    
       
    }
-
 }

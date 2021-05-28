@@ -1,7 +1,7 @@
 package ui.admin;
 
-import adminFactory_jy.JButtonCreator;
-import adminFactory_jy.JLabelCreator;
+import adminFactory_sh.JButtonCreator;
+import adminFactory_sh.JLabelCreator;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -36,8 +36,6 @@ import java.awt.event.MouseEvent;
 
 public class OrderInfo extends JFrame {
 
-	private JButtonCreator btncreator;
-	private JLabelCreator labelcreator;
 	private JPanel contentPane;
 	private JTable table;
 	OrderDBMgr mgr;
@@ -83,7 +81,10 @@ public class OrderInfo extends JFrame {
 		contentPane.add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel = (JLabel) labelcreator.createWithHorizontal("\uC8FC\uBB38 \uB0B4\uC5ED","맑은 고딕",112, 10, 145, 50, 16);
+		JLabel lblNewLabel = new JLabel("\uC8FC\uBB38 \uB0B4\uC5ED");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 16));
+		lblNewLabel.setBounds(12, 10, 145, 50);
 		panel_1.add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -159,21 +160,20 @@ public class OrderInfo extends JFrame {
 	         data[i][5] = mb.getTotalPrice() +"원";
 	         data[i][6] = mb.getOrderedTime();
 //	         data[i][7] = mb.getOrderStatus();
-	         int orderstatus = mb.getOrderStatus();
+	         int orderstatus =mb.getOrderStatus();
 	         if(orderstatus == order.ORDER_REQUEST) {
 	        	 data[i][7] = "주문대기중";
-	         }
-	         else if(orderstatus == order.ORDER_PREPARE) {
+	         }else if(orderstatus == order.ORDER_PREPARE) {
 	        	 data[i][7] = "주문준비중";
-	         }
-	         else if(orderstatus ==  order.ORDER_FINISHED) {
+	        	 
+	         }else if(orderstatus == order.ORDER_FINISHED) {
 	        	 data[i][7] = "주문완료";
 	         }else {
 	        	 data[i][7] = "주문오류";
 	         }
 	         
 	         
-	    }
+	         }
 		
 		DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
 		table.setModel(dtm);
@@ -185,4 +185,3 @@ public class OrderInfo extends JFrame {
 
 	
 }
-
