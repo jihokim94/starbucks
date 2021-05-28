@@ -8,6 +8,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import LabelDecorate.BoundDecorator;
+import LabelDecorate.FontDecorator;
+import LabelDecorate.HorizonDecorator;
+import LabelDecorate.LabelDecorator;
 import data.db.MemberDBMgr;
 import ui.admin.adminLoginDialog;
 import ui.admin.adminMain;
@@ -76,6 +80,8 @@ public class MainFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 2, 0, 0));
 
+		
+		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBorder(new EmptyBorder(0, 0, 0, 0));
 		lblNewLabel.setBackground(Color.WHITE);
@@ -95,9 +101,11 @@ public class MainFrame extends JFrame {
 		panel.add(txtLogin);
 		
 		txtLogin.setColumns(10);
-
-		JLabel lbLoginId = new JLabel("¾ÆÀÌµð");
-		lbLoginId.setFont(new Font("±¼¸²", Font.PLAIN, 12));
+		
+		//JLabel lbLoginId = new JLabel("¾ÆÀÌµð");
+		JLabel lbLoginId = new BoundDecorator(new FontDecorator(new JLabel("¾ÆÀÌµð"), "±¼¸²",12),12, 123, 57, 15).getLabel();
+		
+		//lbLoginId.setFont(new Font("±¼¸²", Font.PLAIN, 12));
 		lbLoginId.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbLoginId.setBounds(12, 123, 57, 15);
 		panel.add(lbLoginId);

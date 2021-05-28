@@ -10,6 +10,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import LabelDecorate.BackGroundDecorator;
+import LabelDecorate.BoundDecorator;
+import LabelDecorate.FontDecorator;
+import LabelDecorate.HorizonDecorator;
+import LabelDecorate.IconDecorator;
 import adminFactory_jy.JButtonCreator;
 import adminFactory_jy.JLabelCreator;
 import data.Member;
@@ -125,6 +130,7 @@ public class ProductInfo extends JFrame {
 		}
 		return regDay;
 	}
+	
 	public ProductInfo() {
 		labelcreator = new JLabelCreator();
 		btncreator = new JButtonCreator();
@@ -132,70 +138,60 @@ public class ProductInfo extends JFrame {
 		this.PInfo =PInfo;
 		this.mgr= new ProductDBMgr();
 		
+		setProductInfo();
+		JSplitPane splitPane = setJsplitPane();
+		makePnMain(splitPane);
+		makePnSub(splitPane);
+		
+		
+	}
+
+	private void setProductInfo() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("\uC0C1\uD488\uAD00\uB9AC");
 		setBounds(100, 100, 926, 734);
-		
 		setContentPane();
-		
-		JSplitPane splitPane = setJsplitPane();
-		
-		JPanel pnMain = setpnMain(splitPane);
-		
-		JLabel lblNewLabel = (JLabel) labelcreator.createWithHorizontal("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8","HY°ß°íµñ", 12,10,165,49,13);
-		pnMain.add(lblNewLabel);
-		
-		JButton btnProductList = setBtnProductList();
-		pnMain.add(btnProductList);
-		
-		JScrollPane scrollPane = setScrollPane();
-		pnMain.add(scrollPane);
-		
-		setpdTable();
-		scrollPane.setViewportView(pdTable);
-		
-		settxtSearch();
-		pnMain.add(txtSearch);
-		txtSearch.setColumns(10);
-		
-		JButton btnclear = setbtnClear();
-		pnMain.add(btnclear);
-		
+	}
+
+	private void makePnSub(JSplitPane splitPane) {
 		JPanel pnSub = setpnsub();
 		splitPane.setRightComponent(pnSub);
 		pnSub.setLayout(null);
 		
 		lbImage = 
-				(JLabel) labelcreator.createWithIcon("", "C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png",12, 20, 245, 220);
-		lbImage.setBackground(new Color(0, 255, 0));
+				new BackGroundDecorator(new HorizonDecorator(new IconDecorator(new BoundDecorator(new JLabel(""), 12, 20, 245, 220), "C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(150x150).png")), 0, 255, 0).getLabel();
 		pnSub.add(lbImage);
 		
-		JLabel lbID =(JLabel) labelcreator.createWithHorizontal("\\uAD00\\uB9AC \\uBC88\\uD638","±¼¸²",12,266,105, 18,13);
+		JLabel lbID = new HorizonDecorator(new FontDecorator(new BoundDecorator(new JLabel("\\uAD00\\uB9AC \\uBC88\\uD638"),266,105, 18,13 ), "±¼¸²",12)).getLabel();
 		pnSub.add(lbID);
 		
-		JLabel label = (JLabel) labelcreator.createWithHorizontal("\uC0C1\uD488\uBA85","±¼¸²",12,314,105, 18,13);
-		pnSub.add(label);
+		JLabel lb_productName = 
+				new HorizonDecorator(new FontDecorator(new BoundDecorator(new JLabel("\uC0C1\uD488\uBA85"),314,105, 18,13 ), "±¼¸²",12)).getLabel();
+		pnSub.add(lb_productName);
 		
 		setTxtField(txtName,  311, 128);
 		pnSub.add(txtName);
 		
-		JLabel label_1 = (JLabel) labelcreator.createWithHorizontal("\uCE74\uD14C\uACE0\uB9AC","±¼¸²",12,360,105, 18,13);
-		pnSub.add(label_1);
+		JLabel lb_category = 
+				new HorizonDecorator(new FontDecorator(new BoundDecorator(new JLabel("\uCE74\uD14C\uACE0\uB9AC"),360,105, 18,13 ), "±¼¸²",12)).getLabel();
+		pnSub.add(lb_category);
 		
-		JLabel label_2 = (JLabel) labelcreator.createWithHorizontal("\uC0AC\uC9C4\uD30C\uC77C\uACBD\uB85C","±¼¸²",12,405,105, 18,13);
-		pnSub.add(label_2);
+		JLabel lb_imagePath = new HorizonDecorator(new FontDecorator(new BoundDecorator(new JLabel("\uC0AC\uC9C4\uD30C\uC77C\uACBD\uB85C"),405,105, 18,13), "±¼¸²",12)).getLabel();
+		pnSub.add(lb_imagePath);
 		
 		setTxtField(txtImagePath, 404,105);
 		pnSub.add(txtImagePath);
 		
-		JLabel label_3 = (JLabel) labelcreator.createWithHorizontal("\uAC00\uACA9","±¼¸²",12,457,105, 18,13);
-		pnSub.add(label_3);
+		JLabel lb_price = new HorizonDecorator(new FontDecorator(new BoundDecorator(new JLabel("\uAC00\uACA9"),457,105, 18,13), "±¼¸²",12)).getLabel();
+
+		pnSub.add(lb_price);
 		
 		setTxtField(txtPrice, 454,128);
 		pnSub.add(txtPrice);
 		
-		JLabel label_4 = (JLabel) labelcreator.createWithHorizontal("\uC720\uBB34","±¼¸²",12,504,105, 18 ,13);
-		pnSub.add(label_4);
+		JLabel lb_presence = new HorizonDecorator(new FontDecorator(new BoundDecorator(new JLabel("\uC720\uBB34"),504,105, 18 ,13), "±¼¸²",12)).getLabel();
+
+		pnSub.add(lb_presence);
 		
 		JButton btnProductAdd = setBtnProductAdd();
 		pnSub.add(btnProductAdd);
@@ -209,8 +205,8 @@ public class ProductInfo extends JFrame {
 		JButton btnProductRemove = setBtnProductRemove();
 		pnSub.add(btnProductRemove);
 		
-		JLabel label_5 = (JLabel) labelcreator.createWithHorizontal("\uCD9C\uC2DC\uC77C","±¼¸²",12,541,105, 18,13);
-		pnSub.add(label_5);
+		JLabel lb_realeaseDate = new HorizonDecorator(new FontDecorator(new BoundDecorator(new JLabel("\uCD9C\uC2DC\uC77C"),541,105, 18,13), "±¼¸²",12)).getLabel();
+		pnSub.add(lb_realeaseDate);
 		
 		setNonEditableTxtField(txtRegDate, 538);
 		pnSub.add(txtRegDate);
@@ -229,8 +225,29 @@ public class ProductInfo extends JFrame {
 		
 		JButton btnNewButton_1 = setbtnopenFolder();
 		pnSub.add(btnNewButton_1);
+	}
+
+	private void makePnMain(JSplitPane splitPane) {
+		JPanel pnMain = setpnMain(splitPane);
 		
+		JLabel lb_productList = new HorizonDecorator(new FontDecorator(new BoundDecorator(new JLabel("\uC0C1\uD488 \uB9AC\uC2A4\uD2B8"),10,165,49,13), "±¼¸²",12)).getLabel();
+		pnMain.add(lb_productList);
 		
+		JButton btnProductList = setBtnProductList();
+		pnMain.add(btnProductList);
+		
+		JScrollPane scrollPane = setScrollPane();
+		pnMain.add(scrollPane);
+		
+		setpdTable();
+		scrollPane.setViewportView(pdTable);
+		
+		settxtSearch();
+		pnMain.add(txtSearch);
+		txtSearch.setColumns(10);
+		
+		JButton btnclear = setbtnClear();
+		pnMain.add(btnclear);
 	}
 	private void setComboCategory() {
 		comboCatgory = new JComboBox();
