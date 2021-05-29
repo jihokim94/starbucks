@@ -2,8 +2,6 @@ package ButtonDecorate;
 
 import javax.swing.JButton;
 
-import LabelDecorate.LabelDecorator;
-
 public class ButtonBound extends ButtonDecorator{
 	protected int x,y,w,h;
 	public ButtonBound(ButtonDecorator button, int x, int y, int w, int h) {

@@ -1,9 +1,6 @@
 package PanelDecorate;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import LabelDecorate.LabelDecorator;
 
 public class PanelBound extends PanelDecorator{
 	protected int x,y,w,h;
