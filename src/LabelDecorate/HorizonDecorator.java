@@ -9,11 +9,11 @@ public class HorizonDecorator extends LabelDecorator{
 
 	public HorizonDecorator(LabelDecorator label) {
 		this.label = label.getLabel();
-		
+		decorate();
 	}
 	public HorizonDecorator(JLabel label) {
 		super(label);
-		
+		decorate();
 	}
 	public void decorate() {
 		label.setHorizontalAlignment(SwingConstants.CENTER);
