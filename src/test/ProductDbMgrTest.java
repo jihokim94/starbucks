@@ -23,7 +23,6 @@ public class ProductDbMgrTest {
  * Expected : 
  * 콜드브루 -> return 콜드브루 product 
  * 레드벨벳케익 -> return null 
- * 
  * */
 	@Test
 	public void testGetOneProduct() {
