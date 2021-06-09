@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
@@ -47,7 +48,19 @@ public class ProductDbMgrTest {
 			System.out.println(pd.getId()+pd.getName()+pd.getCategory()+pd.getImagePath()+pd.getPrice()+pd.getHot()+pd.getRegDay());
 		}
 	}
-
+	/*
+	 * Purpose: add product in Products db table 
+	 * Input  : ("아이스카페모카","coffee","C:\\Users\\pozxc\\Documents\\git\\starbucks\\starbucks\\images\\menu\\아이스카페모카.jpg",6000,1);
+	 * Expected : True
+	 * 
+	 * */
+	@Test
+	public void testAddNewOneProduct() {
+		Product pd = new Product("아이스카페모카","coffee","C:\\Users\\pozxc\\Documents\\git\\starbucks\\starbucks\\images\\menu\\아이스카페모카.jpg",6000,1);
+		boolean boolForTest = PdMgr.addNewOneProduct(pd);
+		assertTrue(boolForTest);
+	}
+	
 
 	@Test
 	public void testGetProductsByType() {
