@@ -15,7 +15,7 @@ public class LabelFont extends LabelDecorator {
 		fontStyle = fontStyle_;
 		decorate();
 	}
-	public LabelFont(JLabel label, String font_, int fontsize_,int fontStyle_) {
+	public LabelFont(JLabel label, String font_,int fontStyle_, int fontsize_) {
 		super(label);
 		font     = font_;
 		fontsize = fontsize_;

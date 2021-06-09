@@ -486,6 +486,7 @@ public class ProductInfo extends JFrame {
 		//DB 
 		ProductDBMgr pdMgr = new ProductDBMgr();
 		ArrayList<Product> pdList =pdMgr.getAllProducts();
+		System.out.println(pdList.size());
 		Object[][] data = new Object[pdList.size()][columnNames.length];
 		//데이터 읽어오기 
 		getTableData(pdList, data);
