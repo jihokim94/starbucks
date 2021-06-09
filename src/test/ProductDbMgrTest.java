@@ -4,6 +4,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -18,7 +20,7 @@ public class ProductDbMgrTest {
 		PdMgr = new ProductDBMgr();
 	}
 /*
- * Purpose: get Product by pdname parameter
+ * Purpose: get Product in Products db table  by pdname parameter
  * Input  : 콜드브루 which in products db, 레드벨벳케익 which does not in products db
  * Expected : 
  * 콜드브루 -> return 콜드브루 product 
@@ -31,10 +33,18 @@ public class ProductDbMgrTest {
 		pd = PdMgr.getOneProduct("레드벨벳케익");
 		assertNull(pd);
 	}
-
+	/*
+	 * Purpose: get all Products in Products db table 
+	 * Input  : 
+	 * Expected : 
+	 * get all products in Products db table
+	 * */
 	@Test
 	public void testGetAllProducts() {
-		fail("Not yet implemented");
+		ArrayList<Product> pdlist = PdMgr.getAllProducts();
+		for(Product pd:pdlist) {
+			System.out.println(pd.getId()+pd.getName()+pd.getCategory()+pd.getImagePath()+pd.getPrice()+pd.getHot()+pd.getRegDay());
+		}
 	}
 
 	@Test
