@@ -60,7 +60,18 @@ public class ProductDbMgrTest {
 		boolean boolForTest = PdMgr.addNewOneProduct(pd);
 		assertTrue(boolForTest);
 	}
-	
+	/*
+	 * Purpose: add product in Products db table 
+	 * Input  : ("아이스카페모카","coffee","C:\\Users\\pozxc\\Documents\\git\\starbucks\\starbucks\\images\\menu\\아이스카페모카.jpg",6000,1);
+	 * Expected : True
+	 * */
+	@Test
+	public void testEditOneProduct() {
+		Product pd = new Product("아이스카페모카","coffee","C:\\Users\\pozxc\\Documents\\git\\starbucks\\starbucks\\images\\menu\\아이스카페모카.jpg",6000,1);
+		boolean boolFortEST = PdMgr.editOneProduct(pd);
+		assertTrue(boolFortEST);
+	}
+
 
 	@Test
 	public void testGetProductsByType() {
