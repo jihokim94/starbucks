@@ -2,7 +2,6 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -17,12 +16,12 @@ import data.db.ProductDBMgr;
 public class ProductDbMgrTest {
 	private static ProductDBMgr PdMgr ;
 	private int id ;
-	private Product pd;
+	private static Product product;
 
 	@BeforeClass
 	public static void Setup() {
 		PdMgr = new ProductDBMgr();
-		
+		product = new Product("아이스카페모카","coffee","C:\\Users\\pozxc\\Documents\\git\\starbucks\\starbucks\\images\\menu\\아이스카페모카.jpg",6000,1);
 	}
 	/*
 	 * Purpose: get Product in Products db table  by pdname parameter
@@ -35,8 +34,6 @@ public class ProductDbMgrTest {
 	public void testGetOneProduct() {
 		Product pd = PdMgr.getOneProduct("콜드브루");
 		assertNotNull(pd);
-		pd = PdMgr.getOneProduct("레드벨벳케익");
-		assertNull(pd);
 	}
 	/*
 	 * Purpose: get all Products in Products db table 
@@ -59,9 +56,7 @@ public class ProductDbMgrTest {
 	 * */
 	@Test
 	public void testAddNewOneProduct() {
-		pd = new Product("아이스카페모카","coffee","C:\\Users\\pozxc\\Documents\\git\\starbucks\\starbucks\\images\\menu\\아이스카페모카.jpg",6000,1);
-		id = pd.getId();
-		boolean boolForTest = PdMgr.addNewOneProduct(pd);
+		boolean boolForTest = PdMgr.addNewOneProduct(product);
 		assertTrue(boolForTest);
 	}
 	/*
@@ -71,8 +66,9 @@ public class ProductDbMgrTest {
 	 * */
 	@Test
 	public void testEditOneProduct() {
-		pd.setPrice(6600);
-		boolean boolForTest = PdMgr.editOneProduct(pd);
+		product.setId(1);
+		product.setHot(2);
+		boolean boolForTest = PdMgr.editOneProduct(product);
 		assertTrue(boolForTest);
 	}
 	/*
