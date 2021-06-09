@@ -1,5 +1,6 @@
 package test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -71,7 +72,16 @@ public class ProductDbMgrTest {
 		boolean boolFortEST = PdMgr.editOneProduct(pd);
 		assertTrue(boolFortEST);
 	}
-
+	/*
+	 * Purpose: delete product in Products db table by product id and name.
+	 * Input  : (2,"콜드브루")
+	 *  Expected : True
+	 * */
+	@Test
+	public void testDeleteOneProdcut() {
+		int intforTest = PdMgr.deleteOneProdcut(2, "콜드브루");
+		assertEquals(intforTest,1);
+	}
 
 	@Test
 	public void testGetProductsByType() {
