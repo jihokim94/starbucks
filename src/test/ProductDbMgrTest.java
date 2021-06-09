@@ -18,6 +18,7 @@ public class ProductDbMgrTest {
 	@BeforeClass
 	public static void Setup() {
 		PdMgr = new ProductDBMgr();
+		
 	}
 /*
  * Purpose: get Product in Products db table  by pdname parameter
@@ -47,20 +48,6 @@ public class ProductDbMgrTest {
 		}
 	}
 
-	@Test
-	public void testAddNewOneProduct() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testEditOneProduct() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testDeleteOneProdcut() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testGetProductsByType() {
