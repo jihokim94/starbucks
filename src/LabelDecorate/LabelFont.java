@@ -2,14 +2,13 @@ package LabelDecorate;
 
 import java.awt.Font;
 
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 public class LabelFont extends LabelDecorator {
 	public String  font;
 	public int     fontsize, fontStyle;
 	
-	public LabelFont(LabelDecorator label, String font_, int fontsize_,int fontStyle_) {
+	public LabelFont(LabelDecorator label, String font_,int fontStyle_, int fontsize_) {
 		this.label = label.getLabel();
 		font     = font_;
 		fontsize = fontsize_;

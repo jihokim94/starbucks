@@ -1,19 +1,19 @@
 package ui.admin;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
-import java.awt.Color;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import ButtonDecorate.ButtonBackGround;
@@ -31,15 +31,8 @@ import TextDecorate.TextBorder;
 import TextDecorate.TextBound;
 import TextDecorate.TextColumns;
 import TextDecorate.TextForeGroud;
-import adminFactory_jy.JButtonCreator;
-import adminFactory_jy.JLabelCreator;
 import data.db.AdminDBMgr;
 import data.db.MemberDBMgr;
-
-import java.awt.Font;
-import javax.swing.JPasswordField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class adminLoginDialog extends JDialog {
 
@@ -89,7 +82,7 @@ private void setIcon() {
 
 private void setLoginDialog() {
 	setTitle("\uAD00\uB9AC\uC790 \uB85C\uADF8\uC778");
-      setBounds(100, 100, 532, 511);
+    setBounds(100, 100, 532, 511);
       
       getContentPane().setLayout(new BorderLayout());
       contentPanel.setBackground(new Color(0, 102, 51));
@@ -99,13 +92,13 @@ private void setLoginDialog() {
 }
 
 private void setPanel() {
-	JPanel panel =  new PanelLayout(new PanelBackground(new PanelBound(new JPanel(),50, 206, 415, 256),255, 255, 255)) .getPanel();
+	JPanel panel =  new PanelLayout(new PanelBackground(new PanelBound(new JPanel(),50, 206, 415, 256),255, 255, 255)).getPanel();
       contentPanel.add(panel);
       
       txtLogin =new TextColumns(new TextBorder(new TextBound(new TextForeGroud(new JTextField(), 0,0,0),14, 49, 389, 37),0, 102, 51),10).getTextField();
       panel.add(txtLogin);
       
-      JLabel lblNewLabel_2 = new LabelFont(new LabelBound(new JLabel("\\uBE44\\uBC00\\uBC88\\uD638"),
+      JLabel lblNewLabel_2 = new LabelFont(new LabelBound(new JLabel("\uBE44\uBC00\uBC88\uD638"),
     		  12, 106, 391, 15), "±¼¸²", Font.BOLD, 12).getLabel();
       panel.add(lblNewLabel_2);
       
@@ -114,7 +107,7 @@ private void setPanel() {
       panel.add(label);
       
       JButton button = new ButtonFont(new ButtonForeGround(
-    		  new ButtonBackGround(new ButtonBound(new JButton("\uAD00\uB9AC\uC790 \uB85C\uADF8\uC778"), 12, 194, 391, 40)
+    		  new ButtonBackGround(new ButtonBound(new JButton("\uAD00\uB9AC\uC790\uB85C\uADF8\uC778"), 12, 194, 391, 40)
     				  , 0, 102, 51), 0, 0, 0), "±¼¸²", Font.BOLD, 13).getButton();
       button.addActionListener(new ActionListener() {
       	public void actionPerformed(ActionEvent arg0) {

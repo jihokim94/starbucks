@@ -1,7 +1,6 @@
 package ui.admin;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,7 +31,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -51,8 +49,6 @@ import PanelDecorate.PanelLayout;
 import TextDecorate.NonTextEditable;
 import TextDecorate.TextBound;
 import TextDecorate.TextColumns;
-import adminFactory_jy.JButtonCreator;
-import adminFactory_jy.JLabelCreator;
 import data.Product;
 import data.db.ProductDBMgr;
 
@@ -207,10 +203,10 @@ public class ProductInfo extends JFrame {
 		txtRegDate=new NonTextEditable(new TextColumns(new TextBound(new JTextField(),129,538, 128 ,21), 10)).getTextField();
 		pnSub.add(txtRegDate);
 		
-		setBtnRd(rdHot,129, 500, 62, 23);
+		setBtnRd(129, 500, 62, 23,"HOT");
 		pnSub.add(rdHot);
 		
-		setBtnRd(rdIce,195, 500, 53, 23);
+		setBtnRd(195, 500, 53, 23,"ICE");
 		pnSub.add(rdIce);
 		
 		setComboCategory();
@@ -276,12 +272,15 @@ public class ProductInfo extends JFrame {
 		});
 	}
 	
-	private void setBtnRd(JRadioButton rd, int x,int y, int w,int h) {
-		if(rd.equals(rdIce)) {
-			rd = new JRadioButton("ICE");
+	private void setBtnRd(int x,int y, int w,int h,String type) {
+		JRadioButton rd ;
+		if(type.equals("ICE")) {
+			rdIce = new JRadioButton("ICE");
+			rd = rdIce ;
 		}
 		else {
-			rd = new JRadioButton("HOT");
+			rdHot = new JRadioButton("HOT");
+			rd = rdHot ;
 		}
 		btnHotIceGruop.add(rd);
 		rd.setBounds(x,y,w,h);
