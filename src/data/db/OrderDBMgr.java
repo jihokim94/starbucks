@@ -33,8 +33,8 @@ public class OrderDBMgr {
 		int quantity = Integer.parseInt(bp.pnOC.txtVal.getText());
 		int totalPrice = pdPrice * quantity;
 		if(conn!= null) {
-//			String sql = "insert into orders values(ORDERS_SEQ.nextval, SB13123A12,'kj941225','에스프레소',1,4000,SYSDATE )";
-			String sql = "insert into orders values(ORDERS_SEQ.nextval,?,?,?,?,?,sysdate,1)";
+//			String sql = "insert into STARBUCKS.orders values(ORDERS_SEQ.nextval, SB13123A12,'kj941225','에스프레소',1,4000,SYSDATE )";
+			String sql = "insert into STARBUCKS.orders values(ORDERS_SEQ.nextval,?,?,?,?,?,sysdate,1)";
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, orderNumber);
@@ -69,7 +69,7 @@ public class OrderDBMgr {
 		if(conn != null) {
 			try {
 				Statement stmt = conn.createStatement();
-				String sql = "select * from orders where order_number = '"+orderNumber+"'";
+				String sql = "select * from STARBUCKS.orders where order_number = '"+orderNumber+"'";
 				ResultSet rs = stmt.executeQuery(sql);
 				ArrayList<order> odList = new ArrayList<order>();
 				while(rs.next()) {
@@ -81,7 +81,8 @@ public class OrderDBMgr {
 					 Date orderedTime= rs.getDate("ordered_time");
 					 int orderStatus = rs.getInt("order_status");
 					 
-					 order od = new order(id, orderNumber, memberLogin, productName, quantity, totalPrice, orderedTime, orderStatus);
+					 order od = new order(id, orderNumber, memberLogin, 
+							 productName, quantity, totalPrice, orderedTime, orderStatus);
 					 odList.add(od);
 				}
 				return odList;
@@ -100,7 +101,7 @@ public class OrderDBMgr {
 		if(conn != null) {
 			try {
 				Statement stmt = conn.createStatement();
-				String sql = "select * from orders order by ordered_time desc";
+				String sql = "select * from STARBUCKS.orders order by ordered_time desc";
 				ResultSet rs = stmt.executeQuery(sql);
 				ArrayList<order> odList = new ArrayList<order>();
 				while(rs.next()) {
@@ -113,7 +114,8 @@ public class OrderDBMgr {
 					 Date orderedTime= rs.getDate("ordered_time");
 					 int orderStatus = rs.getInt("order_status");
 					 
-					 order od = new order(id, orderNumber, memberLogin, productName, quantity, totalPrice, orderedTime, orderStatus);
+					 order od = new order(id, orderNumber, memberLogin, productName, 
+							 quantity, totalPrice, orderedTime, orderStatus);
 					 odList.add(od);
 				}
 				return odList;
@@ -132,7 +134,7 @@ public class OrderDBMgr {
 	public boolean editOrderStatus(String orderNumber ,int statusNumber) {
 		if(conn != null) {
 			try {
-				String sql = "update orders set order_status =? where order_number= ?";
+				String sql = "update STARBUCKS.orders set order_status =? where order_number= ?";
 							
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, statusNumber);
