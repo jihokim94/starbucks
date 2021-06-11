@@ -7,12 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import data.Admin;
-import data.Member;
 import util.db.OracleDBUtil;
 
 public class AdminDBMgr {
 	
-	Connection conn ; 
+	public Connection conn ; 
 	
 	
 

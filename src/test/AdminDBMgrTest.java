@@ -1,4 +1,4 @@
-package data.db;
+package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,6 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import data.Admin;
+import data.db.AdminDBMgr;
+import data.db.MemberDBMgr;
 import util.db.OracleDBUtil;
 
 class AdminDBMgrTest {
