@@ -13,6 +13,8 @@ import menu.basket.BasketPanel;
 import menu.main.MainMenuFrame;
 import menu.main.components.BasketContainer;
 import ui.main.MainFrame;
+import ui.payment.Factory.JButtonCreator;
+import ui.payment.Factory.JLabelCreator;
 import ui.payment.dialog.AgreementDlg;
 
 //import dialog.AgreementDlg;
@@ -38,23 +40,29 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 
-public class Money2 extends JFrame {
+public class paymentAgreeWindow extends JFrame {
 
 	private JPanel contentPane;
-	Money2 frm;
+	private JLabelCreator labelCreator;
+	private JButtonCreator btnCreator;
+	paymentAgreeWindow frm;
 	JRadioButton rdbtn1;
 	JRadioButton rdbtn2;
 	JRadioButton rdbtn3;
+	JPanel pnMain;
 	MainFrame Mainfrm;
 	MainMenuFrame menufrm;
 	BasketContainer bc;
 	private JTable table;
+	JSplitPane splitPane;
+	
 	public static void main(String[] args) {
 		System.out.println(MainFrame.Login);
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Money2 frame = new Money2();
+					paymentAgreeWindow frame = new paymentAgreeWindow();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -63,35 +71,57 @@ public class Money2 extends JFrame {
 		});
 	}
 
-	/**
+	/**  
 	 * Create the frame.
 	 */
-	public Money2() {
+	public paymentAgreeWindow() {
 		this.bc = new BasketContainer(menufrm);
-		this.frm = frm;
+		labelCreator = new JLabelCreator();
+		btnCreator = new JButtonCreator();
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2020\\java_ws\\TProject\\images\\icon_card.jpg"));
 		setTitle("NICE \uD398\uC774");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 684, 461);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
 		
-		JSplitPane splitPane = new JSplitPane();
+		splitPane = new JSplitPane();
 		splitPane.setResizeWeight(0.6);
 		contentPane.add(splitPane, BorderLayout.CENTER);
 		
-		JPanel pnMain = new JPanel();
+		setMainPanel();
+		
+		setAllAgreeRadioBtn();
+		
+		setRadioBtn();
+		
+		setSucPayBtn();
+		
+		setAgreeBtn();
+		
+		setTotalPricePanel();
+		
+		showOrderList();
+
+	}
+
+	private void setMainPanel() {
+		pnMain = new JPanel();
 		splitPane.setLeftComponent(pnMain);
 		pnMain.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("NICEPAY");
+		JLabel lblNewLabel = (JLabel) labelCreator.createWithIcon("NICEPAY"
+				, "C:\\dev2020\\java_ws\\TProject\\images\\nicePay.png"
+				, 12, 10, 100, 40);
 		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 15));
-		lblNewLabel.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\TProject\\images\\nicePay.png"));
-		lblNewLabel.setBounds(12, 10, 100, 40);
 		pnMain.add(lblNewLabel);
-		
+	}
+
+	private void setAllAgreeRadioBtn() {
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.LIGHT_GRAY, null, Color.LIGHT_GRAY, null));
 		panel.setBounds(22, 47, 224, 50);
@@ -114,20 +144,11 @@ public class Money2 extends JFrame {
 		radioButton.setHorizontalAlignment(SwingConstants.CENTER);
 		radioButton.setFont(new Font("굴림", Font.BOLD, 20));
 		panel.add(radioButton);
-		
-		rdbtn1 = new JRadioButton("\uC804\uC790 \uAE08\uC735\uAC70\uB798 \uC774\uC6A9\uC57D\uAD00");
-		rdbtn1.setBounds(22, 144, 167, 32);
-		pnMain.add(rdbtn1);
-		
-		rdbtn2 = new JRadioButton("\uAC1C\uC778 \uC815\uBCF4 \uC218\uC9D1 \uBC0F \uC774\uC6A9\uC5D0 \uB300\uD55C \uB3D9\uC758");
-		rdbtn2.setBounds(23, 221, 166, 32);
-		pnMain.add(rdbtn2);
-		
-		rdbtn3 = new JRadioButton("\uAC1C\uC778\uC815\uBCF4 \uC81C 3\uC790 \uC774\uC6A9\uC57D\uAD00 \uB3D9\uC758");
-		rdbtn3.setBounds(22, 303, 167, 32);
-		pnMain.add(rdbtn3);
-		
+	}
+
+	private void setSucPayBtn() {
 		JButton btnSucPay = new JButton("\uACB0\uC81C\uC644\uB8CC");
+		btnSucPay.setBounds(127, 360, 97, 23);
 		btnSucPay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(rdbtn1.isSelected() || rdbtn2.isSelected() || rdbtn3.isSelected()) {
@@ -135,8 +156,6 @@ public class Money2 extends JFrame {
 					pnMain.add(btnSucPay);
 					System.out.println("결제완료");
 					
-					
-					// 
 					OrderDBMgr mgr = new OrderDBMgr();
 					String memberLogin = MainFrame.Login;
 					String orderNumber = getRandomNumber();
@@ -147,12 +166,12 @@ public class Money2 extends JFrame {
 						 b =mgr.addOneOrder(bp, orderNumber, memberLogin);
 						if(b) {
 							
-							System.out.println("주문 추가성공 ");
+							System.out.println("주문 추가 성공 ");
 						}else {
 							System.out.println("주문 추가 실패");
 						}
 					}
-					MoneyComplete mc = new MoneyComplete();
+					completePayment mc = new completePayment();
 					mc.setVisible(true);
 				
 					dispose();
@@ -178,9 +197,11 @@ public class Money2 extends JFrame {
 				
 			}
 		});
-		btnSucPay.setBounds(127, 360, 97, 23);
-		pnMain.add(btnSucPay);
 		
+		pnMain.add(btnSucPay);
+	}
+
+	private void setAgreeBtn() {
 		JButton btnShow1 = new JButton("[\uC790\uC138\uD788\uBCF4\uAE30]");
 		btnShow1.setHorizontalAlignment(SwingConstants.LEADING);
 		btnShow1.addActionListener(new ActionListener() {
@@ -214,7 +235,9 @@ public class Money2 extends JFrame {
 		btnShow3.setHorizontalAlignment(SwingConstants.LEADING);
 		btnShow3.setBounds(252, 312, 109, 23);
 		pnMain.add(btnShow3);
-		
+	}
+
+	private void setTotalPricePanel() {
 		JPanel pnSub = new JPanel();
 		splitPane.setRightComponent(pnSub);
 		pnSub.setLayout(null);
@@ -224,22 +247,18 @@ public class Money2 extends JFrame {
 		pnSub.add(panel_1);
 		panel_1.setLayout(new GridLayout(2, 0, 0, 0));
 		
-		JLabel lbTotalPrice = new JLabel("\uCD1D \uACB0\uC81C\uAE08\uC561");
-		lbTotalPrice.setFont(new Font("굴림", Font.BOLD, 15));
-		lbTotalPrice.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lbTotalPrice = (JLabel) labelCreator.createWithHorizontal("\uCD1D \uACB0\uC81C\uAE08\uC561", "굴림", -1, -1, -1, -1, 15);
 		panel_1.add(lbTotalPrice);
 		
-		JLabel lbPrice = new JLabel("");
-		lbPrice.setHorizontalAlignment(SwingConstants.CENTER);
-		
-
+		JLabel lbPrice = (JLabel) labelCreator.createWithHorizontal("", null, -1,-1,-1,-1, -1);
+	
 		int totalPrice = 0;
 		ArrayList<BasketPanel>odList = BasketContainer.bkList;
 		for (int i = 0; i < odList.size(); i++) {
 			int OnePdtotalCount =Integer.parseInt(odList.get(i).pnOC.txtVal.getText());
 			int productPrice = odList.get(i).product.getPrice();
 			int onePdtotalPrice =productPrice *OnePdtotalCount;
-//			pro
+
 			
 			 totalPrice += onePdtotalPrice;
 		}
@@ -255,14 +274,24 @@ public class Money2 extends JFrame {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		showorderList();
-//		for (BasketPanel basketPanel : pdList) {
-//		String PdName = basketPanel.product.getName();
-//		String pdCount = basketPanel.pnOC.txtVal.getText();
-//		a = "주문 상품명 :" +PdName +"주문 수량"+pdCount +"/n";
-	//}
 	}
-	public void showorderList() {
+
+	private void setRadioBtn() {
+		rdbtn1 = new JRadioButton("\uC804\uC790 \uAE08\uC735\uAC70\uB798 \uC774\uC6A9\uC57D\uAD00");
+		rdbtn1.setBounds(22, 144, 167, 32);
+		pnMain.add(rdbtn1);
+		
+		rdbtn2 = new JRadioButton("\uAC1C\uC778 \uC815\uBCF4 \uC218\uC9D1 \uBC0F \uC774\uC6A9\uC5D0 \uB300\uD55C \uB3D9\uC758");
+		rdbtn2.setBounds(23, 221, 166, 32);
+		pnMain.add(rdbtn2);
+		
+		rdbtn3 = new JRadioButton("\uAC1C\uC778\uC815\uBCF4 \uC81C 3\uC790 \uC774\uC6A9\uC57D\uAD00 \uB3D9\uC758");
+		rdbtn3.setBounds(22, 303, 167, 32);
+		pnMain.add(rdbtn3);
+	}
+	
+	
+	public void showOrderList() {
 		ArrayList<BasketPanel> odList =BasketContainer.bkList;
 		String [] columnNames = {"주문 상품", "주문 상품 수량"};
 		
