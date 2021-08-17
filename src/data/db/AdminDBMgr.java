@@ -7,12 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import data.Admin;
-import data.Member;
 import util.db.OracleDBUtil;
 
 public class AdminDBMgr {
 	
-	Connection conn ; 
+	public Connection conn ; 
 	
 	
 
@@ -49,11 +48,6 @@ public class AdminDBMgr {
 			System.out.println("드라이버 연결 실패");
 		}
 		return null;
-		
-		
-		
-		
-		
 		
 	}
 	

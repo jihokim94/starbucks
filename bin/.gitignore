@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 /data/
-/db/
-/member/
-/menu/
+/test/
+=======
+/test01.class
+/data/
+>>>>>>> 71380cc9647461646cbe180a45ddd1e628ad39b2
+/LabelDecorate/
 /ui/
-/util/

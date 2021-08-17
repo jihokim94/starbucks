@@ -6,6 +6,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import ButtonDecorate.ButtonBackGround;
+import ButtonDecorate.ButtonFont;
+import ButtonDecorate.ButtonForeGround;
+import ButtonDecorate.ButtonRightAlignment;
+import LabelDecorate.LabelIcon;
+import PanelDecorate.PanelBorder;
+import PanelDecorate.PanelLayout;
+import adminFactory_jy.JButtonCreator;
+
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -44,64 +54,84 @@ public class adminMain extends JFrame {
 	 * 
 	 */
 	public adminMain() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(50x50).jpg"));
-		setTitle("\uAD00\uB9AC\uC790\uD398\uC774\uC9C0");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 468, 489);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		setAdminMain();
+		
+		makeContentPane();
+		
+		makeAdminList();
+	}
+
+	private void makeAdminList() {
+		JPanel pnAdminList = new JPanel();
+		contentPane.add(pnAdminList, BorderLayout.CENTER);
+		pnAdminList.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		JButton btnCustomer = setBtnCustomer();
+		pnAdminList.add(btnCustomer);
+		
+		JButton btnOrderList = setBtnOrder();
+		
+		JButton btnNewButton = setBtnProduct();
+		pnAdminList.add(btnNewButton);
+		pnAdminList.add(btnOrderList);
+	}
+
+	private void makeContentPane() {
+		contentPane = new PanelBorder(new PanelLayout(new JPanel(),0, 0),5, 5, 5, 5).getPanel();
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.NORTH);
 		
-		JLabel lblNewLabel = new JLabel("\uC0AC\uC9C4");
-		lblNewLabel.setIcon(new ImageIcon("C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uC2A4\uD0C0\uBC85\uC2A4 \uBA54\uB274 \uC774\uBBF8\uC9C0 1111111.jpg"));
+		JLabel lblNewLabel = new LabelIcon(new JLabel("\uC0AC\uC9C4"), "C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uC2A4\uD0C0\uBC85\uC2A4 \uBA54\uB274 \uC774\uBBF8\uC9C0 1111111.jpg").getLabel();
 		panel.add(lblNewLabel);
-		
-		JPanel pnAdminList = new JPanel();
-		contentPane.add(pnAdminList, BorderLayout.CENTER);
-		pnAdminList.setLayout(new GridLayout(1, 0, 0, 0));
-		
-		JButton btnCustomer = new JButton("\uD68C\uC6D0\uC815\uBCF4 \uBC0F \uAD00\uB9AC");
-		btnCustomer.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		btnCustomer.setBackground(new Color(0,121,51));
-		btnCustomer.setForeground(new Color(255, 255, 255));
-		btnCustomer.setFont(new Font("Dialog", Font.BOLD, 15));
+	}
+
+	private void setAdminMain() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2020\\java_ws\\Starbucks\\images\\logo\\\uB85C\uACE0(50x50).jpg"));
+		setTitle("\uAD00\uB9AC\uC790\uD398\uC774\uC9C0");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 468, 489);
+	}
+
+	private JButton setBtnCustomer() {
+		JButtonCreator btncreator = new JButtonCreator();
+		JButton btnCustomer = new ButtonRightAlignment(new ButtonFont(new ButtonForeGround(
+				new ButtonBackGround(new JButton("\uD68C\uC6D0\uC815\uBCF4 \uBC0F \uAD00\uB9AC"), 0,121,51), 255, 255, 255), "Dialog", Font.BOLD, 15)).getButton();
 		btnCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CustomerInfo CInfo = new CustomerInfo();
 				CInfo.setVisible(true);
 			}
 		});
-		pnAdminList.add(btnCustomer);
-		
-		JButton btnOrderList = new JButton("\uC8FC\uBB38\uAD00\uB9AC");
-		btnOrderList.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		btnOrderList.setBackground(new Color(0,121,51));
-		btnOrderList.setForeground(new Color(255, 255, 255));
-		btnOrderList.setFont(new Font("Dialog", Font.BOLD, 15));
+		return btnCustomer;
+	}
+
+	private JButton setBtnOrder() {
+
+		JButtonCreator btncreator = new JButtonCreator();
+		JButton btnOrderList = new ButtonRightAlignment(new ButtonFont(new ButtonForeGround(
+				new ButtonBackGround(new JButton("\uC8FC\uBB38\uAD00\uB9AC"), 0,121,51), 255, 255, 255), "Dialog", Font.BOLD, 15)).getButton();
 		btnOrderList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OrderInfo Oinfo= new OrderInfo();
 				Oinfo.setVisible(true);
 			}
 		});
-		
-		JButton btnNewButton = new JButton("\uC0C1\uD488\uAD00\uB9AC");
-		btnNewButton.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		btnNewButton.setBackground(new Color(0,121,51));
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setFont(new Font("Dialog", Font.BOLD, 15));
+		return btnOrderList;
+	}
+
+	private JButton setBtnProduct() {
+		JButtonCreator btncreator = new JButtonCreator();
+		JButton btnNewButton =  new ButtonRightAlignment(new ButtonFont(new ButtonForeGround(
+				new ButtonBackGround(new JButton("\uC0C1\uD488\uAD00\uB9AC"), 0,121,51), 255, 255, 255), "Dialog", Font.BOLD, 15)).getButton();
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ProductInfo pdInfo = new ProductInfo();
 				pdInfo.setVisible(true);
 			}
 		});
-		pnAdminList.add(btnNewButton);
-		pnAdminList.add(btnOrderList);
+		return btnNewButton;
 	}
 	
 

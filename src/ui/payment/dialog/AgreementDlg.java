@@ -43,6 +43,7 @@ public class AgreementDlg extends JDialog {
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JScrollPane scrollPane = new JScrollPane();
@@ -71,5 +72,4 @@ public class AgreementDlg extends JDialog {
 			}
 		}
 	}
-
 }
